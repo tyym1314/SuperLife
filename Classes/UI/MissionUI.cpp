@@ -13,6 +13,7 @@
 #include "TerrainMgr.h"
 #include "SpeedSlider.h"
 #include "ControlPanel.h"
+#include "CommonUtility.h"
 USING_NS_CC;
 // 构造函数
 MissionUI::MissionUI(BaseScene* owner)
@@ -32,10 +33,10 @@ MissionUI::~MissionUI()
 void MissionUI::loadUI(const std::string& file)
 {
     Color3B color = SceneFactory::getInstance()->getSceneColor();
-    m_pLabelMode = Label::createWithTTF("任务模式", "FZXS12.TTF", 120);
+    m_pLabelMode = Label::createWithTTF(CommonUtility::getLocalString("MissionMode"), CommonUtility::getLocalString("MainFont"), 120);
     m_pLabelMode->setPosition(Vec2(750,590));
     m_pLabelMode->setColor(color);
-    m_pLabelMode->setScale(0.5f);
+    m_pLabelMode->setScale(0.4f);
     this->addChild(m_pLabelMode);
     
     m_pPanel1 = Sprite::create("panel1.png");
@@ -52,10 +53,10 @@ void MissionUI::loadUI(const std::string& file)
     m_pBackBtn = ui::Button::create("btnLBN.png","btnLBD.png");
     m_pBackBtn->setPosition(Vec2(750,50));
     m_pBackBtn->addTouchEventListener(CC_CALLBACK_2(MissionUI::pressBackBtn, this));
-    m_pBackBtn->setTitleFontName("FZXS12.TTF");
+    m_pBackBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pBackBtn->setTitleColor(color);
     m_pBackBtn->setTitleFontSize(24);
-    m_pBackBtn->setTitleText("返回");
+    m_pBackBtn->setTitleText(CommonUtility::getLocalString("Back"));
     m_pBackBtn->setColor(color);
     this->addChild(m_pBackBtn);
 }

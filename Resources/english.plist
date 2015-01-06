@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MainTitle</key>
+	<string>SUPER LIFE</string>
+	<key>MainFont</key>
+	<string>LLPIXEL.TTF</string>
+	<key>SecondFont</key>
+	<string>r-plaza_8.ttf</string>
+	<key>CommonFont</key>
+	<string>FZXS12.TTF</string>
+	<key>MissionMode</key>
+	<string>MISSION MODE</string>
+	<key>FreeMode</key>
+	<string>FREE MODE</string>
+	<key>HelpInfo</key>
+	<string>HELP INFO</string>
+	<key>LifeNum</key>
+	<string>Life Count: %d</string>
+	<key>GenerationNum</key>
+	<string>Generation: %d</string>
+	<key>Start</key>
+	<string>START</string>
+	<key>Pause</key>
+	<string>PAUSE</string>
+	<key>Reset</key>
+	<string>RESET</string>
+	<key>Back</key>
+	<string>BACK</string>
+	<key>SelectMission</key>
+	<string>SELECT MISSION</string>
+	<key>Slow</key>
+	<string>SLOW</string>
+	<key>Fast</key>
+	<string>FAST</string>
+</dict>
+</plist>

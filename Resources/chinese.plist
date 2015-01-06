@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MainTitle</key>
+	<string>超级生命</string>
+	<key>MainFont</key>
+	<string>FZXS12.TTF</string>
+	<key>SecondFont</key>
+	<string>r-plaza_8.ttf</string>
+	<key>CommonFont</key>
+	<string>FZXS12.TTF</string>
+	<key>MissionMode</key>
+	<string>任务模式</string>
+	<key>FreeMode</key>
+	<string>自由模式</string>
+	<key>HelpInfo</key>
+	<string>说明与帮助</string>
+	<key>LifeNum</key>
+	<string>生命个数: %d</string>
+	<key>GenerationNum</key>
+	<string>生命代数: %d</string>
+	<key>Start</key>
+	<string>开始</string>
+	<key>Pause</key>
+	<string>暂停</string>
+	<key>Reset</key>
+	<string>重置</string>
+	<key>Back</key>
+	<string>返回</string>
+	<key>SelectMission</key>
+	<string>选择任务</string>
+	<key>Slow</key>
+	<string>慢</string>
+	<key>Fast</key>
+	<string>快</string>
+</dict>
+</plist>

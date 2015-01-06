@@ -11,7 +11,7 @@ USING_NS_CC;
 
 Color3B MathUtility::randomColor()
 {
-    const int minSum = 450;
+    const int minSum = 600;
 	const int minDelta = 150;
 	int r, g, b, min, max;
 	while (true) {

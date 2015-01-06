@@ -13,6 +13,7 @@
 #include "TerrainMgr.h"
 #include "SpeedSlider.h"
 #include "ControlPanel.h"
+#include "CommonUtility.h"
 USING_NS_CC;
 
 // 构造函数
@@ -37,7 +38,7 @@ MainUI::~MainUI()
 void MainUI::loadUI(const std::string& file)
 {
     Color3B color = SceneFactory::getInstance()->getSceneColor();
-    m_pLabelMode = Label::createWithTTF("自由模式", "FZXS12.TTF", 120);
+    m_pLabelMode = Label::createWithTTF(CommonUtility::getLocalString("FreeMode"), CommonUtility::getLocalString("MainFont"), 120);
     m_pLabelMode->setPosition(Vec2(750,590));
     m_pLabelMode->setColor(color);
     m_pLabelMode->setScale(0.5f);
@@ -50,17 +51,15 @@ void MainUI::loadUI(const std::string& file)
    
     int lifeNum = TerrainMgr::getInstance()->getLifeNum();
     int generationNum = TerrainMgr::getInstance()->getGeneration();
-    std::string strLifeNum = "生命个数: ";
-    strLifeNum += Value(lifeNum).asString();
-    std::string strGenerationNum = "生命代数: ";
-    strGenerationNum += Value(generationNum).asString();
+    std::string strLifeNum = String::createWithFormat(CommonUtility::getLocalString("LifeNum").c_str(), lifeNum)->getCString();
+    std::string strGenerationNum = String::createWithFormat(CommonUtility::getLocalString("GenerationNum").c_str(), generationNum)->getCString();
     
-    m_pLabelLifeNum = Label::createWithTTF(strLifeNum, "FZXS12.TTF", 24);
+    m_pLabelLifeNum = Label::createWithTTF(strLifeNum, CommonUtility::getLocalString("CommonFont"), 24);
     m_pLabelLifeNum->setPosition(Vec2(750,480));
     m_pLabelLifeNum->setColor(color);
     this->addChild(m_pLabelLifeNum);
     
-    m_pLabeGenerationNum = Label::createWithTTF(strGenerationNum, "FZXS12.TTF", 24);
+    m_pLabeGenerationNum = Label::createWithTTF(strGenerationNum, CommonUtility::getLocalString("CommonFont"), 24);
     m_pLabeGenerationNum->setPosition(Vec2(750,380));
     m_pLabeGenerationNum->setColor(color);
     this->addChild(m_pLabeGenerationNum);
@@ -68,10 +67,10 @@ void MainUI::loadUI(const std::string& file)
     m_pStartBtn = ui::Button::create("btnLBN.png","btnLBD.png");
     m_pStartBtn->setPosition(Vec2(680,300));
     m_pStartBtn->addTouchEventListener(CC_CALLBACK_2(MainUI::pressStartBtn, this));
-    m_pStartBtn->setTitleFontName("FZXS12.TTF");
+    m_pStartBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pStartBtn->setTitleColor(color);
     m_pStartBtn->setTitleFontSize(24);
-    m_pStartBtn->setTitleText("开始");
+    m_pStartBtn->setTitleText(CommonUtility::getLocalString("Start"));
     m_pStartBtn->setColor(color);
     m_pStartBtn->setScale(0.6f);
     this->addChild(m_pStartBtn);
@@ -79,10 +78,10 @@ void MainUI::loadUI(const std::string& file)
     m_pResetBtn = ui::Button::create("btnLBN.png","btnLBD.png");
     m_pResetBtn->setPosition(Vec2(820,300));
     m_pResetBtn->addTouchEventListener(CC_CALLBACK_2(MainUI::pressResetBtn, this));
-    m_pResetBtn->setTitleFontName("FZXS12.TTF");
+    m_pResetBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pResetBtn->setTitleColor(color);
     m_pResetBtn->setTitleFontSize(24);
-    m_pResetBtn->setTitleText("重置");
+    m_pResetBtn->setTitleText(CommonUtility::getLocalString("Reset"));
     m_pResetBtn->setColor(color);
     m_pResetBtn->setScale(0.6f);
     this->addChild(m_pResetBtn);
@@ -96,10 +95,10 @@ void MainUI::loadUI(const std::string& file)
     m_pBackBtn = ui::Button::create("btnLBN.png","btnLBD.png");
     m_pBackBtn->setPosition(Vec2(750,50));
     m_pBackBtn->addTouchEventListener(CC_CALLBACK_2(MainUI::pressBackBtn, this));
-    m_pBackBtn->setTitleFontName("FZXS12.TTF");
+    m_pBackBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pBackBtn->setTitleColor(color);
     m_pBackBtn->setTitleFontSize(24);
-    m_pBackBtn->setTitleText("返回");
+    m_pBackBtn->setTitleText(CommonUtility::getLocalString("Back"));
     m_pBackBtn->setColor(color);
     this->addChild(m_pBackBtn);
 }
@@ -110,10 +109,9 @@ void MainUI::update(float delta)
     
     int lifeNum = TerrainMgr::getInstance()->getLifeNum();
     int generationNum = TerrainMgr::getInstance()->getGeneration();
-    std::string strLifeNum = "生命个数: ";
-    strLifeNum += Value(lifeNum).asString();
-    std::string strGenerationNum = "生命代数: ";
-    strGenerationNum += Value(generationNum).asString();
+
+    std::string strLifeNum = String::createWithFormat(CommonUtility::getLocalString("LifeNum").c_str(), lifeNum)->getCString();
+    std::string strGenerationNum = String::createWithFormat(CommonUtility::getLocalString("GenerationNum").c_str(), generationNum)->getCString();
     
     m_pLabelLifeNum->setString(strLifeNum);
     m_pLabeGenerationNum->setString(strGenerationNum);
@@ -144,9 +142,9 @@ void MainUI::pressStartBtn(Ref* p,TouchEventType eventType)
             bool pause = scene->IsPaused();
             scene->setPause(!pause);
             if(pause)
-                m_pStartBtn->setTitleText("暂停");
+                m_pStartBtn->setTitleText(CommonUtility::getLocalString("Pause"));
             else
-                m_pStartBtn->setTitleText("开始");
+                m_pStartBtn->setTitleText(CommonUtility::getLocalString("Start"));
         }
     }
 }
@@ -162,7 +160,7 @@ void MainUI::pressResetBtn(Ref* p,TouchEventType eventType)
             if(!pause)
             {
                 scene->setPause(true);
-                m_pStartBtn->setTitleText("开始");
+                m_pStartBtn->setTitleText(CommonUtility::getLocalString("Start"));
             }
         }
         TerrainMgr::getInstance()->resetTerrain();

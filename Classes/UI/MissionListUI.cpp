@@ -10,6 +10,7 @@
 #include "SceneFactory.h"
 #include "UIMgr.h"
 #include "GameConst.h"
+#include "CommonUtility.h"
 USING_NS_CC;
 
 // 构造函数
@@ -28,7 +29,7 @@ MissionListUI::~MissionListUI()
 void MissionListUI::loadUI(const std::string& file)
 {
     Color3B color = SceneFactory::getInstance()->getSceneColor();
-    m_pLabelLevelSelect = Label::createWithTTF("关卡选择", "FZXS12.TTF", 120);
+    m_pLabelLevelSelect = Label::createWithTTF(CommonUtility::getLocalString("SelectMission"), CommonUtility::getLocalString("MainFont"), 120);
     m_pLabelLevelSelect->setPosition(Vec2(480,590));
     m_pLabelLevelSelect->setColor(color);
     m_pLabelLevelSelect->setScale(0.5f);
@@ -42,6 +43,15 @@ void MissionListUI::loadUI(const std::string& file)
     m_pScrollView->setPosition(Vec2(0,100));
     m_pScrollView->setTouchEnabled(true);
     
+    m_pBackBtn = ui::Button::create("btnLBN.png","btnLBD.png");
+    m_pBackBtn->setPosition(Vec2(750,50));
+    m_pBackBtn->addTouchEventListener(CC_CALLBACK_2(MissionListUI::pressBackBtn, this));
+    m_pBackBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
+    m_pBackBtn->setTitleColor(color);
+    m_pBackBtn->setTitleFontSize(24);
+    m_pBackBtn->setTitleText(CommonUtility::getLocalString("Back"));
+    m_pBackBtn->setColor(color);
+    this->addChild(m_pBackBtn);
     
     for(int i = 1; i <=MAX_LEVEL; i++)
     {
@@ -56,7 +66,7 @@ void MissionListUI::loadUI(const std::string& file)
         Vec2 pos = Vec2(k*120,ContainerHeight-((j+1)*100-40));
         ui::Button* btn = ui::Button::create("levelBtnLBN.png","levelBtnLBD.png","levelBtnLBN.png");
         btn->setPosition(pos);
-        btn->setTitleFontName("FZXS12.TTF");
+        btn->setTitleFontName(CommonUtility::getLocalString("MainFont"));
         btn->setTitleColor(color);
         btn->setTitleFontSize(60);
         btn->setColor(color);

@@ -11,6 +11,7 @@
 #include "ColorCheckBox.h"
 #include "SceneFactory.h"
 #include "TerrainMgr.h"
+#include "CommonUtility.h"
 USING_NS_CC;
 
 ControlPanel* ControlPanel::create()
@@ -47,11 +48,11 @@ void ControlPanel::loadUI(const std::string& file)
     m_pSpeedSlider->setPercent(percent*100);
     this->addChild(m_pSpeedSlider);
     
-    m_pLabelSlow = Label::createWithTTF("慢", "FZXS12.TTF", 18);
+    m_pLabelSlow = Label::createWithTTF(CommonUtility::getLocalString("Slow"), CommonUtility::getLocalString("CommonFont"), 18);
     m_pLabelSlow->setPosition(Vec2(150,40));
     this->addChild(m_pLabelSlow);
     
-    m_pLabelQuick = Label::createWithTTF("快", "FZXS12.TTF", 18);
+    m_pLabelQuick = Label::createWithTTF(CommonUtility::getLocalString("Fast"), CommonUtility::getLocalString("CommonFont"), 18);
     m_pLabelQuick->setPosition(Vec2(-150,40));
     this->addChild(m_pLabelQuick);
     
