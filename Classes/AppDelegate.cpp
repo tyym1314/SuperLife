@@ -36,16 +36,17 @@ bool AppDelegate::applicationDidFinishLaunching() {
     {
         searchPaths.push_back("published-ipad"); // Resources/published-ipad
     }
+    searchPaths.push_back("templates");
     
     FileUtils::getInstance()->setSearchPaths(searchPaths);
     FileUtils::getInstance()->setSearchResolutionsOrder(resDirOrders);
     
     glview->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::SHOW_ALL);
     
-    
+#if COCOS2D_DEBUG
     // turn on display FPS
     director->setDisplayStats(true);
-
+#endif
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 

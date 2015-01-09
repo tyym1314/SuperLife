@@ -89,11 +89,7 @@ void MissionListUI::loadUI(const std::string& file)
     }
     this->addChild(m_pScrollView);
 }
-//设置UI颜色
-void MissionListUI::setColor(const cocos2d::Color3B& color)
-{
-}
-// 点击返回按钮
+// 点击任务序号按钮
 void MissionListUI::pressLevelSelectBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType != TouchEventType::ENDED)
@@ -108,4 +104,9 @@ void MissionListUI::pressLevelSelectBtn(Ref* p,TouchEventType eventType)
 // 点击返回按钮
 void MissionListUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
+    if(eventType == TouchEventType::ENDED)
+    {
+        BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+        Director::getInstance()->replaceScene(mainScene);
+    }
 }

@@ -32,5 +32,8 @@ static const int SCENE_MENU                             = 1;        ///Menu界�
 static const int SCENE_MAIN                             = 10;       ///主界面
 static const int SCENE_MISSION_LIST                     = 11;       ///任务列表界面
 static const int SCENE_MISSION                          = 12;       ///任务界面
+static const int SCENE_EDITOR                           = 13;       ///编辑器界面
+static const int SCENE_SHOP                             = 14;       ///商店界面
+static const int SCENE_HELPINFO                         = 15;       ///帮助说明界面
 
 #endif

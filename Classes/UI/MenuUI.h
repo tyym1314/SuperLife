@@ -24,16 +24,22 @@ public:
     // 加载文件
     void loadUI(const std::string& file);
 private:
-    // 点击开始按钮
+    // 点击任务模式按钮
+    void pressMissionModeBtn(Ref* p,TouchEventType eventType);
+    // 点击自由模式按钮
     void pressFreeModeBtn(Ref* p,TouchEventType eventType);
-    // 点击暂停按钮
-    void pressQuestModeBtn(Ref* p,TouchEventType eventType);
+    // 点击闪电按钮
+    void pressShopBtn(Ref* p,TouchEventType eventType);
+    // 点击编辑模式按钮
+    void pressEditorBtn(Ref* p,TouchEventType eventType);
     // 点击帮助按钮
     void pressHelpBtn(Ref* p,TouchEventType eventType);
 private:
     BaseScene*               m_pOwnerScene;
     cocos2d::ui::Button*     m_pFreeModeBtn;
-    cocos2d::ui::Button*     m_pQuestModeBtn;
+    cocos2d::ui::Button*     m_pMissionModeBtn;
+    cocos2d::ui::Button*     m_pShopBtn;
+    cocos2d::ui::Button*     m_pEditorBtn;
     cocos2d::ui::Button*     m_pHelpBtn;
 };
 

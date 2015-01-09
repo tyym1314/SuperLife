@@ -23,11 +23,8 @@ public:
     virtual ~MissionListUI();
     // 加载文件
     void loadUI(const std::string& file);
-public:
-    //设置UI颜色
-    void setColor(const cocos2d::Color3B& color);
 protected:
-    // 点击返回按钮
+    // 点击任务序号按钮
     void pressLevelSelectBtn(Ref* p,TouchEventType eventType);
     // 点击返回按钮
     void pressBackBtn(Ref* p,TouchEventType eventType);

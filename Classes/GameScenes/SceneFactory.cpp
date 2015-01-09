@@ -11,6 +11,9 @@
 #include "MainScene.h"
 #include "MissionListScene.h"
 #include "MissionScene.h"
+#include "EditorScene.h"
+#include "ShopScene.h"
+#include "HelpInfoScene.h"
 #include "MathUtility.h"
 USING_NS_CC;
 
@@ -64,6 +67,36 @@ BaseScene* SceneFactory::createSceneByID(int sceneID)
                 scene->initGameLayers(LAYER_ALL);
                 scene->autorelease();
             }
+            break;
+        case SCENE_EDITOR:
+            m_SceneColor = Color3B::WHITE;
+            scene = new EditorScene();
+            if(scene)
+            {
+                scene->initGameLayers(LAYER_ALL);
+                scene->autorelease();
+            }
+
+            break;
+        case SCENE_SHOP:
+            m_SceneColor = Color3B::WHITE;
+            scene = new ShopScene();
+            if(scene)
+            {
+                scene->initGameLayers(LAYER_ALL);
+                scene->autorelease();
+            }
+            break;
+
+        case SCENE_HELPINFO:
+            m_SceneColor = Color3B::WHITE;
+            scene = new HelpInfoScene();
+            if(scene)
+            {
+                scene->initGameLayers(LAYER_ALL);
+                scene->autorelease();
+            }
+            
             break;
         default:
             break;

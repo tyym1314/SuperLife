@@ -23,7 +23,7 @@ MainScene::~MainScene()
 void MainScene::onEnter()
 {
     BaseScene::onEnter();
-    TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(50, 100));
+    TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(70, 102));
     m_pMainUI = UIMgr::getInstance()->createUI(MAIN_UI);
 }
 void MainScene::onExit()

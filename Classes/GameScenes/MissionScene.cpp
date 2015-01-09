@@ -31,7 +31,7 @@ void MissionScene::setCurrentLevel(int level)
 void MissionScene::onEnter()
 {
     BaseScene::onEnter();
-    TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(50, 100));
+    TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(70, 102));
     m_pMissionUI = UIMgr::getInstance()->createUI(MISSION_UI);
 }
 void MissionScene::onExit()

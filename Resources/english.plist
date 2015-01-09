@@ -14,6 +14,10 @@
 	<string>MISSION MODE</string>
 	<key>FreeMode</key>
 	<string>FREE MODE</string>
+	<key>Shop</key>
+	<string>SHOP</string>
+	<key>EditorMode</key>
+	<string>EDITOR MODE</string>
 	<key>HelpInfo</key>
 	<string>HELP INFO</string>
 	<key>LifeNum</key>
@@ -28,6 +32,10 @@
 	<string>RESET</string>
 	<key>Back</key>
 	<string>BACK</string>
+	<key>Edit</key>
+	<string>EDIT</string>
+	<key>Save</key>
+	<string>SAVE</string>
 	<key>SelectMission</key>
 	<string>SELECT MISSION</string>
 	<key>Slow</key>

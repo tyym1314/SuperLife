@@ -21,4 +21,13 @@ static std::string MISSION_LIST_UI_FILE = "mission_list_ui.xml";
 static const int MISSION_UI = 3;
 static std::string MISSION_UI_FILE = "mission_ui.xml";
 
+static const int EDITOR_UI = 4;
+static std::string EDITOR_UI_FILE = "editor_ui.xml";
+
+static const int SHOP_UI = 5;
+static std::string SHOP_UI_FILE = "shop_ui.xml";
+
+static const int HELPINFO_UI = 6;
+static std::string HELPINFO_UI_FILE = "helpinfo_ui.xml";
+
 #endif

@@ -13,6 +13,9 @@
 #include "MainUI.h"
 #include "MissionListUI.h"
 #include "MissionUI.h"
+#include "EditorUI.h"
+#include "ShopUI.h"
+#include "HelpInfoUI.h"
 USING_NS_CC;
 
 UIMgr* g_pUIMgrInstance = nullptr;
@@ -85,7 +88,39 @@ ui::Layout* UIMgr::createUI(int uiid)
                     }
                 }
                 break;
-                
+            case EDITOR_UI:
+                {
+                    layout = new EditorUI(runningScene);
+                    if(layout)
+                    {
+                        static_cast<EditorUI*>(layout)->loadUI(EDITOR_UI_FILE);
+                        layer->addChild(layout);
+                        layout->autorelease();
+                    }
+                }
+                break;
+            case SHOP_UI:
+                {
+                    layout = new ShopUI(runningScene);
+                    if(layout)
+                    {
+                        static_cast<ShopUI*>(layout)->loadUI(SHOP_UI_FILE);
+                        layer->addChild(layout);
+                        layout->autorelease();
+                    }
+                }
+                break;
+            case HELPINFO_UI:
+                {
+                    layout = new HelpInfoUI(runningScene);
+                    if(layout)
+                    {
+                        static_cast<HelpInfoUI*>(layout)->loadUI(HELPINFO_UI_FILE);
+                        layer->addChild(layout);
+                        layout->autorelease();
+                    }
+                }
+                break;
             default:
                 break;
         }

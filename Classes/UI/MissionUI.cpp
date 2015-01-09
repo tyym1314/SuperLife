@@ -34,24 +34,24 @@ void MissionUI::loadUI(const std::string& file)
 {
     Color3B color = SceneFactory::getInstance()->getSceneColor();
     m_pLabelMode = Label::createWithTTF(CommonUtility::getLocalString("MissionMode"), CommonUtility::getLocalString("MainFont"), 120);
-    m_pLabelMode->setPosition(Vec2(750,590));
+    m_pLabelMode->setPosition(Vec2(770,590));
     m_pLabelMode->setColor(color);
     m_pLabelMode->setScale(0.4f);
     this->addChild(m_pLabelMode);
     
     m_pPanel1 = Sprite::create("panel1.png");
-    m_pPanel1->setPosition(Vec2(750,400));
+    m_pPanel1->setPosition(Vec2(770,400));
     m_pPanel1->setColor(color);
     this->addChild(m_pPanel1);
     
     m_pControlPanel = ControlPanel::create();
     m_pControlPanel->loadUI("");
     m_pControlPanel->setColor(color);
-    m_pControlPanel->setPosition(Vec2(750,175));
+    m_pControlPanel->setPosition(Vec2(770,175));
     this->addChild(m_pControlPanel);
     
     m_pBackBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pBackBtn->setPosition(Vec2(750,50));
+    m_pBackBtn->setPosition(Vec2(770,50));
     m_pBackBtn->addTouchEventListener(CC_CALLBACK_2(MissionUI::pressBackBtn, this));
     m_pBackBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pBackBtn->setTitleColor(color);

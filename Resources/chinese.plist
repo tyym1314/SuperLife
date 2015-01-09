@@ -14,6 +14,10 @@
 	<string>任务模式</string>
 	<key>FreeMode</key>
 	<string>自由模式</string>
+	<key>Shop</key>
+	<string>商店</string>
+	<key>EditorMode</key>
+	<string>编辑模式</string>
 	<key>HelpInfo</key>
 	<string>说明与帮助</string>
 	<key>LifeNum</key>
@@ -28,6 +32,10 @@
 	<string>重置</string>
 	<key>Back</key>
 	<string>返回</string>
+	<key>Edit</key>
+	<string>编辑</string>
+	<key>Save</key>
+	<string>保存</string>
 	<key>SelectMission</key>
 	<string>选择任务</string>
 	<key>Slow</key>

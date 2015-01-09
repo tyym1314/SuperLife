@@ -44,6 +44,18 @@ public:
     float getCurUpdateDelta() const;
     //设置当前更新频率
     void setCurUpdateDelta(float curUpdateDelta);
+    //获取渲染对象
+    cocos2d::DrawNode* getTerrainNode() const { return m_pDrawNode; }
+    //获取地形对象位移
+    cocos2d::Vec2 getOffset() const { return m_Offset; }
+    //加载全部模版
+    void loadTemplates();
+    //加载模版
+    std::string getTemplateName(ssize_t index);
+    //保存模版
+    void saveTemplate(const std::string& name);
+    //获取模版数量
+    ssize_t getTemplateCount();
 public:
     // 处理输入
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
@@ -64,6 +76,8 @@ private:
     float                           m_fCurUpdateDelta;
     
     cocos2d::EventListenerTouchOneByOne* m_pTouchListener;
+    std::vector<std::string>        m_vecTemplatesName;
+    cocos2d::ValueMap               m_dictTemplates;
 };
 
 #endif /* defined(__CCGF__TerrainMgr__) */

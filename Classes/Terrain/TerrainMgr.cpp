@@ -37,6 +37,7 @@ TerrainMgr::TerrainMgr()
     m_pTouchListener->onTouchEnded = CC_CALLBACK_2(TerrainMgr::onTouchEnded, this);
     m_pTouchListener->onTouchCancelled = CC_CALLBACK_2(TerrainMgr::onTouchCancelled, this);
     dispatcher->addEventListenerWithSceneGraphPriority(m_pTouchListener, m_pDrawNode);
+    loadTemplates();
 }
 // 析构函数
 TerrainMgr::~TerrainMgr()
@@ -58,17 +59,19 @@ void TerrainMgr::addTerrain(TerrainCell::CELL_TYPE cell_type, int rows, int colu
         Layer* layer = runningScene->getLayer("TerrainLayer");
         if(runningScene && layer)
             layer->addChild(m_pDrawNode);
+        m_pDrawNode->setPosition(offset);
+        m_pDrawNode->setContentSize(Size(rows*radius*cos(M_PI_4)*2, columns*radius*cos(M_PI_4)*2));
         Color3B color = SceneFactory::getInstance()->getSceneColor();
         for (int i = 0; i<rows; i++) {
             for (int j = 0; j<columns; j++) {
-                TerrainCell* cell = new TerrainCell( i, j, i*radius*cos(M_PI_4)*2 + offset.x, j*radius*cos(M_PI_4)*2 + offset.y, radius, Color4F(Color4B(color.r, color.g, color.b, 100)), cell_type);
+                TerrainCell* cell = new TerrainCell( i, j, i*radius*cos(M_PI_4)*2, j*radius*cos(M_PI_4)*2, radius, Color4F(Color4B(color.r, color.g, color.b, 100)), cell_type);
                 m_TerrainCellList.pushBack(cell);
                 
                 int vertexNum = 4;
-                Vec2 points[] = { Vec2(radius*cos(2*M_PI/vertexNum*0 + M_PI_4) + j*radius*cos(M_PI_4)*2 + offset.x,radius*sin(2*M_PI/vertexNum*0 + M_PI_4) + i*radius*cos(M_PI_4)*2 + offset.y),
-                                     Vec2(radius*cos(2*M_PI/vertexNum*1 + M_PI_4) + j*radius*cos(M_PI_4)*2 + offset.x,radius*sin(2*M_PI/vertexNum*1 + M_PI_4) + i*radius*cos(M_PI_4)*2 + offset.y),
-                                     Vec2(radius*cos(2*M_PI/vertexNum*2 + M_PI_4) + j*radius*cos(M_PI_4)*2 + offset.x,radius*sin(2*M_PI/vertexNum*2 + M_PI_4) + i*radius*cos(M_PI_4)*2 + offset.y),
-                                     Vec2(radius*cos(2*M_PI/vertexNum*3 + M_PI_4) + j*radius*cos(M_PI_4)*2 + offset.x,radius*sin(2*M_PI/vertexNum*3 + M_PI_4) + i*radius*cos(M_PI_4)*2 + offset.y) };
+                Vec2 points[] = { Vec2(radius*cos(2*M_PI/vertexNum*0 + M_PI_4) + j*radius*cos(M_PI_4)*2,radius*sin(2*M_PI/vertexNum*0 + M_PI_4) + i*radius*cos(M_PI_4)*2),
+                                     Vec2(radius*cos(2*M_PI/vertexNum*1 + M_PI_4) + j*radius*cos(M_PI_4)*2,radius*sin(2*M_PI/vertexNum*1 + M_PI_4) + i*radius*cos(M_PI_4)*2),
+                                     Vec2(radius*cos(2*M_PI/vertexNum*2 + M_PI_4) + j*radius*cos(M_PI_4)*2,radius*sin(2*M_PI/vertexNum*2 + M_PI_4) + i*radius*cos(M_PI_4)*2),
+                                     Vec2(radius*cos(2*M_PI/vertexNum*3 + M_PI_4) + j*radius*cos(M_PI_4)*2,radius*sin(2*M_PI/vertexNum*3 + M_PI_4) + i*radius*cos(M_PI_4)*2) };
                 
                 m_pDrawNode->drawPolygon(points, sizeof(points)/sizeof(points[0]), cell->getColor(), 0.5f, Color4F(0.0f,0.0f,0.0f,1.0f));
             }
@@ -80,32 +83,33 @@ void TerrainMgr::addTerrain(TerrainCell::CELL_TYPE cell_type, int rows, int colu
         Layer* layer = runningScene->getLayer("TerrainLayer");
         if(runningScene && layer)
             layer->addChild(m_pDrawNode);
+        m_pDrawNode->setPosition(offset);
         Color3B color = SceneFactory::getInstance()->getSceneColor();
         for (int i = 0; i<rows; i++) {
             for (int j = 0; j<columns; j++) {
-                TerrainCell* cell = new TerrainCell( i, j, i*radius + offset.x, j*radius + offset.y, radius, Color4F(Color4B(color.r, color.g, color.b, 100)), cell_type);
+                TerrainCell* cell = new TerrainCell( i, j, i*radius, j*radius, radius, Color4F(Color4B(color.r, color.g, color.b, 100)), cell_type);
                 m_TerrainCellList.pushBack(cell);
                 cell->autorelease();
                 
                 int vertexNum = 6;
                 if(i%2 == 0)
                 {
-                    Vec2 points[] = { Vec2(radius*cos(2*M_PI/vertexNum*0 + M_PI_2) + j*radius*cos(M_PI_2/3.0f)*2 + offset.x, radius*sin(2*M_PI/vertexNum*0 + M_PI_2) + i*radius*1.5f + offset.y),
-                                         Vec2(radius*cos(2*M_PI/vertexNum*1 + M_PI_2) + j*radius*cos(M_PI_2/3.0f)*2 + offset.x, radius*sin(2*M_PI/vertexNum*1 + M_PI_2) + i*radius*1.5f + offset.y),
-                                         Vec2(radius*cos(2*M_PI/vertexNum*2 + M_PI_2) + j*radius*cos(M_PI_2/3.0f)*2 + offset.x, radius*sin(2*M_PI/vertexNum*2 + M_PI_2) + i*radius*1.5f + offset.y),
-                                         Vec2(radius*cos(2*M_PI/vertexNum*3 + M_PI_2) + j*radius*cos(M_PI_2/3.0f)*2 + offset.x, radius*sin(2*M_PI/vertexNum*3 + M_PI_2) + i*radius*1.5f + offset.y),
-                                         Vec2(radius*cos(2*M_PI/vertexNum*4 + M_PI_2) + j*radius*cos(M_PI_2/3.0f)*2 + offset.x, radius*sin(2*M_PI/vertexNum*4 + M_PI_2) + i*radius*1.5f + offset.y),
-                                         Vec2(radius*cos(2*M_PI/vertexNum*5 + M_PI_2) + j*radius*cos(M_PI_2/3.0f)*2 + offset.x, radius*sin(2*M_PI/vertexNum*5 + M_PI_2) + i*radius*1.5f + offset.y) };
+                    Vec2 points[] = { Vec2(radius*cos(2*M_PI/vertexNum*0 + M_PI_2) + j*radius*cos(M_PI_2/3.0f)*2, radius*sin(2*M_PI/vertexNum*0 + M_PI_2) + i*radius*1.5f),
+                                         Vec2(radius*cos(2*M_PI/vertexNum*1 + M_PI_2) + j*radius*cos(M_PI_2/3.0f)*2, radius*sin(2*M_PI/vertexNum*1 + M_PI_2) + i*radius*1.5f),
+                                         Vec2(radius*cos(2*M_PI/vertexNum*2 + M_PI_2) + j*radius*cos(M_PI_2/3.0f)*2, radius*sin(2*M_PI/vertexNum*2 + M_PI_2) + i*radius*1.5f),
+                                         Vec2(radius*cos(2*M_PI/vertexNum*3 + M_PI_2) + j*radius*cos(M_PI_2/3.0f)*2, radius*sin(2*M_PI/vertexNum*3 + M_PI_2) + i*radius*1.5f),
+                                         Vec2(radius*cos(2*M_PI/vertexNum*4 + M_PI_2) + j*radius*cos(M_PI_2/3.0f)*2, radius*sin(2*M_PI/vertexNum*4 + M_PI_2) + i*radius*1.5f),
+                                         Vec2(radius*cos(2*M_PI/vertexNum*5 + M_PI_2) + j*radius*cos(M_PI_2/3.0f)*2, radius*sin(2*M_PI/vertexNum*5 + M_PI_2) + i*radius*1.5f) };
                     m_pDrawNode->drawPolygon(points, sizeof(points)/sizeof(points[0]), cell->getColor(), 0.5f, Color4F(0.5f,1.0f,0.0f,1.0f));
                 }
                 else
                 {
-                    Vec2 points[] = { Vec2(radius*cos(2*M_PI/vertexNum*0 + M_PI_2) + (j+0.5f)*radius*cos(M_PI_2/3.0f)*2 + offset.x, radius*sin(2*M_PI/vertexNum*0 + M_PI_2) + i*radius*1.5f + offset.y),
-                                         Vec2(radius*cos(2*M_PI/vertexNum*1 + M_PI_2) + (j+0.5f)*radius*cos(M_PI_2/3.0f)*2 + offset.x, radius*sin(2*M_PI/vertexNum*1 + M_PI_2) + i*radius*1.5f + offset.y),
-                                         Vec2(radius*cos(2*M_PI/vertexNum*2 + M_PI_2) + (j+0.5f)*radius*cos(M_PI_2/3.0f)*2 + offset.x, radius*sin(2*M_PI/vertexNum*2 + M_PI_2) + i*radius*1.5f + offset.y),
-                                         Vec2(radius*cos(2*M_PI/vertexNum*3 + M_PI_2) + (j+0.5f)*radius*cos(M_PI_2/3.0f)*2 + offset.x, radius*sin(2*M_PI/vertexNum*3 + M_PI_2) + i*radius*1.5f + offset.y),
-                                         Vec2(radius*cos(2*M_PI/vertexNum*4 + M_PI_2) + (j+0.5f)*radius*cos(M_PI_2/3.0f)*2 + offset.x, radius*sin(2*M_PI/vertexNum*4 + M_PI_2) + i*radius*1.5f + offset.y),
-                                         Vec2(radius*cos(2*M_PI/vertexNum*5 + M_PI_2) + (j+0.5f)*radius*cos(M_PI_2/3.0f)*2 + offset.x, radius*sin(2*M_PI/vertexNum*5 + M_PI_2) + i*radius*1.5f + offset.y) };
+                    Vec2 points[] = { Vec2(radius*cos(2*M_PI/vertexNum*0 + M_PI_2) + (j+0.5f)*radius*cos(M_PI_2/3.0f)*2, radius*sin(2*M_PI/vertexNum*0 + M_PI_2) + i*radius*1.5f),
+                                         Vec2(radius*cos(2*M_PI/vertexNum*1 + M_PI_2) + (j+0.5f)*radius*cos(M_PI_2/3.0f)*2, radius*sin(2*M_PI/vertexNum*1 + M_PI_2) + i*radius*1.5f),
+                                         Vec2(radius*cos(2*M_PI/vertexNum*2 + M_PI_2) + (j+0.5f)*radius*cos(M_PI_2/3.0f)*2, radius*sin(2*M_PI/vertexNum*2 + M_PI_2) + i*radius*1.5f),
+                                         Vec2(radius*cos(2*M_PI/vertexNum*3 + M_PI_2) + (j+0.5f)*radius*cos(M_PI_2/3.0f)*2, radius*sin(2*M_PI/vertexNum*3 + M_PI_2) + i*radius*1.5f),
+                                         Vec2(radius*cos(2*M_PI/vertexNum*4 + M_PI_2) + (j+0.5f)*radius*cos(M_PI_2/3.0f)*2, radius*sin(2*M_PI/vertexNum*4 + M_PI_2) + i*radius*1.5f),
+                                         Vec2(radius*cos(2*M_PI/vertexNum*5 + M_PI_2) + (j+0.5f)*radius*cos(M_PI_2/3.0f)*2, radius*sin(2*M_PI/vertexNum*5 + M_PI_2) + i*radius*1.5f) };
                     m_pDrawNode->drawPolygon(points, sizeof(points)/sizeof(points[0]), cell->getColor(), 0.5f, Color4F(0.5f,1.0f,0.0f,1.0f));
                 }
             }
@@ -148,10 +152,10 @@ void TerrainMgr::updateTerrain()
                 int i = cell->getIndexY();
                 float radius = cell->getRadius();
                 int vertexNum = 4;
-                Vec2 points[] = { Vec2(radius*cos(2*M_PI/vertexNum*0 + M_PI_4) + j*radius*cos(M_PI_4)*2 + m_Offset.x,radius*sin(2*M_PI/vertexNum*0 + M_PI_4) + i*radius*cos(M_PI_4)*2 + m_Offset.y),
-                    Vec2(radius*cos(2*M_PI/vertexNum*1 + M_PI_4) + j*radius*cos(M_PI_4)*2 + m_Offset.x,radius*sin(2*M_PI/vertexNum*1 + M_PI_4) + i*radius*cos(M_PI_4)*2 + m_Offset.y),
-                    Vec2(radius*cos(2*M_PI/vertexNum*2 + M_PI_4) + j*radius*cos(M_PI_4)*2 + m_Offset.x,radius*sin(2*M_PI/vertexNum*2 + M_PI_4) + i*radius*cos(M_PI_4)*2 + m_Offset.y),
-                    Vec2(radius*cos(2*M_PI/vertexNum*3 + M_PI_4) + j*radius*cos(M_PI_4)*2 + m_Offset.x,radius*sin(2*M_PI/vertexNum*3 + M_PI_4) + i*radius*cos(M_PI_4)*2 + m_Offset.y) };
+                Vec2 points[] = { Vec2(radius*cos(2*M_PI/vertexNum*0 + M_PI_4) + j*radius*cos(M_PI_4)*2,radius*sin(2*M_PI/vertexNum*0 + M_PI_4) + i*radius*cos(M_PI_4)*2),
+                    Vec2(radius*cos(2*M_PI/vertexNum*1 + M_PI_4) + j*radius*cos(M_PI_4)*2,radius*sin(2*M_PI/vertexNum*1 + M_PI_4) + i*radius*cos(M_PI_4)*2),
+                    Vec2(radius*cos(2*M_PI/vertexNum*2 + M_PI_4) + j*radius*cos(M_PI_4)*2,radius*sin(2*M_PI/vertexNum*2 + M_PI_4) + i*radius*cos(M_PI_4)*2),
+                    Vec2(radius*cos(2*M_PI/vertexNum*3 + M_PI_4) + j*radius*cos(M_PI_4)*2,radius*sin(2*M_PI/vertexNum*3 + M_PI_4) + i*radius*cos(M_PI_4)*2) };
                 
                 m_pDrawNode->drawPolygon(points, sizeof(points)/sizeof(points[0]), cell->getColor(), 0.5f, Color4F(0.0f,0.0f,0.0f,1.0f));
                 
@@ -349,4 +353,47 @@ void TerrainMgr::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_even
 }
 void TerrainMgr::onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
+}
+//加载模版
+void TerrainMgr::loadTemplates()
+{
+    m_dictTemplates = FileUtils::getInstance()->getValueMapFromFile("templates.plist");
+    ValueMap::iterator iter;
+    for(iter = m_dictTemplates.begin();iter != m_dictTemplates.end(); iter++)
+    {
+        m_vecTemplatesName.push_back(iter->first);
+    }
+}
+//加载模版
+std::string TerrainMgr::getTemplateName(ssize_t index)
+{
+    return m_vecTemplatesName[index];
+}
+//保存模版
+void TerrainMgr::saveTemplate(const std::string& name)
+{
+    ValueVector temp;
+    for (int k = 0; k < m_TerrainCellList.size(); k++)
+    {
+        TerrainCell* cell = m_TerrainCellList.at(k);
+        if(cell)
+        {
+            Color4F sceneColor = Color4F(Color4B(SceneFactory::getInstance()->getSceneColor()));
+            if(sceneColor == cell->getColor())
+                temp.push_back(Value(1));
+            else
+                temp.push_back(Value(0));
+        }
+    }
+    m_dictTemplates[name] = temp;
+    
+    if(std::find(m_vecTemplatesName.begin(), m_vecTemplatesName.end(), name) == m_vecTemplatesName.end())
+        m_vecTemplatesName.push_back(name);
+    std::string fullpath = FileUtils::getInstance()->getWritablePath() + "/templates/templates.plist";
+    FileUtils::getInstance()->writeToFile(m_dictTemplates, fullpath);
+}
+//获取模版数量
+ssize_t TerrainMgr::getTemplateCount()
+{
+    return m_vecTemplatesName.size();
 }

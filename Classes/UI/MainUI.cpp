@@ -39,13 +39,13 @@ void MainUI::loadUI(const std::string& file)
 {
     Color3B color = SceneFactory::getInstance()->getSceneColor();
     m_pLabelMode = Label::createWithTTF(CommonUtility::getLocalString("FreeMode"), CommonUtility::getLocalString("MainFont"), 120);
-    m_pLabelMode->setPosition(Vec2(750,590));
+    m_pLabelMode->setPosition(Vec2(770,590));
     m_pLabelMode->setColor(color);
     m_pLabelMode->setScale(0.5f);
     this->addChild(m_pLabelMode);
     
     m_pPanel1 = Sprite::create("panel1.png");
-    m_pPanel1->setPosition(Vec2(750,400));
+    m_pPanel1->setPosition(Vec2(770,400));
     m_pPanel1->setColor(color);
     this->addChild(m_pPanel1);
    
@@ -55,17 +55,17 @@ void MainUI::loadUI(const std::string& file)
     std::string strGenerationNum = String::createWithFormat(CommonUtility::getLocalString("GenerationNum").c_str(), generationNum)->getCString();
     
     m_pLabelLifeNum = Label::createWithTTF(strLifeNum, CommonUtility::getLocalString("CommonFont"), 24);
-    m_pLabelLifeNum->setPosition(Vec2(750,480));
+    m_pLabelLifeNum->setPosition(Vec2(770,480));
     m_pLabelLifeNum->setColor(color);
     this->addChild(m_pLabelLifeNum);
     
     m_pLabeGenerationNum = Label::createWithTTF(strGenerationNum, CommonUtility::getLocalString("CommonFont"), 24);
-    m_pLabeGenerationNum->setPosition(Vec2(750,380));
+    m_pLabeGenerationNum->setPosition(Vec2(770,380));
     m_pLabeGenerationNum->setColor(color);
     this->addChild(m_pLabeGenerationNum);
     
     m_pStartBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pStartBtn->setPosition(Vec2(680,300));
+    m_pStartBtn->setPosition(Vec2(700,300));
     m_pStartBtn->addTouchEventListener(CC_CALLBACK_2(MainUI::pressStartBtn, this));
     m_pStartBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pStartBtn->setTitleColor(color);
@@ -76,7 +76,7 @@ void MainUI::loadUI(const std::string& file)
     this->addChild(m_pStartBtn);
     
     m_pResetBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pResetBtn->setPosition(Vec2(820,300));
+    m_pResetBtn->setPosition(Vec2(840,300));
     m_pResetBtn->addTouchEventListener(CC_CALLBACK_2(MainUI::pressResetBtn, this));
     m_pResetBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pResetBtn->setTitleColor(color);
@@ -89,11 +89,11 @@ void MainUI::loadUI(const std::string& file)
     m_pControlPanel = ControlPanel::create();
     m_pControlPanel->loadUI("");
     m_pControlPanel->setColor(color);
-    m_pControlPanel->setPosition(Vec2(750,175));
+    m_pControlPanel->setPosition(Vec2(770,175));
     this->addChild(m_pControlPanel);
     
     m_pBackBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pBackBtn->setPosition(Vec2(750,50));
+    m_pBackBtn->setPosition(Vec2(770,50));
     m_pBackBtn->addTouchEventListener(CC_CALLBACK_2(MainUI::pressBackBtn, this));
     m_pBackBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pBackBtn->setTitleColor(color);
