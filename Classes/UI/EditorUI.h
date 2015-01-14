@@ -14,7 +14,6 @@
 #include "cocos-ext.h"
 #include "IUIReader.h"
 class BaseScene;
-class ControlPanel;
 class EditorUI : public cocos2d::ui::Layout, public IUIReader, public cocos2d::extension::TableViewDataSource, public cocos2d::extension::TableViewDelegate
 {
 public:
@@ -48,13 +47,13 @@ private:
     BaseScene*                      m_pOwnerScene;
     cocos2d::Label*                 m_pLabelMode;
     cocos2d::Sprite*                m_pPanel1;
-    ControlPanel*                   m_pControlPanel;
     cocos2d::extension::EditBox*    m_pEditBox;
     cocos2d::ui::Button*            m_pEditBtn;
     cocos2d::ui::Button*            m_pSaveBtn;
     cocos2d::ui::Button*            m_pResetBtn;
     cocos2d::ui::Button*            m_pBackBtn;
     cocos2d::extension::TableView*  m_pTableView;
+    cocos2d::Label*                 m_pLabelErrorInfo;
 };
 
 #endif /* defined(__SuperLife__EditorUI__) */

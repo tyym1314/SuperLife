@@ -79,7 +79,6 @@ BaseScene* SceneFactory::createSceneByID(int sceneID)
 
             break;
         case SCENE_SHOP:
-            m_SceneColor = Color3B::WHITE;
             scene = new ShopScene();
             if(scene)
             {
@@ -89,7 +88,6 @@ BaseScene* SceneFactory::createSceneByID(int sceneID)
             break;
 
         case SCENE_HELPINFO:
-            m_SceneColor = Color3B::WHITE;
             scene = new HelpInfoScene();
             if(scene)
             {

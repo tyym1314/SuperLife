@@ -44,6 +44,28 @@ void ShopUI::loadUI(const std::string& file)
     m_pBackBtn->setColor(color);
     this->addChild(m_pBackBtn);
 }
+// 点击删除广告按钮
+void ShopUI::pressRemoveAdsViewBtn(Ref* p,TouchEventType eventType)
+{
+    if(eventType == TouchEventType::ENDED)
+    {
+    }
+}
+// 点击解锁全部模版按钮
+void ShopUI::pressUnlockAllTemplatesBtn(Ref* p,TouchEventType eventType)
+{
+    if(eventType == TouchEventType::ENDED)
+    {
+
+    }
+}
+// 点击解锁编辑模式按钮
+void ShopUI::pressUnlockEditorModeBtn(Ref* p,TouchEventType eventType)
+{
+    if(eventType == TouchEventType::ENDED)
+    {
+    }
+}
 // 点击返回按钮
 void ShopUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {

@@ -12,8 +12,8 @@
 #include "SceneFactory.h"
 #include "TerrainMgr.h"
 #include "SpeedSlider.h"
-#include "ControlPanel.h"
 #include "CommonUtility.h"
+#include <regex>
 USING_NS_CC;
 USING_NS_CC_EXT;
 // 构造函数
@@ -23,7 +23,6 @@ EditorUI::EditorUI(BaseScene* owner)
     m_pOwnerScene   = owner;
     m_pLabelMode    = nullptr;
     m_pPanel1       = nullptr;
-    m_pControlPanel = nullptr;
     m_pEditBox      = nullptr;
     m_pEditBtn      = nullptr;
     m_pSaveBtn      = nullptr;
@@ -50,16 +49,10 @@ void EditorUI::loadUI(const std::string& file)
     m_pPanel1->setColor(color);
     this->addChild(m_pPanel1);
     
-    m_pControlPanel = ControlPanel::create();
-    m_pControlPanel->loadUI("");
-    m_pControlPanel->setColor(color);
-    m_pControlPanel->setPosition(Vec2(750,175));
-    this->addChild(m_pControlPanel);
-    
     Scale9Sprite* scale9 = Scale9Sprite::create("slider_bar_button.png");
     m_pEditBox = EditBox::create(Size(200,48), scale9);
     m_pEditBox->setPosition(Vec2(750,480));
-    m_pEditBox->setPlaceHolder("Input Name");
+    m_pEditBox->setPlaceHolder(CommonUtility::getLocalString("TemplateName").c_str());
     m_pEditBox->setPlaceholderFontColor(Color3B::RED);
     m_pEditBox->setFontColor(Color3B::BLACK);
     m_pEditBox->setColor(color);
@@ -108,6 +101,12 @@ void EditorUI::loadUI(const std::string& file)
     m_pBackBtn->setColor(color);
     this->addChild(m_pBackBtn);
     
+    m_pLabelErrorInfo = Label::createWithTTF("", CommonUtility::getLocalString("CommonFont"), 30);
+    m_pLabelErrorInfo->setPosition(Vec2(750,180));
+    m_pLabelErrorInfo->setMaxLineWidth(250);
+    m_pLabelErrorInfo->setColor(color);
+    this->addChild(m_pLabelErrorInfo);
+    
     m_pTableView = TableView::create(this, Size(540, 64));
     m_pTableView->setDirection(ScrollView::Direction::HORIZONTAL);
     m_pTableView->setPosition(Vec2(48,25));
@@ -127,7 +126,6 @@ void EditorUI::setColor(const cocos2d::Color3B& color)
 {
     m_pLabelMode->setColor(color);
     m_pPanel1->setColor(color);
-    m_pControlPanel->setColor(color);
     m_pEditBox->setColor(color);
     m_pEditBtn->setTitleColor(color);
     m_pEditBtn->setColor(color);
@@ -148,7 +146,7 @@ TableViewCell* EditorUI::tableCellAtIndex(TableView *table, ssize_t idx)
 {
     CCLOG("%zd",idx);
     std::string nameString = TerrainMgr::getInstance()->getTemplateName(idx) + ".png";
-    TableViewCell *cell = table->dequeueCell();
+    TableViewCell *cell = table->cellAtIndex(idx);
     if (!cell) {
         cell = TableViewCell::create();
         cell->setCascadeColorEnabled(true);
@@ -182,7 +180,19 @@ void EditorUI::pressEditBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        std::string strText = m_pEditBox->getText();
+        if(strText.empty())
+        {
+            m_pLabelErrorInfo->setString(CommonUtility::getLocalString("ErrorInfo3"));
+            return;
+        }
+        if(!TerrainMgr::getInstance()->hasTemplate(strText))
+        {
+            m_pLabelErrorInfo->setString(CommonUtility::getLocalString("ErrorInfo4"));
+            return;
+        }
         TerrainMgr::getInstance()->resetTerrain();
+        m_pLabelErrorInfo->setString("");
     }
 }
 // 点击保存按钮
@@ -190,21 +200,31 @@ void EditorUI::pressSaveBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
-        if(m_pEditBox->getText() == nullptr)
+        std::string strText = m_pEditBox->getText();
+        if(strText.empty())
         {
+            m_pLabelErrorInfo->setString(CommonUtility::getLocalString("ErrorInfo"));
             return;
         }
+        std::regex pattern("[0-9A-Za-z]+");
+        if ( !regex_match( strText, pattern ) )
+        {
+            m_pLabelErrorInfo->setString(CommonUtility::getLocalString("ErrorInfo2"));
+            return;
+        }
+        
         //截屏后的回调函数
         auto callback = [&](const std::string& fullPath){
             CCLOG("Image saved %s", fullPath.c_str());
             TerrainMgr::getInstance()->getTerrainNode()->setPosition(TerrainMgr::getInstance()->getOffset());
             TerrainMgr::getInstance()->getTerrainNode()->setVisible(true);
             TerrainMgr::getInstance()->saveTemplate(m_pEditBox->getText());
+            m_pLabelErrorInfo->setString(CommonUtility::getLocalString("SaveOK"));
         };
         
         //调用Director的截屏功能
         std::string strDir = "templates/";
-        strDir = strDir + m_pEditBox->getText() + ".png";
+        strDir = strDir + strText + ".png";
         CommonUtility::renderNodeToFile(strDir, TerrainMgr::getInstance()->getTerrainNode(), Vec2(28,28), callback);
     }
 }
@@ -214,6 +234,7 @@ void EditorUI::pressResetBtn(Ref* p,TouchEventType eventType)
     if(eventType == TouchEventType::ENDED)
     {
         TerrainMgr::getInstance()->resetTerrain();
+        m_pLabelErrorInfo->setString("");
     }
 
 }

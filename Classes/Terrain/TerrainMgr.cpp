@@ -397,3 +397,8 @@ ssize_t TerrainMgr::getTemplateCount()
 {
     return m_vecTemplatesName.size();
 }
+//是否有次模版
+bool TerrainMgr::hasTemplate(const std::string& name)
+{
+    return std::find(m_vecTemplatesName.begin(), m_vecTemplatesName.end(), name) != m_vecTemplatesName.end();
+}

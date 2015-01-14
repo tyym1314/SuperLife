@@ -56,6 +56,8 @@ public:
     void saveTemplate(const std::string& name);
     //获取模版数量
     ssize_t getTemplateCount();
+    //是否有次模版
+    bool hasTemplate(const std::string& name);
 public:
     // 处理输入
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
