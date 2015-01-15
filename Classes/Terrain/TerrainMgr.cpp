@@ -306,7 +306,15 @@ bool TerrainMgr::onTouchBegan(Touch *touch, Event *unused_event)
                 if(rect.containsPoint(locationInNode))
                 {
                     Color3B color = SceneFactory::getInstance()->getSceneColor();
-                    cell->setColor(Color4F(color));
+                    Color4F newCellColor = Color4F(color);
+                    Color4F cellColor = cell->getColor();
+                    if(cellColor != color)
+                        cell->setColor(Color4F(color));
+                    else
+                    {
+                        newCellColor = Color4F(Color4B(color.r, color.g, color.b, 100));
+                        cell->setColor(newCellColor);
+                    }
                     dirty = true;
                     break;
                 }
@@ -346,7 +354,6 @@ void TerrainMgr::onTouchMoved(Touch *touch, Event *unused_event)
     }
     if(dirty)
         updateTerrain();
-
 }
 void TerrainMgr::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
@@ -401,4 +408,52 @@ ssize_t TerrainMgr::getTemplateCount()
 bool TerrainMgr::hasTemplate(const std::string& name)
 {
     return std::find(m_vecTemplatesName.begin(), m_vecTemplatesName.end(), name) != m_vecTemplatesName.end();
+}
+//保存任务场景
+bool TerrainMgr::saveLevel(const std::string& levelFileName, const std::string& levelName, const int goalCellNum, const int goalCellGeneration, const int starterCellNum)
+{
+    ValueVector temp;
+    for (int k = 0; k < m_TerrainCellList.size(); k++)
+    {
+        TerrainCell* cell = m_TerrainCellList.at(k);
+        if(cell)
+        {
+            Color4F sceneColor = Color4F(Color4B(SceneFactory::getInstance()->getSceneColor()));
+            if(sceneColor == cell->getColor())
+                temp.push_back(Value(1));
+            else
+                temp.push_back(Value(0));
+        }
+    }
+    m_dictlevel["LevelName"] = Value(levelName);
+    m_dictlevel[levelName] = temp;
+    m_dictlevel["GoalCellNum"] = Value(goalCellNum);
+    m_dictlevel["GoalCellGeneration"] = Value(goalCellGeneration);
+    m_dictlevel["StarterCellNum"] = Value(starterCellNum);
+    
+    std::string fullpath = FileUtils::getInstance()->getWritablePath() + levelFileName;
+    return FileUtils::getInstance()->writeToFile(m_dictlevel, fullpath);
+}
+//加载任务场景
+bool TerrainMgr::loadLevel(const std::string& levelFileName, std::string& levelName, int& goalCellNum, int& goalCellGeneration, int& starterCellNum)
+{
+    m_dictlevel = FileUtils::getInstance()->getValueMapFromFile(levelFileName);
+    levelName = m_dictlevel["LevelName"].asString();
+    ValueVector temp = m_dictlevel[levelName.c_str()].asValueVector();
+    Color4F sceneColor = Color4F(Color4B(SceneFactory::getInstance()->getSceneColor()));
+    for (int k = 0; k < m_TerrainCellList.size(); k++)
+    {
+        TerrainCell* cell = m_TerrainCellList.at(k);
+        int filled = temp[k].asInt();
+        if(cell)
+        {
+            if(filled == 1)
+                cell->setColor(sceneColor);
+        }
+    }
+    goalCellNum = m_dictlevel["GoalCellNum"].asInt();
+    goalCellGeneration = m_dictlevel["GoalCellGeneration"].asInt();
+    starterCellNum = m_dictlevel["StarterCellNum"].asInt();
+    updateTerrain();
+    return true;
 }

@@ -34,6 +34,8 @@ private:
     void pressEditorBtn(Ref* p,TouchEventType eventType);
     // 点击帮助按钮
     void pressHelpBtn(Ref* p,TouchEventType eventType);
+    // 点击编辑任务按钮
+    void pressEditLevelBtn(Ref* p,TouchEventType eventType);
 private:
     BaseScene*               m_pOwnerScene;
     cocos2d::ui::Button*     m_pFreeModeBtn;
@@ -41,6 +43,7 @@ private:
     cocos2d::ui::Button*     m_pShopBtn;
     cocos2d::ui::Button*     m_pEditorBtn;
     cocos2d::ui::Button*     m_pHelpBtn;
+    cocos2d::ui::Button*     m_pEditLevelBtn;
 };
 
 #endif /* defined(__SuperLife__MenuUI__) */

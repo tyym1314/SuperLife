@@ -18,7 +18,10 @@ MenuUI::MenuUI(BaseScene* owner)
     m_pOwnerScene = owner;
     m_pFreeModeBtn = nullptr;
     m_pMissionModeBtn = nullptr;
+    m_pEditorBtn = nullptr;
+    m_pShopBtn = nullptr;
     m_pHelpBtn  = nullptr;
+    m_pEditLevelBtn = nullptr;
 }
 // 析构函数
 MenuUI::~MenuUI()
@@ -66,6 +69,17 @@ void MenuUI::loadUI(const std::string& file)
     m_pEditorBtn->setTitleText(CommonUtility::getLocalString("EditorMode"));
     m_pEditorBtn->setColor(color);
     this->addChild(m_pEditorBtn);
+    
+    m_pEditLevelBtn = ui::Button::create("btnLBN.png", "btnLBD.png");
+    m_pEditLevelBtn->setPosition(Vec2(origin.x + visibleSize.width/1.3f,180));
+    m_pEditLevelBtn->addTouchEventListener(CC_CALLBACK_2(MenuUI::pressEditLevelBtn, this));
+    m_pEditLevelBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
+    m_pEditLevelBtn->setTitleColor(color);
+    m_pEditLevelBtn->setTitleFontSize(24);
+    m_pEditLevelBtn->setTitleText(CommonUtility::getLocalString("EditLevelMode"));
+    m_pEditLevelBtn->setColor(color);
+    this->addChild(m_pEditLevelBtn);
+
 #else
     m_pShopBtn = ui::Button::create("btnLBN.png", "btnLBD.png");
     m_pShopBtn->setPosition(Vec2(origin.x + visibleSize.width/2,180));
@@ -137,5 +151,14 @@ void MenuUI::pressHelpBtn(Ref* p,TouchEventType eventType)
     {
         BaseScene* helpInfoScene = SceneFactory::getInstance()->createSceneByID(SCENE_HELPINFO);
         Director::getInstance()->replaceScene(helpInfoScene);
+    }
+}
+// 点击编辑任务按钮
+void MenuUI::pressEditLevelBtn(Ref* p,TouchEventType eventType)
+{
+    if(eventType == TouchEventType::ENDED)
+    {
+        BaseScene* editLevelScene = SceneFactory::getInstance()->createSceneByID(SCENE_LEVELEDITOR);
+        Director::getInstance()->replaceScene(editLevelScene);
     }
 }

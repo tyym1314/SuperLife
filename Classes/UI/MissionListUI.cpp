@@ -11,6 +11,7 @@
 #include "UIMgr.h"
 #include "GameConst.h"
 #include "CommonUtility.h"
+#include "EncrytionUtility.h"
 USING_NS_CC;
 
 // 构造函数
@@ -71,7 +72,8 @@ void MissionListUI::loadUI(const std::string& file)
         btn->setTitleFontSize(60);
         btn->setColor(color);
         btn->addTouchEventListener(CC_CALLBACK_2(MissionListUI::pressLevelSelectBtn, this));
-        if( i > CUR_LEVEL)
+        int currentLevel = EncrytionUtility::getIntegerForKey("CurrentLevel", 1);
+        if( i > currentLevel)
         {
             btn->setTitleText("?");
             btn->setTouchEnabled(false);
@@ -79,7 +81,7 @@ void MissionListUI::loadUI(const std::string& file)
         }
         else
         {
-            Value value = Value(CUR_LEVEL);
+            Value value = Value(i);
             btn->setTitleText(value.asString());
             btn->setTouchEnabled(true);
             btn->setOpacity(255);

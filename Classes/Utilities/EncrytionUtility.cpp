@@ -11,7 +11,7 @@ USING_NS_CC;
 
 bool EncrytionUtility::getBoolForKey(const char* pKey)
 {
-#ifdef DEBUG
+#ifdef COCOS2D_DEBUG
     return UserDefault::getInstance()->getBoolForKey(pKey);
 #else
     std::string key = pKey;
@@ -21,7 +21,7 @@ bool EncrytionUtility::getBoolForKey(const char* pKey)
 }
 bool EncrytionUtility::getBoolForKey(const char* pKey, bool defaultValue)
 {
-#ifdef DEBUG
+#ifdef COCOS2D_DEBUG
     return getBoolForKey(pKey, defaultValue);
 #else
     std::string key = pKey;
@@ -31,7 +31,7 @@ bool EncrytionUtility::getBoolForKey(const char* pKey, bool defaultValue)
 }
 int EncrytionUtility::getIntegerForKey(const char* pKey)
 {
-#ifdef DEBUG
+#ifdef COCOS2D_DEBUG
     return UserDefault::getInstance()->getIntegerForKey(pKey);
 #else
     std::string key = pKey;
@@ -43,7 +43,7 @@ int EncrytionUtility::getIntegerForKey(const char* pKey)
 }
 int EncrytionUtility::getIntegerForKey(const char* pKey, int defaultValue)
 {
-#ifdef DEBUG
+#ifdef COCOS2D_DEBUG
     return UserDefault::getInstance()->getIntegerForKey(pKey,defaultValue);
 #else
     std::string key = pKey;
@@ -55,7 +55,7 @@ int EncrytionUtility::getIntegerForKey(const char* pKey, int defaultValue)
 }
 float EncrytionUtility::getFloatForKey(const char* pKey)
 {
-#ifdef DEBUG
+#ifdef COCOS2D_DEBUG
     return UserDefault::getInstance()->getFloatForKey(pKey);
 #else
     std::string key = pKey;
@@ -67,7 +67,7 @@ float EncrytionUtility::getFloatForKey(const char* pKey)
 }
 float EncrytionUtility::getFloatForKey(const char* pKey, float defaultValue)
 {
-#ifdef DEBUG
+#ifdef COCOS2D_DEBUG
     return UserDefault::getInstance()->getFloatForKey(pKey,defaultValue);
 #else
     std::string key = pKey;
@@ -79,7 +79,7 @@ float EncrytionUtility::getFloatForKey(const char* pKey, float defaultValue)
 }
 double EncrytionUtility::getDoubleForKey(const char* pKey)
 {
-#ifdef DEBUG
+#ifdef COCOS2D_DEBUG
     return UserDefault::getInstance()->getDoubleForKey(pKey);
 #else
     std::string key = pKey;
@@ -91,7 +91,7 @@ double EncrytionUtility::getDoubleForKey(const char* pKey)
 }
 double EncrytionUtility::getDoubleForKey(const char* pKey, double defaultValue)
 {
-#ifdef DEBUG
+#ifdef COCOS2D_DEBUG
     return UserDefault::getInstance()->getDoubleForKey(pKey,defaultValue);
 #else
     std::string key = pKey;
@@ -103,7 +103,7 @@ double EncrytionUtility::getDoubleForKey(const char* pKey, double defaultValue)
 }
 std::string EncrytionUtility::getStringForKey(const char* pKey)
 {
-#ifdef DEBUG
+#ifdef COCOS2D_DEBUG
     return UserDefault::getInstance()->getStringForKey(pKey);
 #else
     std::string key = pKey;
@@ -115,7 +115,7 @@ std::string EncrytionUtility::getStringForKey(const char* pKey)
 }
 std::string EncrytionUtility::getStringForKey(const char* pKey, const std::string & defaultValue)
 {
-#ifdef DEBUG
+#ifdef COCOS2D_DEBUG
     return UserDefault::getInstance()->getStringForKey(pKey,defaultValue);
 #else
     std::string key = pKey;
@@ -129,18 +129,67 @@ std::string EncrytionUtility::getStringForKey(const char* pKey, const std::strin
 
 void EncrytionUtility::setBoolForKey(const char* pKey, bool value)
 {
+#ifdef COCOS2D_DEBUG
+    std::string strValue = Value(value).asString();
+    UserDefault::getInstance()->setStringForKey(pKey,strValue);
+#else
+    std::string key = pKey;
+    strXor(key, 0, key.length()-1, PACKAGE_NAME);
+    std::string strValue = Value(value).asString();
+    strXor(strValue, 0, strValue.length()-1, PACKAGE_NAME);
+    UserDefault::getInstance()->setStringForKey(key.c_str(), strValue);
+#endif
 }
 void EncrytionUtility::setIntegerForKey(const char* pKey, int value)
 {
+#ifdef COCOS2D_DEBUG
+    std::string strValue = Value(value).asString();
+    UserDefault::getInstance()->setStringForKey(pKey,strValue);
+#else
+    std::string key = pKey;
+    strXor(key, 0, key.length()-1, PACKAGE_NAME);
+    std::string strValue = Value(value).asString();
+    strXor(strValue, 0, strValue.length()-1, PACKAGE_NAME);
+    UserDefault::getInstance()->setStringForKey(key.c_str(), strValue);
+#endif
 }
 void EncrytionUtility::setFloatForKey(const char* pKey, float value)
 {
+#ifdef COCOS2D_DEBUG
+    std::string strValue = Value(value).asString();
+    UserDefault::getInstance()->setStringForKey(pKey,strValue);
+#else
+    std::string key = pKey;
+    strXor(key, 0, key.length()-1, PACKAGE_NAME);
+    std::string strValue = Value(value).asString();
+    strXor(strValue, 0, strValue.length()-1, PACKAGE_NAME);
+    UserDefault::getInstance()->setStringForKey(key.c_str(), strValue);
+#endif
 }
 void EncrytionUtility::setDoubleForKey(const char* pKey, double value)
 {
+#ifdef COCOS2D_DEBUG
+    std::string strValue = Value(value).asString();
+    UserDefault::getInstance()->setStringForKey(pKey,strValue);
+#else
+    std::string key = pKey;
+    strXor(key, 0, key.length()-1, PACKAGE_NAME);
+    std::string strValue = Value(value).asString();
+    strXor(strValue, 0, strValue.length()-1, PACKAGE_NAME);
+    UserDefault::getInstance()->setStringForKey(key.c_str(), strValue);
+#endif
 }
 void EncrytionUtility::setStringForKey(const char* pKey, const std::string & value)
 {
+#ifdef COCOS2D_DEBUG
+    UserDefault::getInstance()->setStringForKey(pKey,value);
+#else
+    std::string key = pKey;
+    strXor(key, 0, key.length()-1, PACKAGE_NAME);
+    std::string strValue = Value(value).asString();
+    strXor(strValue, 0, strValue.length()-1, PACKAGE_NAME);
+    UserDefault::getInstance()->setStringForKey(key.c_str(), strValue);
+#endif
 }
 
 bool EncrytionUtility::strXor(std::string& stream, int begin, int end, const char* secret)

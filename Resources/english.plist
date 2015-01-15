@@ -18,6 +18,8 @@
 	<string>SHOP</string>
 	<key>EditorMode</key>
 	<string>EDITOR MODE</string>
+	<key>EditLevelMode</key>
+	<string>EDIT LEVEL</string>
 	<key>HelpInfo</key>
 	<string>HELP INFO</string>
 	<key>LifeNum</key>
@@ -30,6 +32,8 @@
 	<string>PAUSE</string>
 	<key>Reset</key>
 	<string>RESET</string>
+	<key>Restore</key>
+	<string>RESTORE</string>
 	<key>Back</key>
 	<string>BACK</string>
 	<key>Edit</key>
@@ -52,8 +56,30 @@
 	<string>Please select a template to edit!</string>
 	<key>ErrorInfo4</key>
 	<string>There is no template here by that name, please select again!</string>
+	<key>ErrorInfo5</key>
+	<string>The level file name can not be empty!</string>
+	<key>ErrorInfo6</key>
+	<string>The level file name consists only of digital and English letters!</string>
+	<key>ErrorInfo7</key>
+	<string>The level name can not be empty!</string>
+	<key>ErrorInfo8</key>
+	<string>The level name consists only of digital and English letters!</string>
+	<key>ErrorInfo9</key>
+	<string>The life number of goal can not be empty!</string>
+	<key>ErrorInfo10</key>
+	<string>The life generation of goal can not be empty!</string>
+	<key>ErrorInfo11</key>
+	<string>The life number of goal can only be a natural number！</string>
+	<key>ErrorInfo12</key>
+	<string>The life generation of goal can only be a natural number！</string>
+	<key>ErrorInfo13</key>
+	<string>The life number of starter can not be empty!</string>
+	<key>ErrorInfo14</key>
+	<string>The life number of starter can only be a natural number！</string>
 	<key>SaveOK</key>
 	<string>Saved successfully!</string>
+	<key>SaveFailed</key>
+	<string>Saved failed!</string>
 	<key>EditOK</key>
 	<string>You can edit now!</string>
 	<key>NextPage</key>
@@ -88,12 +114,28 @@
 	<key>References</key>
 	<string>REFERENCES</string>
 	<key>WebSites</key>
-	<string>Conway Life : http://www.conwaylife.com/
+	<string>Conway Life: http://www.conwaylife.com/
 
-Life Lab : http://www.trevorrow.com/lifelab/index.html
+Game of Life News: http://pentadecathlon.com/lifeNews/index.php
 
-Game of Life News : http://pentadecathlon.com/lifeNews/index.php
-
-Wiki Site : http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
+Wiki Site: http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
+	<key>FileName</key>
+	<string>INPUT FILENAME</string>
+	<key>LevelName</key>
+	<string>INPUT LEVELNAME</string>
+	<key>GoalCellNum</key>
+	<string>INPUT GOAL CELL NUM</string>
+	<key>GoalCellGeneration</key>
+	<string>INPUT GOAL GENERATION</string>
+	<key>StarterCellNum</key>
+	<string>INPUT STARTER CELL NUM</string>
+	<key>Mission</key>
+	<string>MISSION</string>
+	<key>MissionGoal</key>
+	<string>GOAL : Have at least %d lifes after %d generation.</string>
+	<key>MissionStarterCellNum</key>
+	<string>STARTER LIFES LEFT : %d</string>
+	<key>NextMission</key>
+	<string>NEXT MISSION</string>
 </dict>
 </plist>

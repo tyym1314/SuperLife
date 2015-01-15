@@ -58,6 +58,10 @@ public:
     ssize_t getTemplateCount();
     //是否有次模版
     bool hasTemplate(const std::string& name);
+    //保存任务场景
+    bool saveLevel(const std::string& levelFileName, const std::string& levelName, const int goalCellNum, const int goalCellGeneration, const int starterCellNum);
+    //加载任务场景
+    bool loadLevel(const std::string& levelFileName, std::string& levelName, int& goalCellNum, int& goalCellGeneration, int& starterCellNum);
 public:
     // 处理输入
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
@@ -80,6 +84,7 @@ private:
     cocos2d::EventListenerTouchOneByOne* m_pTouchListener;
     std::vector<std::string>        m_vecTemplatesName;
     cocos2d::ValueMap               m_dictTemplates;
+    cocos2d::ValueMap               m_dictlevel;
 };
 
 #endif /* defined(__CCGF__TerrainMgr__) */

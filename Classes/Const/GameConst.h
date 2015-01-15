@@ -14,6 +14,5 @@
 static const char* PACKAGE_NAME = "org.wanax.superlife";
 
 static int MAX_LEVEL = 42;
-static int CUR_LEVEL = 1;
 
 #endif

@@ -16,6 +16,7 @@
 #include "EditorUI.h"
 #include "ShopUI.h"
 #include "HelpInfoUI.h"
+#include "EditLevelUI.h"
 USING_NS_CC;
 
 UIMgr* g_pUIMgrInstance = nullptr;
@@ -116,6 +117,17 @@ ui::Layout* UIMgr::createUI(int uiid)
                     if(layout)
                     {
                         static_cast<HelpInfoUI*>(layout)->loadUI(HELPINFO_UI_FILE);
+                        layer->addChild(layout);
+                        layout->autorelease();
+                    }
+                }
+                break;
+            case LEVEL_EDITOR_UI:
+                {
+                    layout = new EditLevelUI(runningScene);
+                    if(layout)
+                    {
+                        static_cast<EditLevelUI*>(layout)->loadUI(LEVEL_EDITOR_UI_FILE);
                         layer->addChild(layout);
                         layout->autorelease();
                     }

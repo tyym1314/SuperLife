@@ -37,6 +37,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
         searchPaths.push_back("published-ipad"); // Resources/published-ipad
     }
     searchPaths.push_back("templates");
+    searchPaths.push_back("fonts");
+    searchPaths.push_back("levels");
+    searchPaths.push_back("ui");
     
     FileUtils::getInstance()->setSearchPaths(searchPaths);
     FileUtils::getInstance()->setSearchResolutionsOrder(resDirOrders);

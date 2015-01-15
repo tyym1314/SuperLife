@@ -18,6 +18,8 @@
 	<string>商店</string>
 	<key>EditorMode</key>
 	<string>编辑模式</string>
+	<key>EditLevelMode</key>
+	<string>编辑任务</string>
 	<key>HelpInfo</key>
 	<string>说明与帮助</string>
 	<key>LifeNum</key>
@@ -30,6 +32,8 @@
 	<string>暂停</string>
 	<key>Reset</key>
 	<string>重置</string>
+	<key>Restore</key>
+	<string>恢复</string>
 	<key>Back</key>
 	<string>返回</string>
 	<key>Edit</key>
@@ -52,8 +56,30 @@
 	<string>请先选择一个模版再编辑!</string>
 	<key>ErrorInfo4</key>
 	<string>没有此名称的模版,请再选择！</string>
+	<key>ErrorInfo5</key>
+	<string>关卡文件名称不能为空!</string>
+	<key>ErrorInfo6</key>
+	<string>关卡文件名称只能由数字和英文字母组成!</string>
+	<key>ErrorInfo7</key>
+	<string>关卡名称不能为空！</string>
+	<key>ErrorInfo8</key>
+	<string>关卡名称只能由数字和英文字母组成!</string>
+	<key>ErrorInfo9</key>
+	<string>目标生命个数不能为空！</string>
+	<key>ErrorInfo10</key>
+	<string>目标生命代数不能为空！</string>
+	<key>ErrorInfo11</key>
+	<string>目标生命个数只能为自然数！</string>
+	<key>ErrorInfo12</key>
+	<string>目标生命代数只能为自然数！</string>
+	<key>ErrorInfo13</key>
+	<string>起始生命个数不能为空！</string>
+	<key>ErrorInfo14</key>
+	<string>起始生命个数只能为自然数！</string>
 	<key>SaveOK</key>
 	<string>保存成功!</string>
+	<key>SaveFailed</key>
+	<string>保存失败!</string>
 	<key>EditOK</key>
 	<string>可以编辑!</string>
 	<key>NextPage</key>
@@ -91,12 +117,31 @@
 	<key>References</key>
 	<string>相关参考</string>
 	<key>WebSites</key>
-	<string>Conway Life : http://www.conwaylife.com/
+	<string>康威生命：
+http://www.conwaylife.com/
 
-Life Lab : http://www.trevorrow.com/lifelab/index.html
+生命游戏新闻：
+http://pentadecathlon.com/lifeNews/index.php
 
-Game of Life News : http://pentadecathlon.com/lifeNews/index.php
-
-Wiki Site : http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
+维基网站：
+http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
+	<key>FileName</key>
+	<string>输入关卡文件名称</string>
+	<key>LevelName</key>
+	<string>输入关卡名称</string>
+	<key>GoalCellNum</key>
+	<string>输入完成目标时生命个数</string>
+	<key>GoalCellGeneration</key>
+	<string>输入完成目标时生命代数</string>
+	<key>StarterCellNum</key>
+	<string>输入起始生命个数</string>
+	<key>Mission</key>
+	<string>任务%d : %s </string>
+	<key>MissionGoal</key>
+	<string>任务目标 : 生命繁衍%d代后至少有%d个生命。</string>
+	<key>MisstionStarterCellNum</key>
+	<string>初始可用生命剩余个数 : %d</string>
+	<key>NextMission</key>
+	<string>下个任务</string>
 </dict>
 </plist>

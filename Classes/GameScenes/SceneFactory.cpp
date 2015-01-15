@@ -14,6 +14,7 @@
 #include "EditorScene.h"
 #include "ShopScene.h"
 #include "HelpInfoScene.h"
+#include "EditLevelScene.h"
 #include "MathUtility.h"
 USING_NS_CC;
 
@@ -96,6 +97,16 @@ BaseScene* SceneFactory::createSceneByID(int sceneID)
             }
             
             break;
+        case SCENE_LEVELEDITOR:
+            m_SceneColor = Color3B::WHITE;
+            scene = new LevelEditorScene();
+            if(scene)
+            {
+                scene->initGameLayers(LAYER_ALL);
+                scene->autorelease();
+            }
+            
+            break;
         default:
             break;
     }
@@ -115,5 +126,7 @@ Color3B SceneFactory::getSceneColor() const
 void SceneFactory::setSceneColor(const cocos2d::Color3B& color)
 {
     m_SceneColor = color;
-    getCurrentScene()->setSceneColor(m_SceneColor);
+    BaseScene* pBaseScene = getCurrentScene();
+    if(pBaseScene)
+        pBaseScene->setSceneColor(m_SceneColor);
 }

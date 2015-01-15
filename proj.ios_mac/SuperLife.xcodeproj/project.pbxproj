@@ -61,6 +61,7 @@
 		552EC3CC1A63F4D0007562E6 /* sample2.png in Resources */ = {isa = PBXBuildFile; fileRef = 552EC3C81A63F4D0007562E6 /* sample2.png */; };
 		552EC3CF1A63F4D9007562E6 /* sample1.png in Resources */ = {isa = PBXBuildFile; fileRef = 552EC3C71A63F4D0007562E6 /* sample1.png */; };
 		552EC3D01A63F4D9007562E6 /* sample2.png in Resources */ = {isa = PBXBuildFile; fileRef = 552EC3C81A63F4D0007562E6 /* sample2.png */; };
+		553017221A678F820037B52E /* level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55A765041A66A7B3002466C1 /* level1.plist */; };
 		5534EF8F1A5CD44D00F9437D /* EditorScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5534EF8D1A5CD44D00F9437D /* EditorScene.cpp */; };
 		5534EF941A5CDD1C00F9437D /* EditorUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5534EF921A5CDD1C00F9437D /* EditorUI.cpp */; };
 		5534EF961A5D34F100F9437D /* EditorUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5534EF921A5CDD1C00F9437D /* EditorUI.cpp */; };
@@ -150,6 +151,11 @@
 		55A764F01A6625D0002466C1 /* chaos1.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A764EA1A6625C7002466C1 /* chaos1.png */; };
 		55A764F11A6625D0002466C1 /* chaos2.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A764EB1A6625C7002466C1 /* chaos2.png */; };
 		55A764F21A6625D0002466C1 /* chaos3.png in Resources */ = {isa = PBXBuildFile; fileRef = 55A764EC1A6625C7002466C1 /* chaos3.png */; };
+		55A764F71A665FD9002466C1 /* EditLevelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55A764F51A665FD9002466C1 /* EditLevelScene.cpp */; };
+		55A764FC1A665FFC002466C1 /* EditLevelUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55A764FA1A665FFC002466C1 /* EditLevelUI.cpp */; };
+		55A764FD1A66628B002466C1 /* EditLevelUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55A764FA1A665FFC002466C1 /* EditLevelUI.cpp */; };
+		55A764FE1A66628B002466C1 /* EditLevelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55A764F51A665FD9002466C1 /* EditLevelScene.cpp */; };
+		55A765051A66A7B3002466C1 /* level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55A765041A66A7B3002466C1 /* level1.plist */; };
 		55A96E511998D8CB0007B62D /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ACD8198F785F001612D6 /* BaseScene.cpp */; };
 		55A96E521998D8CB0007B62D /* SceneFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ACDC198FB3A6001612D6 /* SceneFactory.cpp */; };
 		55A96E531998D8CB0007B62D /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ACDF198FB52A001612D6 /* MainScene.cpp */; };
@@ -424,6 +430,11 @@
 		55A764EA1A6625C7002466C1 /* chaos1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chaos1.png; sourceTree = "<group>"; };
 		55A764EB1A6625C7002466C1 /* chaos2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chaos2.png; sourceTree = "<group>"; };
 		55A764EC1A6625C7002466C1 /* chaos3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chaos3.png; sourceTree = "<group>"; };
+		55A764F51A665FD9002466C1 /* EditLevelScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EditLevelScene.cpp; sourceTree = "<group>"; };
+		55A764F61A665FD9002466C1 /* EditLevelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditLevelScene.h; sourceTree = "<group>"; };
+		55A764FA1A665FFC002466C1 /* EditLevelUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EditLevelUI.cpp; sourceTree = "<group>"; };
+		55A764FB1A665FFC002466C1 /* EditLevelUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditLevelUI.h; sourceTree = "<group>"; };
+		55A765041A66A7B3002466C1 /* level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level1.plist; sourceTree = "<group>"; };
 		55A96E591998E7FC0007B62D /* UIMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIMgr.cpp; sourceTree = "<group>"; };
 		55A96E5A1998E7FC0007B62D /* UIMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMgr.h; sourceTree = "<group>"; };
 		55A96E7719990F620007B62D /* MainUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainUI.cpp; sourceTree = "<group>"; };
@@ -699,6 +710,14 @@
 			path = templates;
 			sourceTree = "<group>";
 		};
+		55A765031A66A7B3002466C1 /* levels */ = {
+			isa = PBXGroup;
+			children = (
+				55A765041A66A7B3002466C1 /* level1.plist */,
+			);
+			path = levels;
+			sourceTree = "<group>";
+		};
 		55A96E581998E7F00007B62D /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -725,6 +744,8 @@
 				558CDCA41A5FB7DB00E0E6AD /* HelpInfoUI.h */,
 				558CDCA61A5FB7E900E0E6AD /* ShopUI.cpp */,
 				558CDCA71A5FB7E900E0E6AD /* ShopUI.h */,
+				55A764FA1A665FFC002466C1 /* EditLevelUI.cpp */,
+				55A764FB1A665FFC002466C1 /* EditLevelUI.h */,
 			);
 			name = UI;
 			path = ../Classes/UI;
@@ -774,6 +795,8 @@
 				558CDC9C1A5FB51800E0E6AD /* HelpInfoScene.h */,
 				558CDCA01A5FB65300E0E6AD /* ShopScene.cpp */,
 				558CDCA11A5FB65300E0E6AD /* ShopScene.h */,
+				55A764F51A665FD9002466C1 /* EditLevelScene.cpp */,
+				55A764F61A665FD9002466C1 /* EditLevelScene.h */,
 			);
 			name = GameScenes;
 			path = ../Classes/GameScenes;
@@ -782,6 +805,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				55A765031A66A7B3002466C1 /* levels */,
 				5578A8221A5EA8F9008D3B54 /* templates */,
 				5578A7F81A5E76ED008D3B54 /* ui */,
 				556E875D199B9F1000781CB0 /* fonts */,
@@ -848,7 +872,10 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = MDDB52YB8L;
+						DevelopmentTeam = 6NA476HDMX;
+					};
+					5087E73D17EB910900C73F5D = {
+						DevelopmentTeam = 6NA476HDMX;
 					};
 				};
 			};
@@ -998,6 +1025,7 @@
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				5578A8041A5E76ED008D3B54 /* levelBtnLBN.png in Resources */,
 				55A764EE1A6625C7002466C1 /* chaos2.png in Resources */,
+				55A765051A66A7B3002466C1 /* level1.plist in Resources */,
 				55A764D91A662063002466C1 /* stilllife3.png in Resources */,
 				5578A8051A5E76ED008D3B54 /* panel1.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
@@ -1009,6 +1037,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				553017221A678F820037B52E /* level1.plist in Resources */,
 				55A764F01A6625D0002466C1 /* chaos1.png in Resources */,
 				55A764F11A6625D0002466C1 /* chaos2.png in Resources */,
 				55A764F21A6625D0002466C1 /* chaos3.png in Resources */,
@@ -1063,9 +1092,11 @@
 				55A2953519A22E8D00B4C540 /* SpeedSlider.cpp in Sources */,
 				55C4ACCE198F5F83001612D6 /* TerrainMgr.cpp in Sources */,
 				558CDC9D1A5FB51800E0E6AD /* HelpInfoScene.cpp in Sources */,
+				55A764F71A665FD9002466C1 /* EditLevelScene.cpp in Sources */,
 				556E8759199B971000781CB0 /* MenuUI.cpp in Sources */,
 				55C4ACCD198F5F83001612D6 /* TerrainCell.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				55A764FC1A665FFC002466C1 /* EditLevelUI.cpp in Sources */,
 				5588F0A619A3A1F2004CAAF6 /* MissionListScene.cpp in Sources */,
 				5534EF941A5CDD1C00F9437D /* EditorUI.cpp in Sources */,
 				556E876E199BB62900781CB0 /* MathUtility.cpp in Sources */,
@@ -1086,6 +1117,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55A764FD1A66628B002466C1 /* EditLevelUI.cpp in Sources */,
+				55A764FE1A66628B002466C1 /* EditLevelScene.cpp in Sources */,
 				558CDCA91A5FB97A00E0E6AD /* HelpInfoUI.cpp in Sources */,
 				558CDCAA1A5FB97A00E0E6AD /* ShopUI.cpp in Sources */,
 				558CDCAB1A5FB97A00E0E6AD /* HelpInfoScene.cpp in Sources */,

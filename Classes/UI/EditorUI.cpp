@@ -13,6 +13,7 @@
 #include "TerrainMgr.h"
 #include "SpeedSlider.h"
 #include "CommonUtility.h"
+#include "MathUtility.h"
 #include <regex>
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -243,6 +244,7 @@ void EditorUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SceneFactory::getInstance()->setSceneColor(MathUtility::randomColor());
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
         Director::getInstance()->replaceScene(mainScene);
     }

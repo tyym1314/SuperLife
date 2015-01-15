@@ -35,5 +35,6 @@ static const int SCENE_MISSION                          = 12;       ///任务界
 static const int SCENE_EDITOR                           = 13;       ///编辑器界面
 static const int SCENE_SHOP                             = 14;       ///商店界面
 static const int SCENE_HELPINFO                         = 15;       ///帮助说明界面
+static const int SCENE_LEVELEDITOR                      = 16;       ///任务编辑界面
 
 #endif
