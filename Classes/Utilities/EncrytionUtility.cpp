@@ -16,7 +16,9 @@ bool EncrytionUtility::getBoolForKey(const char* pKey)
 #else
     std::string key = pKey;
     strXor(key, 0, key.length()-1, PACKAGE_NAME);
-    return Value(UserDefault::getInstance()->getStringForKey(key.c_str())).asBool();
+    std::string value = UserDefault::getInstance()->getStringForKey(key.c_str());
+    strXor(value, 0, value.length()-1, PACKAGE_NAME);
+    return Value(value).asBool();
 #endif
 }
 bool EncrytionUtility::getBoolForKey(const char* pKey, bool defaultValue)
@@ -26,7 +28,9 @@ bool EncrytionUtility::getBoolForKey(const char* pKey, bool defaultValue)
 #else
     std::string key = pKey;
     strXor(key, 0, key.length()-1, PACKAGE_NAME);
-    return Value(UserDefault::getInstance()->getBoolForKey(key.c_str(), defaultValue)).asBool();
+    std::string value = UserDefault::getInstance()->getStringForKey(key.c_str(), Value(defaultValue).asString());
+    strXor(value, 0, value.length()-1, PACKAGE_NAME);
+    return Value(value).asBool();
 #endif
 }
 int EncrytionUtility::getIntegerForKey(const char* pKey)
@@ -36,7 +40,7 @@ int EncrytionUtility::getIntegerForKey(const char* pKey)
 #else
     std::string key = pKey;
     strXor(key, 0, key.length()-1, PACKAGE_NAME);
-    std::string value = Value(UserDefault::getInstance()->getIntegerForKey(key.c_str())).asString();
+    std::string value = UserDefault::getInstance()->getStringForKey(key.c_str());
     strXor(value, 0, value.length()-1, PACKAGE_NAME);
     return Value(value).asInt();
 #endif
@@ -48,7 +52,9 @@ int EncrytionUtility::getIntegerForKey(const char* pKey, int defaultValue)
 #else
     std::string key = pKey;
     strXor(key, 0, key.length()-1, PACKAGE_NAME);
-    std::string value = Value(UserDefault::getInstance()->getIntegerForKey(key.c_str(),defaultValue)).asString();
+    std::string value = UserDefault::getInstance()->getStringForKey(key.c_str(),Value(defaultValue).asString());
+    if(Value(value).asInt() == defaultValue)
+        return defaultValue;
     strXor(value, 0, value.length()-1, PACKAGE_NAME);
     return Value(value).asInt();
 #endif
@@ -60,7 +66,7 @@ float EncrytionUtility::getFloatForKey(const char* pKey)
 #else
     std::string key = pKey;
     strXor(key, 0, key.length()-1, PACKAGE_NAME);
-    std::string value = Value(UserDefault::getInstance()->getFloatForKey(key.c_str())).asString();
+    std::string value = UserDefault::getInstance()->getStringForKey(key.c_str());
     strXor(value, 0, value.length()-1, PACKAGE_NAME);
     return Value(value).asFloat();
 #endif
@@ -72,7 +78,9 @@ float EncrytionUtility::getFloatForKey(const char* pKey, float defaultValue)
 #else
     std::string key = pKey;
     strXor(key, 0, key.length()-1, PACKAGE_NAME);
-    std::string value = Value(UserDefault::getInstance()->getFloatForKey(key.c_str(),defaultValue)).asString();
+    std::string value = UserDefault::getInstance()->getStringForKey(key.c_str(),Value(defaultValue).asString());
+    if(Value(value).asFloat() == defaultValue)
+        return defaultValue;
     strXor(value, 0, value.length()-1, PACKAGE_NAME);
     return Value(value).asFloat();
 #endif
@@ -84,7 +92,7 @@ double EncrytionUtility::getDoubleForKey(const char* pKey)
 #else
     std::string key = pKey;
     strXor(key, 0, key.length()-1, PACKAGE_NAME);
-    std::string value = Value(UserDefault::getInstance()->getDoubleForKey(key.c_str())).asString();
+    std::string value = UserDefault::getInstance()->getStringForKey(key.c_str());
     strXor(value, 0, value.length()-1, PACKAGE_NAME);
     return Value(value).asDouble();
 #endif
@@ -96,7 +104,9 @@ double EncrytionUtility::getDoubleForKey(const char* pKey, double defaultValue)
 #else
     std::string key = pKey;
     strXor(key, 0, key.length()-1, PACKAGE_NAME);
-    std::string value = Value(UserDefault::getInstance()->getDoubleForKey(key.c_str(),defaultValue)).asString();
+    std::string value = UserDefault::getInstance()->getStringForKey(key.c_str(),Value(defaultValue).asString());
+    if(Value(value).asDouble() == defaultValue)
+        return defaultValue;
     strXor(value, 0, value.length()-1, PACKAGE_NAME);
     return Value(value).asDouble();
 #endif
@@ -121,6 +131,8 @@ std::string EncrytionUtility::getStringForKey(const char* pKey, const std::strin
     std::string key = pKey;
     strXor(key, 0, key.length()-1, PACKAGE_NAME);
     std::string value = UserDefault::getInstance()->getStringForKey(key.c_str(),defaultValue);
+    if(value == defaultValue)
+        return defaultValue;
     strXor(value, 0, value.length()-1, PACKAGE_NAME);
     return value;
 #endif
@@ -130,8 +142,7 @@ std::string EncrytionUtility::getStringForKey(const char* pKey, const std::strin
 void EncrytionUtility::setBoolForKey(const char* pKey, bool value)
 {
 #ifdef COCOS2D_DEBUG
-    std::string strValue = Value(value).asString();
-    UserDefault::getInstance()->setStringForKey(pKey,strValue);
+    UserDefault::getInstance()->setBoolForKey(pKey,value);
 #else
     std::string key = pKey;
     strXor(key, 0, key.length()-1, PACKAGE_NAME);
@@ -143,8 +154,7 @@ void EncrytionUtility::setBoolForKey(const char* pKey, bool value)
 void EncrytionUtility::setIntegerForKey(const char* pKey, int value)
 {
 #ifdef COCOS2D_DEBUG
-    std::string strValue = Value(value).asString();
-    UserDefault::getInstance()->setStringForKey(pKey,strValue);
+    UserDefault::getInstance()->setIntegerForKey(pKey,value);
 #else
     std::string key = pKey;
     strXor(key, 0, key.length()-1, PACKAGE_NAME);
@@ -156,8 +166,7 @@ void EncrytionUtility::setIntegerForKey(const char* pKey, int value)
 void EncrytionUtility::setFloatForKey(const char* pKey, float value)
 {
 #ifdef COCOS2D_DEBUG
-    std::string strValue = Value(value).asString();
-    UserDefault::getInstance()->setStringForKey(pKey,strValue);
+    UserDefault::getInstance()->setFloatForKey(pKey,value);
 #else
     std::string key = pKey;
     strXor(key, 0, key.length()-1, PACKAGE_NAME);
@@ -169,8 +178,7 @@ void EncrytionUtility::setFloatForKey(const char* pKey, float value)
 void EncrytionUtility::setDoubleForKey(const char* pKey, double value)
 {
 #ifdef COCOS2D_DEBUG
-    std::string strValue = Value(value).asString();
-    UserDefault::getInstance()->setStringForKey(pKey,strValue);
+    UserDefault::getInstance()->setDoubleForKey(pKey,value);
 #else
     std::string key = pKey;
     strXor(key, 0, key.length()-1, PACKAGE_NAME);

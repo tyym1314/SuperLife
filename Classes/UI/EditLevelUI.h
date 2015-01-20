@@ -45,6 +45,7 @@ private:
     cocos2d::extension::EditBox*    m_pGoalCellNumEditBox;
     cocos2d::extension::EditBox*    m_pGoalCellGenerationEditBox;
     cocos2d::extension::EditBox*    m_pStarterCellNumEditBox;
+    cocos2d::extension::EditBox*    m_pLevelTypeEditBox;
     cocos2d::Label*                 m_pLabelMode;
     cocos2d::Label*                 m_pLabelLifeNum;
     cocos2d::Label*                 m_pLabeGenerationNum;

@@ -34,6 +34,8 @@
 	<string>RESET</string>
 	<key>Restore</key>
 	<string>RESTORE</string>
+	<key>Retry</key>
+	<string>FAILED, RETRY</string>
 	<key>Back</key>
 	<string>BACK</string>
 	<key>Edit</key>
@@ -76,6 +78,10 @@
 	<string>The life number of starter can not be empty!</string>
 	<key>ErrorInfo14</key>
 	<string>The life number of starter can only be a natural number！</string>
+	<key>ErrorInfo15</key>
+	<string>The mission type can not be empty!</string>
+	<key>ErrorInfo16</key>
+	<string>The mission type can only be a natural number！</string>
 	<key>SaveOK</key>
 	<string>Saved successfully!</string>
 	<key>SaveFailed</key>
@@ -129,13 +135,25 @@ Wiki Site: http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<string>INPUT GOAL GENERATION</string>
 	<key>StarterCellNum</key>
 	<string>INPUT STARTER CELL NUM</string>
+	<key>LevelType</key>
+	<string>INPUT MISSION TYPE</string>
 	<key>Mission</key>
-	<string>MISSION</string>
-	<key>MissionGoal</key>
+	<string>MISSION%d : %s</string>
+	<key>MissionGoal0</key>
+	<string>GOAL : Must be equal to %d lifes after %d generation.</string>
+	<key>MissionGoal1</key>
 	<string>GOAL : Have at least %d lifes after %d generation.</string>
+	<key>MissionGoal2</key>
+	<string>GOAL : Have at most %d lifes after %d generation.</string>
+	<key>MissionGoal3</key>
+	<string>GOAL : There must be no lifes after %d generation.</string>
 	<key>MissionStarterCellNum</key>
 	<string>STARTER LIFES LEFT : %d</string>
 	<key>NextMission</key>
 	<string>NEXT MISSION</string>
+	<key>Congratulations</key>
+	<string>CONGRATULATIONS</string>
+	<key>CongratulationsDetail</key>
+	<string>You have been through all the missions, all patterns have been unlocked, we will update more levels in subsequent versions, To be continued.!</string>
 </dict>
 </plist>

@@ -33,6 +33,8 @@ private:
     void pressStartBtn(Ref* p,TouchEventType eventType);
     // 点击重置按钮
     void pressResetBtn(Ref* p,TouchEventType eventType);
+    // 点击恢复按钮
+    void pressRestoreBtn(Ref* p,TouchEventType eventType);
     // 点击返回按钮
     void pressBackBtn(Ref* p,TouchEventType eventType);
 private:
@@ -43,6 +45,7 @@ private:
     cocos2d::Sprite*         m_pPanel1;
     cocos2d::ui::Button*     m_pStartBtn;
     cocos2d::ui::Button*     m_pResetBtn;
+    cocos2d::ui::Button*     m_pRestoreBtn;
     ControlPanel*     m_pControlPanel;
     cocos2d::ui::Button*     m_pBackBtn;
 };

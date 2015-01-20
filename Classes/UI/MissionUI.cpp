@@ -29,6 +29,7 @@ MissionUI::MissionUI(BaseScene* owner)
     m_pControlPanel         = nullptr;
     m_pStartBtn             = nullptr;
     m_pNextLevelBtn         = nullptr;
+    m_pRetryBtn             = nullptr;
     m_pBackBtn              = nullptr;
 }
 // 析构函数
@@ -38,14 +39,17 @@ MissionUI::~MissionUI()
 // 加载文件
 void MissionUI::loadUI(const std::string& file)
 {
-    int currentLevel = EncrytionUtility::getIntegerForKey("CurrentLevel", 1);
+    m_nCurrentLevel = EncrytionUtility::getIntegerForKey("CurrentLevel");
+    int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
+    if(m_nCurrentLevel > maxUnlockLevel)
+        m_nCurrentLevel = maxUnlockLevel;
     std::string filename = "level";
-    filename = filename + Value(currentLevel).asString() + ".plist";
+    filename = filename + Value(m_nCurrentLevel).asString() + ".plist";
     std::string levelName;
-    int goalCellNum;
-    int goalCellGeneration;
-    if(!TerrainMgr::getInstance()->loadLevel(filename, levelName, goalCellGeneration, goalCellNum, m_nStartLifeNum))
+    if(!TerrainMgr::getInstance()->loadLevel(filename, levelName, m_nGoalCellNum, m_nGoalCellGeneration, m_nStartLifeNum, m_nLevelType))
         CCLOG("Load level %s failed!", filename.c_str());
+    
+    m_nLastTotalLifeNum = TerrainMgr::getInstance()->getLifeNum();
     
     Color3B color = SceneFactory::getInstance()->getSceneColor();
     m_pLabelMode = Label::createWithTTF(CommonUtility::getLocalString("MissionMode"), CommonUtility::getLocalString("MainFont"), 120);
@@ -59,29 +63,55 @@ void MissionUI::loadUI(const std::string& file)
     m_pPanel1->setColor(color);
     this->addChild(m_pPanel1);
     
-    std::string strMission = String::createWithFormat(CommonUtility::getLocalString("Mission").c_str(), currentLevel, levelName.c_str())->getCString();
-    m_pLabelMissionName = Label::createWithTTF(strMission, CommonUtility::getLocalString("MainFont"), 40);
+    std::string strMission = String::createWithFormat(CommonUtility::getLocalString("Mission").c_str(), m_nCurrentLevel, levelName.c_str())->getCString();
+    m_pLabelMissionName = Label::createWithTTF(strMission, CommonUtility::getLocalString("CommonFont"), 40);
     m_pLabelMissionName->setPosition(Vec2(770,500));
     m_pLabelMissionName->setMaxLineWidth(300);
     m_pLabelMissionName->setColor(color);
     m_pLabelMissionName->setScale(0.4f);
     this->addChild(m_pLabelMissionName);
     
-    std::string strMissionGoal = String::createWithFormat(CommonUtility::getLocalString("MissionGoal").c_str(), goalCellNum, goalCellGeneration)->getCString();
-    m_pLabelMissionGoal = Label::createWithTTF(strMissionGoal, CommonUtility::getLocalString("MainFont"), 40);
+    std::string strMissionGoal;
+    if (m_nLevelType == 0)
+        strMissionGoal= String::createWithFormat(CommonUtility::getLocalString("MissionGoal0").c_str(), m_nGoalCellGeneration, m_nGoalCellNum)->getCString();
+    else if(m_nLevelType == 1)
+        strMissionGoal= String::createWithFormat(CommonUtility::getLocalString("MissionGoal1").c_str(), m_nGoalCellGeneration, m_nGoalCellNum)->getCString();
+    else if (m_nLevelType == 2)
+        strMissionGoal= String::createWithFormat(CommonUtility::getLocalString("MissionGoal2").c_str(), m_nGoalCellGeneration, m_nGoalCellNum)->getCString();
+    else if(m_nLevelType == 3)
+        strMissionGoal= String::createWithFormat(CommonUtility::getLocalString("MissionGoal3").c_str(), m_nGoalCellGeneration, m_nGoalCellNum)->getCString();
+    
+    m_pLabelMissionGoal = Label::createWithTTF(strMissionGoal, CommonUtility::getLocalString("CommonFont"), 40);
     m_pLabelMissionGoal->setPosition(Vec2(770,450));
     m_pLabelMissionGoal->setMaxLineWidth(300);
     m_pLabelMissionGoal->setColor(color);
     m_pLabelMissionGoal->setScale(0.4f);
     this->addChild(m_pLabelMissionGoal);
     
-    std::string strStarterCellNum = String::createWithFormat(CommonUtility::getLocalString("MisstionStarterCellNum").c_str(), m_nStartLifeNum)->getCString();
-    m_pLabelStarerLifeNum = Label::createWithTTF(strStarterCellNum, CommonUtility::getLocalString("MainFont"), 40);
+    std::string strStarterCellNum = String::createWithFormat(CommonUtility::getLocalString("MissionStarterCellNum").c_str(), m_nStartLifeNum)->getCString();
+    m_pLabelStarerLifeNum = Label::createWithTTF(strStarterCellNum, CommonUtility::getLocalString("CommonFont"), 40);
     m_pLabelStarerLifeNum->setPosition(Vec2(770,400));
     m_pLabelStarerLifeNum->setMaxLineWidth(300);
     m_pLabelStarerLifeNum->setColor(color);
     m_pLabelStarerLifeNum->setScale(0.4f);
     this->addChild(m_pLabelStarerLifeNum);
+    
+    int lifeNum = TerrainMgr::getInstance()->getLifeNum();
+    int generationNum = TerrainMgr::getInstance()->getGeneration();
+    std::string strLifeNum = String::createWithFormat(CommonUtility::getLocalString("LifeNum").c_str(), lifeNum)->getCString();
+    std::string strGenerationNum = String::createWithFormat(CommonUtility::getLocalString("GenerationNum").c_str(), generationNum)->getCString();
+    
+    m_pLabelLifeNum = Label::createWithTTF(strLifeNum, CommonUtility::getLocalString("CommonFont"), 40);
+    m_pLabelLifeNum->setPosition(Vec2(700,350));
+    m_pLabelLifeNum->setColor(color);
+    m_pLabelLifeNum->setScale(0.4f);
+    this->addChild(m_pLabelLifeNum);
+    
+    m_pLabeGenerationNum = Label::createWithTTF(strGenerationNum, CommonUtility::getLocalString("CommonFont"), 40);
+    m_pLabeGenerationNum->setPosition(Vec2(840,350));
+    m_pLabeGenerationNum->setColor(color);
+    m_pLabeGenerationNum->setScale(0.4f);
+    this->addChild(m_pLabeGenerationNum);
     
     m_pControlPanel = ControlPanel::create();
     m_pControlPanel->loadUI("");
@@ -96,7 +126,7 @@ void MissionUI::loadUI(const std::string& file)
     m_pStartBtn->setTitleColor(color);
     m_pStartBtn->setTitleFontSize(24);
     m_pStartBtn->setTitleText(CommonUtility::getLocalString("Start"));
-    m_pStartBtn->setScale(0.5f);
+    m_pStartBtn->setScale(0.8f);
     m_pStartBtn->setColor(color);
     this->addChild(m_pStartBtn);
     
@@ -107,10 +137,22 @@ void MissionUI::loadUI(const std::string& file)
     m_pNextLevelBtn->setTitleColor(color);
     m_pNextLevelBtn->setTitleFontSize(24);
     m_pNextLevelBtn->setTitleText(CommonUtility::getLocalString("NextMission"));
-    m_pNextLevelBtn->setScale(0.5f);
+    m_pNextLevelBtn->setScale(0.8f);
     m_pNextLevelBtn->setColor(color);
     m_pNextLevelBtn->setVisible(false);
     this->addChild(m_pNextLevelBtn);
+    
+    m_pRetryBtn = ui::Button::create("btnLBN.png","btnLBD.png");
+    m_pRetryBtn->setPosition(Vec2(770,300));
+    m_pRetryBtn->addTouchEventListener(CC_CALLBACK_2(MissionUI::pressRetryBtn, this));
+    m_pRetryBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
+    m_pRetryBtn->setTitleColor(color);
+    m_pRetryBtn->setTitleFontSize(24);
+    m_pRetryBtn->setTitleText(CommonUtility::getLocalString("Retry"));
+    m_pRetryBtn->setScale(0.8f);
+    m_pRetryBtn->setColor(color);
+    m_pRetryBtn->setVisible(false);
+    this->addChild(m_pRetryBtn);
     
     m_pBackBtn = ui::Button::create("btnLBN.png","btnLBD.png");
     m_pBackBtn->setPosition(Vec2(770,50));
@@ -126,6 +168,44 @@ void MissionUI::loadUI(const std::string& file)
 void MissionUI::update(float delta)
 {
     ui::Layout::update(delta);
+    int lifeNum = TerrainMgr::getInstance()->getLifeNum();
+    if(m_pOwnerScene->IsPaused())
+    {
+        int diffLifes = lifeNum - m_nLastTotalLifeNum;
+        if(diffLifes > 0)
+        {
+            if(m_nStartLifeNum >= diffLifes)
+            {
+                m_nStartLifeNum -= diffLifes;
+                if(m_nStartLifeNum > 0)
+                    TerrainMgr::getInstance()->setEnableAddTerrainCell(true);
+                else
+                {
+                    m_nStartLifeNum = 0;
+                    TerrainMgr::getInstance()->setEnableAddTerrainCell(false);
+                }
+            }
+        }
+        else if(diffLifes < 0)
+        {
+            m_nStartLifeNum -= diffLifes;
+            TerrainMgr::getInstance()->setEnableAddTerrainCell(true);
+        }
+    }
+    m_nLastTotalLifeNum = lifeNum;
+    
+    int generationNum = TerrainMgr::getInstance()->getGeneration();
+    
+    std::string strLifeNum = String::createWithFormat(CommonUtility::getLocalString("LifeNum").c_str(), lifeNum)->getCString();
+    std::string strGenerationNum = String::createWithFormat(CommonUtility::getLocalString("GenerationNum").c_str(), generationNum)->getCString();
+    
+    m_pLabelLifeNum->setString(strLifeNum);
+    m_pLabeGenerationNum->setString(strGenerationNum);
+    
+    std::string strStarterCellNum = String::createWithFormat(CommonUtility::getLocalString("MissionStarterCellNum").c_str(), m_nStartLifeNum)->getCString();
+    m_pLabelStarerLifeNum->setString(strStarterCellNum);
+    
+    checkWin();
 }
 //设置UI颜色
 void MissionUI::setColor(const cocos2d::Color3B& color)
@@ -135,20 +215,176 @@ void MissionUI::setColor(const cocos2d::Color3B& color)
     m_pLabelMissionName->setColor(color);
     m_pLabelMissionGoal->setColor(color);
     m_pLabelStarerLifeNum->setColor(color);
+    m_pLabelLifeNum->setColor(color);
+    m_pLabeGenerationNum->setColor(color);
     m_pControlPanel->setColor(color);
     m_pStartBtn->setTitleColor(color);
     m_pStartBtn->setColor(color);
     m_pNextLevelBtn->setTitleColor(color);
     m_pNextLevelBtn->setColor(color);
+    m_pRetryBtn->setTitleColor(color);
+    m_pRetryBtn->setColor(color);
     m_pBackBtn->setTitleColor(color);
     m_pBackBtn->setColor(color);
+}
+void MissionUI::checkWin()
+{
+    auto scene = static_cast<MissionScene*>(m_pOwnerScene);
+    if(scene)
+    {
+        if(scene->IsPaused())
+            return;
+        int lifeNum = TerrainMgr::getInstance()->getLifeNum();
+        int generationNum = TerrainMgr::getInstance()->getGeneration();
+        if(m_nGoalCellGeneration == generationNum)
+        {
+            scene->setPause(true);
+            if(m_nLevelType == 0)
+            {
+                if(lifeNum == m_nGoalCellNum)
+                {
+                    if(m_pStartBtn->isVisible())
+                    {
+                        m_nCurrentLevel +=1;
+                        m_pStartBtn->setVisible(false);
+                        m_pRetryBtn->setVisible(false);
+                        m_pNextLevelBtn->setVisible(true);
+                    }
+                    int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
+                    if(m_nCurrentLevel > maxUnlockLevel)
+                    {
+                        maxUnlockLevel = m_nCurrentLevel;
+                        EncrytionUtility::setIntegerForKey("MaxUnlockLevel", maxUnlockLevel);
+                    }
+                }
+                else
+                {
+                    m_pStartBtn->setVisible(false);
+                    m_pRetryBtn->setVisible(true);
+                    m_pNextLevelBtn->setVisible(false);
+                }
+
+            }
+            else if(m_nLevelType == 1)
+            {
+                if(lifeNum >= m_nGoalCellNum)
+                {
+                    if(m_pStartBtn->isVisible())
+                    {
+                        m_nCurrentLevel +=1;
+                        m_pStartBtn->setVisible(false);
+                        m_pRetryBtn->setVisible(false);
+                        m_pNextLevelBtn->setVisible(true);
+                    }
+                    int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
+                    if(m_nCurrentLevel > maxUnlockLevel)
+                    {
+                        maxUnlockLevel = m_nCurrentLevel;
+                        EncrytionUtility::setIntegerForKey("MaxUnlockLevel", maxUnlockLevel);
+                    }
+                }
+                else
+                {
+                    m_pStartBtn->setVisible(false);
+                    m_pRetryBtn->setVisible(true);
+                    m_pNextLevelBtn->setVisible(false);
+                }
+
+            }
+            else if(m_nLevelType == 2)
+            {
+                if(lifeNum <= m_nGoalCellNum)
+                {
+                    if(m_pStartBtn->isVisible())
+                    {
+                        m_nCurrentLevel +=1;
+                        m_pStartBtn->setVisible(false);
+                        m_pRetryBtn->setVisible(false);
+                        m_pNextLevelBtn->setVisible(true);
+                    }
+                    int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
+                    if(m_nCurrentLevel > maxUnlockLevel)
+                    {
+                        maxUnlockLevel = m_nCurrentLevel;
+                        EncrytionUtility::setIntegerForKey("MaxUnlockLevel", maxUnlockLevel);
+                    }
+                }
+                else
+                {
+                    m_pStartBtn->setVisible(false);
+                    m_pRetryBtn->setVisible(true);
+                    m_pNextLevelBtn->setVisible(false);
+                }
+
+            }
+            else if(m_nLevelType == 3)
+            {
+                if(lifeNum == 0)
+                {
+                    if(m_pStartBtn->isVisible())
+                    {
+                        m_nCurrentLevel +=1;
+                        m_pStartBtn->setVisible(false);
+                        m_pRetryBtn->setVisible(false);
+                        m_pNextLevelBtn->setVisible(true);
+                    }
+                    int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
+                    if(m_nCurrentLevel > maxUnlockLevel)
+                    {
+                        maxUnlockLevel = m_nCurrentLevel;
+                        EncrytionUtility::setIntegerForKey("MaxUnlockLevel", maxUnlockLevel);
+                    }
+                    return;
+                }
+                else
+                {
+                    m_pStartBtn->setVisible(false);
+                    m_pRetryBtn->setVisible(true);
+                    m_pNextLevelBtn->setVisible(false);
+                    return;
+                }
+            }
+        }
+        if(lifeNum == 0)
+        {
+            scene->setPause(true);
+            if(m_nLevelType == 3)
+            {
+                if(m_pStartBtn->isVisible())
+                {
+                    m_nCurrentLevel +=1;
+                    m_pStartBtn->setVisible(false);
+                    m_pRetryBtn->setVisible(false);
+                    m_pNextLevelBtn->setVisible(true);
+                }
+                int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
+                if(m_nCurrentLevel > maxUnlockLevel)
+                {
+                    maxUnlockLevel = m_nCurrentLevel;
+                    EncrytionUtility::setIntegerForKey("MaxUnlockLevel", maxUnlockLevel);
+                }
+            }
+            else
+            {
+                m_pStartBtn->setVisible(false);
+                m_pRetryBtn->setVisible(true);
+                m_pNextLevelBtn->setVisible(false);
+            }
+        }
+    }
 }
 // 点击开始按钮
 void MissionUI::pressStartBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
-        
+        auto scene = static_cast<MissionScene*>(m_pOwnerScene);
+        if(scene)
+        {
+            if(scene->IsPaused())
+                scene->setPause(false);
+            TerrainMgr::getInstance()->setEnableAddTerrainCell(false);
+        }
     }
 }
 // 点击开始按钮
@@ -156,7 +392,28 @@ void MissionUI::pressNextLevelBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
-        
+        if(m_nCurrentLevel <= MAX_LEVEL)
+        {
+            BaseScene* missionScene = SceneFactory::getInstance()->createSceneByID(SCENE_MISSION);
+            Director::getInstance()->replaceScene(missionScene);
+            TerrainMgr::getInstance()->setEnableAddTerrainCell(true);
+            EncrytionUtility::setIntegerForKey("CurrentLevel", m_nCurrentLevel);
+        }
+        else
+        {
+            BaseScene* congratulationsScene = SceneFactory::getInstance()->createSceneByID(SCENE_CONGRATULATIONS);
+            Director::getInstance()->replaceScene(congratulationsScene);
+        }
+    }
+}
+// 点击重试按钮
+void MissionUI::pressRetryBtn(Ref* p,TouchEventType eventType)
+{
+    if(eventType == TouchEventType::ENDED)
+    {
+        BaseScene* missionScene = SceneFactory::getInstance()->createSceneByID(SCENE_MISSION);
+        Director::getInstance()->replaceScene(missionScene);
+        TerrainMgr::getInstance()->setEnableAddTerrainCell(true);
     }
 }
 // 点击返回按钮
@@ -164,7 +421,8 @@ void MissionUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
-        BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
-        Director::getInstance()->replaceScene(mainScene);
+        BaseScene* menuScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+        Director::getInstance()->replaceScene(menuScene);
+        TerrainMgr::getInstance()->setEnableAddTerrainCell(true);
     }
 }

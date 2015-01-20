@@ -34,6 +34,8 @@
 	<string>重置</string>
 	<key>Restore</key>
 	<string>恢复</string>
+	<key>Retry</key>
+	<string>任务失败,请重试</string>
 	<key>Back</key>
 	<string>返回</string>
 	<key>Edit</key>
@@ -76,6 +78,10 @@
 	<string>起始生命个数不能为空！</string>
 	<key>ErrorInfo14</key>
 	<string>起始生命个数只能为自然数！</string>
+	<key>ErrorInfo15</key>
+	<string>任务类型不能为空！</string>
+	<key>ErrorInfo16</key>
+	<string>任务类型只能为自然数！</string>
 	<key>SaveOK</key>
 	<string>保存成功!</string>
 	<key>SaveFailed</key>
@@ -135,13 +141,25 @@ http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<string>输入完成目标时生命代数</string>
 	<key>StarterCellNum</key>
 	<string>输入起始生命个数</string>
+	<key>LevelType</key>
+	<string>输入关卡类型</string>
 	<key>Mission</key>
 	<string>任务%d : %s </string>
-	<key>MissionGoal</key>
+	<key>MissionGoal0</key>
+	<string>任务目标 : 生命繁衍%d代后等于%d个生命。</string>
+	<key>MissionGoal1</key>
 	<string>任务目标 : 生命繁衍%d代后至少有%d个生命。</string>
-	<key>MisstionStarterCellNum</key>
+	<key>MissionGoal2</key>
+	<string>任务目标 : 生命繁衍%d代后至多有%d个生命。</string>
+	<key>MissionGoal3</key>
+	<string>任务目标 : 生命繁衍%d代后没有生命体。</string>
+	<key>MissionStarterCellNum</key>
 	<string>初始可用生命剩余个数 : %d</string>
 	<key>NextMission</key>
 	<string>下个任务</string>
+	<key>Congratulations</key>
+	<string>恭喜您</string>
+	<key>CongratulationsDetail</key>
+	<string>    您已经通过所有关卡任务，所有模版都已经解锁，我们会在后续版本中更新更多关卡，敬请期待！</string>
 </dict>
 </plist>

@@ -33,4 +33,7 @@ static std::string HELPINFO_UI_FILE = "helpinfo_ui.xml";
 static const int LEVEL_EDITOR_UI = 7;
 static std::string LEVEL_EDITOR_UI_FILE = "level_editor_ui.xml";
 
+static const int CONGRATULATIONS_UI = 8;
+static std::string CONGRATULATIONS_UI_FILE = "congratulations_ui.xml";
+
 #endif

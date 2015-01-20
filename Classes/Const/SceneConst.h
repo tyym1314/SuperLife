@@ -36,5 +36,6 @@ static const int SCENE_EDITOR                           = 13;       ///编辑器
 static const int SCENE_SHOP                             = 14;       ///商店界面
 static const int SCENE_HELPINFO                         = 15;       ///帮助说明界面
 static const int SCENE_LEVELEDITOR                      = 16;       ///任务编辑界面
+static const int SCENE_CONGRATULATIONS                  = 17;       ///祝贺界面
 
 #endif

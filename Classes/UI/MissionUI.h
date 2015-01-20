@@ -29,10 +29,13 @@ public:
     //设置UI颜色
     void setColor(const cocos2d::Color3B& color);
 protected:
+    void checkWin();
     // 点击开始按钮
     void pressStartBtn(Ref* p,TouchEventType eventType);
     // 点击下个任务按钮
     void pressNextLevelBtn(Ref* p,TouchEventType eventType);
+    // 点击重试按钮
+    void pressRetryBtn(Ref* p,TouchEventType eventType);
     // 点击返回按钮
     void pressBackBtn(Ref* p,TouchEventType eventType);
 private:
@@ -41,13 +44,21 @@ private:
     cocos2d::Label*             m_pLabelMissionName;
     cocos2d::Label*             m_pLabelMissionGoal;
     cocos2d::Label*             m_pLabelStarerLifeNum;
+    cocos2d::Label*             m_pLabelLifeNum;
+    cocos2d::Label*             m_pLabeGenerationNum;
     cocos2d::Sprite*            m_pPanel1;
     ControlPanel*               m_pControlPanel;
     cocos2d::ui::Button*        m_pStartBtn;
     cocos2d::ui::Button*        m_pNextLevelBtn;
+    cocos2d::ui::Button*        m_pRetryBtn;
     cocos2d::ui::Button*        m_pBackBtn;
     
+    int                         m_nGoalCellNum;
+    int                         m_nGoalCellGeneration;
     int                         m_nStartLifeNum;
+    int                         m_nLastTotalLifeNum;
+    int                         m_nCurrentLevel;
+    int                         m_nLevelType;
 };
 
 #endif /* defined(__SuperLife__MissionUI__) */

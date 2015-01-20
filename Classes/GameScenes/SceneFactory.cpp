@@ -15,6 +15,7 @@
 #include "ShopScene.h"
 #include "HelpInfoScene.h"
 #include "EditLevelScene.h"
+#include "CongratulationsScene.h"
 #include "MathUtility.h"
 USING_NS_CC;
 
@@ -95,7 +96,6 @@ BaseScene* SceneFactory::createSceneByID(int sceneID)
                 scene->initGameLayers(LAYER_ALL);
                 scene->autorelease();
             }
-            
             break;
         case SCENE_LEVELEDITOR:
             m_SceneColor = Color3B::WHITE;
@@ -105,7 +105,14 @@ BaseScene* SceneFactory::createSceneByID(int sceneID)
                 scene->initGameLayers(LAYER_ALL);
                 scene->autorelease();
             }
-            
+            break;
+        case SCENE_CONGRATULATIONS:
+            scene = new CongratulationsScene();
+            if(scene)
+            {
+                scene->initGameLayers(LAYER_ALL);
+                scene->autorelease();
+            }
             break;
         default:
             break;

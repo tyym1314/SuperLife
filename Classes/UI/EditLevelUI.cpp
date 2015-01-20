@@ -53,7 +53,7 @@ void EditLevelUI::loadUI(const std::string& file)
     this->addChild(m_pLabelMode);
     
     Scale9Sprite* scale9 = Scale9Sprite::create("slider_bar_button.png");
-    m_pFileNameEditBox = EditBox::create(Size(200,30), scale9);
+    m_pFileNameEditBox = EditBox::create(Size(200,25), scale9);
     m_pFileNameEditBox->setPosition(Vec2(750,530));
     m_pFileNameEditBox->setPlaceHolder(CommonUtility::getLocalString("FileName").c_str());
     m_pFileNameEditBox->setPlaceholderFontColor(Color3B::RED);
@@ -62,8 +62,8 @@ void EditLevelUI::loadUI(const std::string& file)
     this->addChild(m_pFileNameEditBox);
     
     scale9 = Scale9Sprite::create("slider_bar_button.png");
-    m_pLevelNameEditBox = EditBox::create(Size(200,30), scale9);
-    m_pLevelNameEditBox->setPosition(Vec2(750,480));
+    m_pLevelNameEditBox = EditBox::create(Size(200,25), scale9);
+    m_pLevelNameEditBox->setPosition(Vec2(750,490));
     m_pLevelNameEditBox->setPlaceHolder(CommonUtility::getLocalString("LevelName").c_str());
     m_pLevelNameEditBox->setPlaceholderFontColor(Color3B::RED);
     m_pLevelNameEditBox->setFontColor(Color3B::BLACK);
@@ -71,8 +71,8 @@ void EditLevelUI::loadUI(const std::string& file)
     this->addChild(m_pLevelNameEditBox);
     
     scale9 = Scale9Sprite::create("slider_bar_button.png");
-    m_pGoalCellNumEditBox = EditBox::create(Size(200,30), scale9);
-    m_pGoalCellNumEditBox->setPosition(Vec2(750,430));
+    m_pGoalCellNumEditBox = EditBox::create(Size(200,25), scale9);
+    m_pGoalCellNumEditBox->setPosition(Vec2(750,450));
     m_pGoalCellNumEditBox->setPlaceHolder(CommonUtility::getLocalString("GoalCellNum").c_str());
     m_pGoalCellNumEditBox->setPlaceholderFontColor(Color3B::RED);
     m_pGoalCellNumEditBox->setFontColor(Color3B::BLACK);
@@ -80,8 +80,8 @@ void EditLevelUI::loadUI(const std::string& file)
     this->addChild(m_pGoalCellNumEditBox);
     
     scale9 = Scale9Sprite::create("slider_bar_button.png");
-    m_pGoalCellGenerationEditBox = EditBox::create(Size(200,30), scale9);
-    m_pGoalCellGenerationEditBox->setPosition(Vec2(750,380));
+    m_pGoalCellGenerationEditBox = EditBox::create(Size(200,25), scale9);
+    m_pGoalCellGenerationEditBox->setPosition(Vec2(750,410));
     m_pGoalCellGenerationEditBox->setPlaceHolder(CommonUtility::getLocalString("GoalCellGeneration").c_str());
     m_pGoalCellGenerationEditBox->setPlaceholderFontColor(Color3B::RED);
     m_pGoalCellGenerationEditBox->setFontColor(Color3B::BLACK);
@@ -89,13 +89,22 @@ void EditLevelUI::loadUI(const std::string& file)
     this->addChild(m_pGoalCellGenerationEditBox);
     
     scale9 = Scale9Sprite::create("slider_bar_button.png");
-    m_pStarterCellNumEditBox = EditBox::create(Size(200,30), scale9);
-    m_pStarterCellNumEditBox->setPosition(Vec2(750,330));
+    m_pStarterCellNumEditBox = EditBox::create(Size(200,25), scale9);
+    m_pStarterCellNumEditBox->setPosition(Vec2(750,370));
     m_pStarterCellNumEditBox->setPlaceHolder(CommonUtility::getLocalString("StarterCellNum").c_str());
     m_pStarterCellNumEditBox->setPlaceholderFontColor(Color3B::RED);
     m_pStarterCellNumEditBox->setFontColor(Color3B::BLACK);
     m_pStarterCellNumEditBox->setColor(color);
     this->addChild(m_pStarterCellNumEditBox);
+    
+    scale9 = Scale9Sprite::create("slider_bar_button.png");
+    m_pLevelTypeEditBox = EditBox::create(Size(200,25), scale9);
+    m_pLevelTypeEditBox->setPosition(Vec2(750,330));
+    m_pLevelTypeEditBox->setPlaceHolder(CommonUtility::getLocalString("LevelType").c_str());
+    m_pLevelTypeEditBox->setPlaceholderFontColor(Color3B::RED);
+    m_pLevelTypeEditBox->setFontColor(Color3B::BLACK);
+    m_pLevelTypeEditBox->setColor(color);
+    this->addChild(m_pLevelTypeEditBox);
     
     int lifeNum = TerrainMgr::getInstance()->getLifeNum();
     int generationNum = TerrainMgr::getInstance()->getGeneration();
@@ -134,27 +143,27 @@ void EditLevelUI::loadUI(const std::string& file)
     m_pResetBtn->setScale(0.6f);
     this->addChild(m_pResetBtn);
     
-    m_pSaveBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pSaveBtn->setPosition(Vec2(700,180));
-    m_pSaveBtn->addTouchEventListener(CC_CALLBACK_2(EditLevelUI::pressRestoreBtn, this));
-    m_pSaveBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
-    m_pSaveBtn->setTitleColor(color);
-    m_pSaveBtn->setTitleFontSize(24);
-    m_pSaveBtn->setTitleText(CommonUtility::getLocalString("Restore"));
-    m_pSaveBtn->setColor(color);
-    m_pSaveBtn->setScale(0.6f);
-    this->addChild(m_pSaveBtn);
-    
     m_pRestoreBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pRestoreBtn->setPosition(Vec2(840,180));
-    m_pRestoreBtn->addTouchEventListener(CC_CALLBACK_2(EditLevelUI::pressSaveBtn, this));
+    m_pRestoreBtn->setPosition(Vec2(700,180));
+    m_pRestoreBtn->addTouchEventListener(CC_CALLBACK_2(EditLevelUI::pressRestoreBtn, this));
     m_pRestoreBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pRestoreBtn->setTitleColor(color);
     m_pRestoreBtn->setTitleFontSize(24);
-    m_pRestoreBtn->setTitleText(CommonUtility::getLocalString("Save"));
+    m_pRestoreBtn->setTitleText(CommonUtility::getLocalString("Restore"));
     m_pRestoreBtn->setColor(color);
     m_pRestoreBtn->setScale(0.6f);
     this->addChild(m_pRestoreBtn);
+    
+    m_pSaveBtn = ui::Button::create("btnLBN.png","btnLBD.png");
+    m_pSaveBtn->setPosition(Vec2(840,180));
+    m_pSaveBtn->addTouchEventListener(CC_CALLBACK_2(EditLevelUI::pressSaveBtn, this));
+    m_pSaveBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
+    m_pSaveBtn->setTitleColor(color);
+    m_pSaveBtn->setTitleFontSize(24);
+    m_pSaveBtn->setTitleText(CommonUtility::getLocalString("Save"));
+    m_pSaveBtn->setColor(color);
+    m_pSaveBtn->setScale(0.6f);
+    this->addChild(m_pSaveBtn);
     
     m_pLabelErrorInfo = Label::createWithTTF("", CommonUtility::getLocalString("CommonFont"), 20);
     m_pLabelErrorInfo->setPosition(Vec2(750,130));
@@ -185,6 +194,12 @@ void EditLevelUI::update(float delta)
     
     m_pLabelLifeNum->setString(strLifeNum);
     m_pLabeGenerationNum->setString(strGenerationNum);
+    
+    if(lifeNum == 0)
+    {
+        m_pOwnerScene->setPause(true);
+        m_pStartBtn->setTitleText(CommonUtility::getLocalString("Start"));
+    }
 }
 
 // 点击开始按钮
@@ -198,7 +213,10 @@ void EditLevelUI::pressStartBtn(Ref* p,TouchEventType eventType)
             bool pause = scene->IsPaused();
             scene->setPause(!pause);
             if(pause)
+            {
+                TerrainMgr::getInstance()->cacheTerrainCellList();
                 m_pStartBtn->setTitleText(CommonUtility::getLocalString("Pause"));
+            }
             else
                 m_pStartBtn->setTitleText(CommonUtility::getLocalString("Start"));
         }
@@ -218,8 +236,8 @@ void EditLevelUI::pressResetBtn(Ref* p,TouchEventType eventType)
                 scene->setPause(true);
                 m_pStartBtn->setTitleText(CommonUtility::getLocalString("Start"));
             }
+            TerrainMgr::getInstance()->resetTerrain();
         }
-        TerrainMgr::getInstance()->resetTerrain();
     }
 }
 // 点击恢复按钮
@@ -227,7 +245,11 @@ void EditLevelUI::pressRestoreBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
-
+        auto scene = static_cast<MainScene*>(m_pOwnerScene);
+        if(scene)
+        {
+            TerrainMgr::getInstance()->restoreTerrainCellList();
+        }
     }
 }
 // 点击保存按钮
@@ -297,11 +319,25 @@ void EditLevelUI::pressSaveBtn(Ref* p,TouchEventType eventType)
             return;
         }
         
+        strText = m_pLevelTypeEditBox->getText();
+        if(strText.empty())
+        {
+            m_pLabelErrorInfo->setString(CommonUtility::getLocalString("ErrorInfo15"));
+            return;
+        }
+        if ( !regex_match( strText, pattern1 ) )
+        {
+            m_pLabelErrorInfo->setString(CommonUtility::getLocalString("ErrorInfo16"));
+            return;
+        }
+        
         std::string strDir = "levels/";
         int goalCellNum = Value(m_pGoalCellNumEditBox->getText()).asInt();
         int goalCellGeneration = Value(m_pGoalCellGenerationEditBox->getText()).asInt();
         int starterCellNum = Value(m_pStarterCellNumEditBox->getText()).asInt();
-        if(TerrainMgr::getInstance()->saveLevel(strDir + m_pFileNameEditBox->getText() + ".plist", m_pLevelNameEditBox->getText(), goalCellNum, goalCellGeneration, starterCellNum))
+        int levelType = Value(m_pLevelTypeEditBox->getText()).asInt();
+        
+        if(TerrainMgr::getInstance()->saveLevel(strDir + m_pFileNameEditBox->getText() + ".plist", m_pLevelNameEditBox->getText(), goalCellNum, goalCellGeneration, starterCellNum, levelType))
             m_pLabelErrorInfo->setString(CommonUtility::getLocalString("SaveOK"));
         else
             m_pLabelErrorInfo->setString(CommonUtility::getLocalString("SaveFailed"));

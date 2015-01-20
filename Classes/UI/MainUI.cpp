@@ -27,6 +27,7 @@ MainUI::MainUI(BaseScene* owner)
     m_pLabeGenerationNum = nullptr;
     m_pStartBtn = nullptr;
     m_pResetBtn = nullptr;
+    m_pRestoreBtn = nullptr;
     m_pControlPanel = nullptr;
     m_pBackBtn = nullptr;
 }
@@ -60,12 +61,12 @@ void MainUI::loadUI(const std::string& file)
     this->addChild(m_pLabelLifeNum);
     
     m_pLabeGenerationNum = Label::createWithTTF(strGenerationNum, CommonUtility::getLocalString("CommonFont"), 24);
-    m_pLabeGenerationNum->setPosition(Vec2(770,380));
+    m_pLabeGenerationNum->setPosition(Vec2(770,420));
     m_pLabeGenerationNum->setColor(color);
     this->addChild(m_pLabeGenerationNum);
     
     m_pStartBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pStartBtn->setPosition(Vec2(700,300));
+    m_pStartBtn->setPosition(Vec2(700,350));
     m_pStartBtn->addTouchEventListener(CC_CALLBACK_2(MainUI::pressStartBtn, this));
     m_pStartBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pStartBtn->setTitleColor(color);
@@ -76,7 +77,7 @@ void MainUI::loadUI(const std::string& file)
     this->addChild(m_pStartBtn);
     
     m_pResetBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pResetBtn->setPosition(Vec2(840,300));
+    m_pResetBtn->setPosition(Vec2(840,350));
     m_pResetBtn->addTouchEventListener(CC_CALLBACK_2(MainUI::pressResetBtn, this));
     m_pResetBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pResetBtn->setTitleColor(color);
@@ -85,6 +86,18 @@ void MainUI::loadUI(const std::string& file)
     m_pResetBtn->setColor(color);
     m_pResetBtn->setScale(0.6f);
     this->addChild(m_pResetBtn);
+    
+    m_pRestoreBtn = ui::Button::create("btnLBN.png","btnLBD.png");
+    m_pRestoreBtn->setPosition(Vec2(770,300));
+    m_pRestoreBtn->addTouchEventListener(CC_CALLBACK_2(MainUI::pressRestoreBtn, this));
+    m_pRestoreBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
+    m_pRestoreBtn->setTitleColor(color);
+    m_pRestoreBtn->setTitleFontSize(24);
+    m_pRestoreBtn->setTitleText(CommonUtility::getLocalString("Restore"));
+    m_pRestoreBtn->setColor(color);
+    m_pRestoreBtn->setScale(0.6f);
+    this->addChild(m_pRestoreBtn);
+
     
     m_pControlPanel = ControlPanel::create();
     m_pControlPanel->loadUI("");
@@ -115,6 +128,12 @@ void MainUI::update(float delta)
     
     m_pLabelLifeNum->setString(strLifeNum);
     m_pLabeGenerationNum->setString(strGenerationNum);
+    
+    if(lifeNum == 0)
+    {
+        m_pOwnerScene->setPause(true);
+        m_pStartBtn->setTitleText(CommonUtility::getLocalString("Start"));
+    }
 }
 //设置UI颜色
 void MainUI::setColor(const cocos2d::Color3B& color)
@@ -142,7 +161,10 @@ void MainUI::pressStartBtn(Ref* p,TouchEventType eventType)
             bool pause = scene->IsPaused();
             scene->setPause(!pause);
             if(pause)
+            {
+                TerrainMgr::getInstance()->cacheTerrainCellList();
                 m_pStartBtn->setTitleText(CommonUtility::getLocalString("Pause"));
+            }
             else
                 m_pStartBtn->setTitleText(CommonUtility::getLocalString("Start"));
         }
@@ -162,8 +184,20 @@ void MainUI::pressResetBtn(Ref* p,TouchEventType eventType)
                 scene->setPause(true);
                 m_pStartBtn->setTitleText(CommonUtility::getLocalString("Start"));
             }
+            TerrainMgr::getInstance()->resetTerrain();
         }
-        TerrainMgr::getInstance()->resetTerrain();
+    }
+}
+// 点击恢复按钮
+void MainUI::pressRestoreBtn(Ref* p,TouchEventType eventType)
+{
+    if(eventType == TouchEventType::ENDED)
+    {
+        auto scene = static_cast<MainScene*>(m_pOwnerScene);
+        if(scene)
+        {
+            TerrainMgr::getInstance()->restoreTerrainCellList();
+        }
     }
 }
 // 点击返回按钮

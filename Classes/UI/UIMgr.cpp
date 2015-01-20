@@ -17,6 +17,7 @@
 #include "ShopUI.h"
 #include "HelpInfoUI.h"
 #include "EditLevelUI.h"
+#include "CongratulationsUI.h"
 USING_NS_CC;
 
 UIMgr* g_pUIMgrInstance = nullptr;
@@ -132,6 +133,17 @@ ui::Layout* UIMgr::createUI(int uiid)
                         layout->autorelease();
                     }
                 }
+                break;
+            case CONGRATULATIONS_UI:
+            {
+                layout = new CongratulationsUI(runningScene);
+                if(layout)
+                {
+                    static_cast<CongratulationsUI*>(layout)->loadUI(CONGRATULATIONS_UI_FILE);
+                    layer->addChild(layout);
+                    layout->autorelease();
+                }
+            }
                 break;
             default:
                 break;

@@ -29,6 +29,9 @@ MissionListUI::~MissionListUI()
 // 加载文件
 void MissionListUI::loadUI(const std::string& file)
 {
+#if COCOS2D_DEBUG
+    EncrytionUtility::setIntegerForKey("MaxUnlockLevel", MAX_LEVEL);
+#endif
     Color3B color = SceneFactory::getInstance()->getSceneColor();
     m_pLabelLevelSelect = Label::createWithTTF(CommonUtility::getLocalString("SelectMission"), CommonUtility::getLocalString("MainFont"), 120);
     m_pLabelLevelSelect->setPosition(Vec2(480,590));
@@ -72,8 +75,8 @@ void MissionListUI::loadUI(const std::string& file)
         btn->setTitleFontSize(60);
         btn->setColor(color);
         btn->addTouchEventListener(CC_CALLBACK_2(MissionListUI::pressLevelSelectBtn, this));
-        int currentLevel = EncrytionUtility::getIntegerForKey("CurrentLevel", 1);
-        if( i > currentLevel)
+        int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
+        if( i > maxUnlockLevel)
         {
             btn->setTitleText("?");
             btn->setTouchEnabled(false);
@@ -99,6 +102,8 @@ void MissionListUI::pressLevelSelectBtn(Ref* p,TouchEventType eventType)
     ui::Button* btn = static_cast<ui::Button*>(p);
     if(btn)
     {
+        int currentSelectLevel = Value(btn->getTitleText()).asInt();
+        EncrytionUtility::setIntegerForKey("CurrentLevel", currentSelectLevel);
         BaseScene* missionScene = SceneFactory::getInstance()->createSceneByID(SCENE_MISSION);
         Director::getInstance()->replaceScene(missionScene);
     }

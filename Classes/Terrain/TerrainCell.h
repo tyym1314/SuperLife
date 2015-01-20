@@ -24,20 +24,36 @@ public:
     ~TerrainCell();
     //获取x索引
     int getIndexX() const;
+    //设置x索引
+    void setIndexX(int indexX);
     //获取y索引
     int getIndexY() const;
+    //设置y索引
+    void setIndexY(int indexY);
     //获取x坐标
     float getPosX() const;
+    //设置x坐标
+    void setPosX(int posX);
     //获取y坐标
     float getPosY() const;
+    //设置y坐标
+    void setPosY(int posY);
     //获取半径
     float getRadius() const;
+    //设置半径
+    void setRadius(float radius);
     //获取地形单元颜色
-    const::cocos2d::Color4F& getColor() const;
+    const cocos2d::Color4F& getColor() const;
     //设置地表单元颜色
     void setColor(const cocos2d::Color4F& color);
     //获取地形单元类型
     CELL_TYPE getCellType() const;
+    //设置地形单元类型
+    void setCellType(CELL_TYPE type);
+    //是否为任务模式下的单元
+    bool isLevelCell() const;
+    //设置为任务模式下的单元
+    void setLevelCell(bool levelCell);
 private:
     int                 m_nIndexX;                      ///X索引
     int                 m_nIndexY;                      ///Y做引
@@ -46,6 +62,7 @@ private:
     float               m_fRadius;                      ///半径
     cocos2d::Color4F    m_Color;                        ///颜色
     CELL_TYPE           m_CellType;                     ///地形单元类型
+    bool                m_bLevelCell;                   ///是否为任务模式下的单元
 };
 
 #endif /* defined(__CCGF__TerrainCell__) */

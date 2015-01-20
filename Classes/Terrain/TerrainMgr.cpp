@@ -10,6 +10,7 @@
 #include "SceneFactory.h"
 #include "SceneConst.h"
 #include "GameConst.h"
+#include "MissionScene.h"
 USING_NS_CC;
 
 TerrainMgr* g_pTerrainMgrInstance = nullptr;
@@ -25,7 +26,7 @@ TerrainMgr* TerrainMgr::getInstance()
 TerrainMgr::TerrainMgr()
     :m_Offset(Vec2::ZERO), m_nRows(0), m_nColumns(0),m_nGeneration(0),m_nLifeNum(0),
     m_CurrentCellType(TerrainCell::UNKNOWN),m_fMinUpdateDelta(0.02f),m_fMaxUpdateDelta(0.5f),
-    m_fCurUpdateDelta(0.05f),m_pTouchListener(nullptr)
+    m_fCurUpdateDelta(0.05f),m_bEnableAddTerrainCell(true),m_pTouchListener(nullptr)
 {
     m_pDrawNode = DrawNode::create();
     m_pDrawNode->retain();
@@ -124,6 +125,7 @@ void TerrainMgr::removeTerrain()
     if(runningScene && layer)
     {
         m_TerrainCellList.clear();
+        m_TerrainCellCacheList.clear();
         m_pDrawNode->clear();
         layer->removeChild(m_pDrawNode);
     }
@@ -191,7 +193,6 @@ void TerrainMgr::update(float delta)
     time -= delta;
     if(time <= 0)
     {
-        m_nLifeNum = 0;
         Color3B color = SceneFactory::getInstance()->getSceneColor();
         Vector<TerrainCell*> newTerrainCellList;
         for (int k = 0; k < m_TerrainCellList.size(); k++)
@@ -212,8 +213,6 @@ void TerrainMgr::update(float delta)
                         newCell->setColor(Color4F(Color4B(color.r,color.g,color.b,100)));
                         break;
                 }
-                if(newCell->getColor() == Color4F(color))
-                    m_nLifeNum++;
                 newTerrainCellList.pushBack(newCell);
             }
         }
@@ -222,8 +221,6 @@ void TerrainMgr::update(float delta)
         newTerrainCellList.clear();
         updateTerrain();
         m_nGeneration++;
-        if(m_nLifeNum == 0)
-            m_nGeneration = 0;
         time = m_fCurUpdateDelta;
     }
 }
@@ -308,12 +305,18 @@ bool TerrainMgr::onTouchBegan(Touch *touch, Event *unused_event)
                     Color3B color = SceneFactory::getInstance()->getSceneColor();
                     Color4F newCellColor = Color4F(color);
                     Color4F cellColor = cell->getColor();
-                    if(cellColor != color)
-                        cell->setColor(Color4F(color));
+                    if(cellColor != newCellColor)
+                    {
+                        if(m_bEnableAddTerrainCell)
+                            cell->setColor(Color4F(color));
+                    }
                     else
                     {
-                        newCellColor = Color4F(Color4B(color.r, color.g, color.b, 100));
-                        cell->setColor(newCellColor);
+                        if(!cell->isLevelCell())
+                        {
+                            newCellColor = Color4F(Color4B(color.r, color.g, color.b, 100));
+                            cell->setColor(newCellColor);
+                        }
                     }
                     dirty = true;
                     break;
@@ -329,6 +332,9 @@ void TerrainMgr::onTouchMoved(Touch *touch, Event *unused_event)
 {
     BaseScene* curScene = SceneFactory::getInstance()->getCurrentScene();
     if(!curScene->IsPaused())
+        return;
+    MissionScene* missionScene = static_cast<MissionScene*>(curScene);
+    if(missionScene)
         return;
     bool dirty = false;
     DrawNode* touchNode = static_cast<DrawNode*>(unused_event->getCurrentTarget());
@@ -410,8 +416,9 @@ bool TerrainMgr::hasTemplate(const std::string& name)
     return std::find(m_vecTemplatesName.begin(), m_vecTemplatesName.end(), name) != m_vecTemplatesName.end();
 }
 //保存任务场景
-bool TerrainMgr::saveLevel(const std::string& levelFileName, const std::string& levelName, const int goalCellNum, const int goalCellGeneration, const int starterCellNum)
+bool TerrainMgr::saveLevel(const std::string& levelFileName, const std::string& levelName, const int goalCellNum, const int goalCellGeneration, const int starterCellNum, const int levelType)
 {
+    m_dictlevel.clear();
     ValueVector temp;
     for (int k = 0; k < m_TerrainCellList.size(); k++)
     {
@@ -430,12 +437,13 @@ bool TerrainMgr::saveLevel(const std::string& levelFileName, const std::string& 
     m_dictlevel["GoalCellNum"] = Value(goalCellNum);
     m_dictlevel["GoalCellGeneration"] = Value(goalCellGeneration);
     m_dictlevel["StarterCellNum"] = Value(starterCellNum);
+    m_dictlevel["LevelType"] = Value(levelType);
     
     std::string fullpath = FileUtils::getInstance()->getWritablePath() + levelFileName;
     return FileUtils::getInstance()->writeToFile(m_dictlevel, fullpath);
 }
 //加载任务场景
-bool TerrainMgr::loadLevel(const std::string& levelFileName, std::string& levelName, int& goalCellNum, int& goalCellGeneration, int& starterCellNum)
+bool TerrainMgr::loadLevel(const std::string& levelFileName, std::string& levelName, int& goalCellNum, int& goalCellGeneration, int& starterCellNum, int& levelType)
 {
     m_dictlevel = FileUtils::getInstance()->getValueMapFromFile(levelFileName);
     levelName = m_dictlevel["LevelName"].asString();
@@ -448,12 +456,52 @@ bool TerrainMgr::loadLevel(const std::string& levelFileName, std::string& levelN
         if(cell)
         {
             if(filled == 1)
+            {
                 cell->setColor(sceneColor);
+                cell->setLevelCell(true);
+            }
         }
     }
     goalCellNum = m_dictlevel["GoalCellNum"].asInt();
     goalCellGeneration = m_dictlevel["GoalCellGeneration"].asInt();
     starterCellNum = m_dictlevel["StarterCellNum"].asInt();
+    levelType = m_dictlevel["LevelType"].asInt();
     updateTerrain();
     return true;
+}
+void TerrainMgr::cacheTerrainCellList()
+{
+    m_TerrainCellCacheList.clear();
+    for (int i = 0; i < m_TerrainCellList.size(); i++)
+    {
+        TerrainCell* cell = m_TerrainCellList.at(i);
+        if(cell)
+        {
+            TerrainCell* cacheCell = new TerrainCell( cell->getIndexX(), cell->getIndexY(), cell->getPosX(), cell->getPosY(), cell->getRadius(), cell->getColor(), cell->getCellType());
+            m_TerrainCellCacheList.pushBack(cacheCell);
+        }
+    }
+}
+void TerrainMgr::restoreTerrainCellList()
+{
+    for (int i = 0; i < m_TerrainCellCacheList.size(); i++)
+    {
+        TerrainCell* cacheCell = m_TerrainCellCacheList.at(i);
+        if(cacheCell)
+        {
+            TerrainCell* cell = m_TerrainCellList.at(i);
+            if(cell)
+            {
+                cell->setIndexX(cacheCell->getIndexX());
+                cell->setIndexY(cacheCell->getIndexY());
+                cell->setPosX(cacheCell->getPosX());
+                cell->setPosY(cacheCell->getPosY());
+                cell->setRadius(cacheCell->getRadius());
+                cell->setColor(cacheCell->getColor());
+                cell->setCellType(cacheCell->getCellType());
+            }
+        }
+    }
+    updateTerrain();
+    m_nGeneration = 0;
 }

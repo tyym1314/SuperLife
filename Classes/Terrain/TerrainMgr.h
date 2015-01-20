@@ -59,9 +59,15 @@ public:
     //是否有次模版
     bool hasTemplate(const std::string& name);
     //保存任务场景
-    bool saveLevel(const std::string& levelFileName, const std::string& levelName, const int goalCellNum, const int goalCellGeneration, const int starterCellNum);
+    bool saveLevel(const std::string& levelFileName, const std::string& levelName, const int goalCellNum, const int goalCellGeneration, const int starterCellNum, const int levelType);
     //加载任务场景
-    bool loadLevel(const std::string& levelFileName, std::string& levelName, int& goalCellNum, int& goalCellGeneration, int& starterCellNum);
+    bool loadLevel(const std::string& levelFileName, std::string& levelName, int& goalCellNum, int& goalCellGeneration, int& starterCellNum, int& levelType);
+    
+    bool isEnableAddTerrainCell() const { return m_bEnableAddTerrainCell; }
+    void setEnableAddTerrainCell( bool enableAddTerrainCell ) { m_bEnableAddTerrainCell = enableAddTerrainCell; }
+    
+    void cacheTerrainCellList();
+    void restoreTerrainCellList();
 public:
     // 处理输入
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
@@ -70,6 +76,7 @@ public:
     virtual void onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *unused_event);
 private:
     cocos2d::Vector<TerrainCell*>   m_TerrainCellList;
+    cocos2d::Vector<TerrainCell*>   m_TerrainCellCacheList;
     cocos2d::DrawNode*              m_pDrawNode;
     cocos2d::Vec2                   m_Offset;
     int                             m_nRows;
@@ -80,6 +87,8 @@ private:
     float                           m_fMinUpdateDelta;
     float                           m_fMaxUpdateDelta;
     float                           m_fCurUpdateDelta;
+    
+    bool                            m_bEnableAddTerrainCell;
     
     cocos2d::EventListenerTouchOneByOne* m_pTouchListener;
     std::vector<std::string>        m_vecTemplatesName;
