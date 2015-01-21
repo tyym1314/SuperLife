@@ -11,10 +11,11 @@
 
 #include "cocos2d.h"
 #include "CocosGUI.h"
+#include "cocos-ext.h"
 #include "IUIReader.h"
 class BaseScene;
 class ControlPanel;
-class MainUI : public cocos2d::ui::Layout, public IUIReader
+class MainUI : public cocos2d::ui::Layout, public IUIReader, public cocos2d::extension::TableViewDataSource, public cocos2d::extension::TableViewDelegate
 {
 public:
     // 构造函数
@@ -28,6 +29,12 @@ public:
     void update(float delta);
     //设置UI颜色
     void setColor(const cocos2d::Color3B& color);
+    
+    cocos2d::Size cellSizeForTable(cocos2d::extension::TableView *table);
+    cocos2d::extension::TableViewCell* tableCellAtIndex(cocos2d::extension::TableView *table, ssize_t idx);
+    ssize_t numberOfCellsInTableView(cocos2d::extension::TableView *table);
+    
+    void tableCellTouched(cocos2d::extension::TableView* table, cocos2d::extension::TableViewCell* cell);
 private:
     // 点击开始按钮
     void pressStartBtn(Ref* p,TouchEventType eventType);
@@ -48,6 +55,8 @@ private:
     cocos2d::ui::Button*     m_pRestoreBtn;
     ControlPanel*     m_pControlPanel;
     cocos2d::ui::Button*     m_pBackBtn;
+    cocos2d::extension::TableView*  m_pTableView;
+    int                             m_nSelectIndex;
 };
 
 #endif /* defined(__SuperLife__MainUI__) */

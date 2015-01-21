@@ -30,6 +30,7 @@ EditorUI::EditorUI(BaseScene* owner)
     m_pResetBtn     = nullptr;
     m_pBackBtn      = nullptr;
     m_pTableView    = nullptr;
+    m_nSelectIndex  = -1;
 }
 // 析构函数
 EditorUI::~EditorUI()
@@ -174,6 +175,22 @@ ssize_t EditorUI::numberOfCellsInTableView(TableView *table)
 void EditorUI::tableCellTouched(cocos2d::extension::TableView* table, cocos2d::extension::TableViewCell* cell)
 {
     CCLOG("cell touched at index: %zi", cell->getIdx());
+    if(cell->getColor() == Color3B::MAGENTA)
+    {
+        setColor(Color3B::WHITE);
+        m_nSelectIndex = -1;
+    }
+    else
+    {
+        if(m_nSelectIndex != -1)
+        {
+            TableViewCell* lastCell = table->cellAtIndex(m_nSelectIndex);
+            if(lastCell)
+                lastCell->setColor(Color3B::WHITE);
+        }
+        cell->setColor(Color3B::MAGENTA);
+        m_nSelectIndex = cell->getIdx();
+    }
 }
 
 // 点击编辑按钮

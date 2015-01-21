@@ -15,7 +15,7 @@
 #include "ControlPanel.h"
 #include "CommonUtility.h"
 USING_NS_CC;
-
+USING_NS_CC_EXT;
 // 构造函数
 MainUI::MainUI(BaseScene* owner)
 :ui::Layout()
@@ -30,6 +30,8 @@ MainUI::MainUI(BaseScene* owner)
     m_pRestoreBtn = nullptr;
     m_pControlPanel = nullptr;
     m_pBackBtn = nullptr;
+    m_pTableView    = nullptr;
+    m_nSelectIndex = -1;
 }
 // 析构函数
 MainUI::~MainUI()
@@ -114,6 +116,15 @@ void MainUI::loadUI(const std::string& file)
     m_pBackBtn->setTitleText(CommonUtility::getLocalString("Back"));
     m_pBackBtn->setColor(color);
     this->addChild(m_pBackBtn);
+    
+    m_pTableView = TableView::create(this, Size(540, 64));
+    m_pTableView->setDirection(ScrollView::Direction::HORIZONTAL);
+    m_pTableView->setPosition(Vec2(48,25));
+    m_pTableView->setColor(color);
+    m_pTableView->setDelegate(this);
+    this->addChild(m_pTableView);
+    
+    m_pTableView->reloadData();
 }
 // 更新处理
 void MainUI::update(float delta)
@@ -149,7 +160,65 @@ void MainUI::setColor(const cocos2d::Color3B& color)
     m_pControlPanel->setColor(color);
     m_pBackBtn->setTitleColor(color);
     m_pBackBtn->setColor(color);
+    m_pRestoreBtn->setColor(color);
+    m_pTableView->setColor(color);
+    m_pTableView->reloadData();
 }
+
+Size MainUI::cellSizeForTable(TableView *table)
+{
+    return Size(64, 64);
+}
+TableViewCell* MainUI::tableCellAtIndex(TableView *table, ssize_t idx)
+{
+    CCLOG("%zd",idx);
+    std::string nameString = TerrainMgr::getInstance()->getTemplateName(idx) + ".png";
+    TableViewCell *cell = table->cellAtIndex(idx);
+    if (!cell) {
+        cell = TableViewCell::create();
+        cell->setCascadeColorEnabled(true);
+        cell->setColor(table->getColor());
+        Sprite *bgSprite = Sprite::create(nameString);
+        bgSprite->setScale(0.1f);
+        bgSprite->setAnchorPoint(Vec2::ZERO);
+        cell->addChild(bgSprite);
+    }
+    else
+    {
+        cell->setCascadeColorEnabled(true);
+        cell->setColor(table->getColor());
+    }
+    
+    
+    return cell;
+}
+ssize_t MainUI::numberOfCellsInTableView(TableView *table)
+{
+    return TerrainMgr::getInstance()->getTemplateCount();
+}
+
+void MainUI::tableCellTouched(cocos2d::extension::TableView* table, cocos2d::extension::TableViewCell* cell)
+{
+    CCLOG("cell touched at index: %zi", cell->getIdx());
+    if(cell->getColor() == Color3B::WHITE)
+    {
+        setColor(SceneFactory::getInstance()->getSceneColor());
+        m_nSelectIndex = -1;
+    }
+    else
+    {
+        if(m_nSelectIndex != -1)
+        {
+            TableViewCell* lastCell = table->cellAtIndex(m_nSelectIndex);
+            if(lastCell)
+                lastCell->setColor(SceneFactory::getInstance()->getSceneColor());
+        }
+        cell->setColor(Color3B::WHITE);
+        m_nSelectIndex = cell->getIdx();
+    }
+
+}
+
 // 点击开始按钮
 void MainUI::pressStartBtn(Ref* p,TouchEventType eventType)
 {
