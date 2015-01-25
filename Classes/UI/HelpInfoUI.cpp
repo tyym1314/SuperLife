@@ -11,8 +11,10 @@
 #include "UIMgr.h"
 #include "GameConst.h"
 #include "CommonUtility.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
 USING_NS_CC_EXT;
+using namespace CocosDenshion;
 // 构造函数
 HelpInfoUI::HelpInfoUI(BaseScene* owner)
 {
@@ -241,6 +243,7 @@ void HelpInfoUI::pressNextBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         Size size = Director::getInstance()->getVisibleSize();
         m_pTableView->setContentOffsetInDuration(Vec2(-size.width*m_pCurrentPage,0),0.5f);
         m_pCurrentPage++;
@@ -266,6 +269,7 @@ void HelpInfoUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
         Director::getInstance()->replaceScene(mainScene);
     }

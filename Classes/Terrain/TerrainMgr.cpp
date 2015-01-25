@@ -11,8 +11,9 @@
 #include "SceneConst.h"
 #include "GameConst.h"
 #include "MissionScene.h"
+#include "EncrytionUtility.h"
 USING_NS_CC;
-
+USING_NS_CC_EXT;
 TerrainMgr* g_pTerrainMgrInstance = nullptr;
 // 单体
 TerrainMgr* TerrainMgr::getInstance()
@@ -24,21 +25,25 @@ TerrainMgr* TerrainMgr::getInstance()
 }
 // 构造函数
 TerrainMgr::TerrainMgr()
-    :m_Offset(Vec2::ZERO), m_nRows(0), m_nColumns(0),m_nGeneration(0),m_nLifeNum(0),
+    :m_Offset(Vec2::ZERO), m_fRadius(0.0f), m_nRows(0), m_nColumns(0),m_nGeneration(0),m_nLifeNum(0),
     m_CurrentCellType(TerrainCell::UNKNOWN),m_fMinUpdateDelta(0.02f),m_fMaxUpdateDelta(0.5f),
     m_fCurUpdateDelta(0.05f),m_bEnableAddTerrainCell(true),m_pTouchListener(nullptr)
 {
     m_pDrawNode = DrawNode::create();
     m_pDrawNode->retain();
+    m_pScrollView = ScrollView::create();
+    m_pScrollView->retain();
+    m_pScrollView->setDelegate(this);
+    m_pScrollView->addChild(m_pDrawNode);
+    
     auto dispatcher = Director::getInstance()->getEventDispatcher();
     m_pTouchListener = EventListenerTouchOneByOne::create();
-    m_pTouchListener->setSwallowTouches(true);
+    m_pTouchListener->setSwallowTouches(false);
     m_pTouchListener->onTouchBegan = CC_CALLBACK_2(TerrainMgr::onTouchBegan, this);
     m_pTouchListener->onTouchMoved = CC_CALLBACK_2(TerrainMgr::onTouchMoved, this);
     m_pTouchListener->onTouchEnded = CC_CALLBACK_2(TerrainMgr::onTouchEnded, this);
     m_pTouchListener->onTouchCancelled = CC_CALLBACK_2(TerrainMgr::onTouchCancelled, this);
     dispatcher->addEventListenerWithSceneGraphPriority(m_pTouchListener, m_pDrawNode);
-    loadTemplates();
 }
 // 析构函数
 TerrainMgr::~TerrainMgr()
@@ -50,18 +55,28 @@ TerrainMgr::~TerrainMgr()
 // 添加地面
 void TerrainMgr::addTerrain(TerrainCell::CELL_TYPE cell_type, int rows, int columns, float radius, const cocos2d::Vec2& offset)
 {
+    bool simpleTemplates = EncrytionUtility::getIntegerForKey("UnlockSimpleTemplates", true);
+    bool allTemplates = EncrytionUtility::getIntegerForKey("UnlockAllTemplates", false);
+    loadTemplates(simpleTemplates, allTemplates);
     m_Offset = offset;
+    m_fRadius = radius;
     m_nRows = rows;
     m_nColumns = columns;
     m_CurrentCellType = cell_type;
     if(cell_type == TerrainCell::RECTANGLE)
     {
+        m_pDrawNode->setPosition(radius*cos(M_PI_4), radius*cos(M_PI_4));
+        m_pScrollView->setBounceable(false);
+        m_pScrollView->setViewSize(Size(rows*radius*cos(M_PI_4)*2, columns*radius*cos(M_PI_4)*2));
+        m_pScrollView->setContentSize(Size(rows*radius*cos(M_PI_4)*2, columns*radius*cos(M_PI_4)*2));
+        m_pScrollView->setPosition(offset);
+        resetScrollView(false);
+        
         BaseScene* runningScene = SceneFactory::getInstance()->getCurrentScene();
         Layer* layer = runningScene->getLayer("TerrainLayer");
         if(runningScene && layer)
-            layer->addChild(m_pDrawNode);
-        m_pDrawNode->setPosition(offset);
-        m_pDrawNode->setContentSize(Size(rows*radius*cos(M_PI_4)*2, columns*radius*cos(M_PI_4)*2));
+            layer->addChild(m_pScrollView);
+        
         Color3B color = SceneFactory::getInstance()->getSceneColor();
         for (int i = 0; i<rows; i++) {
             for (int j = 0; j<columns; j++) {
@@ -127,7 +142,7 @@ void TerrainMgr::removeTerrain()
         m_TerrainCellList.clear();
         m_TerrainCellCacheList.clear();
         m_pDrawNode->clear();
-        layer->removeChild(m_pDrawNode);
+        layer->removeChild(m_pScrollView);
     }
     m_Offset = Vec2::ZERO;
     m_nRows = 0;
@@ -285,102 +300,279 @@ void TerrainMgr::setCurUpdateDelta(float curUpdateDelta)
 // 处理输入
 bool TerrainMgr::onTouchBegan(Touch *touch, Event *unused_event)
 {
+    m_lastTouchDownPos = touch->getLocation();
+#if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
     BaseScene* curScene = SceneFactory::getInstance()->getCurrentScene();
     if(!curScene->IsPaused())
         return true;
     bool dirty = false;
+    TerrainCell* cell = nullptr;
     DrawNode* touchNode = static_cast<DrawNode*>(unused_event->getCurrentTarget());
     if(touchNode)
     {
         Vec2 locationInNode = touchNode->convertToNodeSpace(touch->getLocation());
+        Rect contentRect = Rect(-m_fRadius*cos(M_PI_4), -m_fRadius*cos(M_PI_4), m_pScrollView->getContentSize().width, m_pScrollView->getContentSize().height);
+        if(!contentRect.containsPoint(locationInNode))
+            return true;
         for (int i = 0; i < m_TerrainCellList.size(); i++)
         {
-            TerrainCell* cell = m_TerrainCellList.at(i);
+            cell = m_TerrainCellList.at(i);
             if(cell && cell->getCellType() == TerrainCell::RECTANGLE)
             {
                 float radius = cell->getRadius();
                 Rect rect = Rect(cell->getPosX()-radius*cos(M_PI_4),cell->getPosY()-radius*cos(M_PI_4),radius*cos(M_PI_4)*2,radius*cos(M_PI_4)*2);
                 if(rect.containsPoint(locationInNode))
-                {
-                    Color3B color = SceneFactory::getInstance()->getSceneColor();
-                    Color4F newCellColor = Color4F(color);
-                    Color4F cellColor = cell->getColor();
-                    if(cellColor != newCellColor)
-                    {
-                        if(m_bEnableAddTerrainCell)
-                            cell->setColor(Color4F(color));
-                    }
-                    else
-                    {
-                        if(!cell->isLevelCell())
-                        {
-                            newCellColor = Color4F(Color4B(color.r, color.g, color.b, 100));
-                            cell->setColor(newCellColor);
-                        }
-                    }
-                    dirty = true;
                     break;
-                }
             }
         }
+        if(m_TerrainTemplateCellList.size()> 0)
+        {
+            Vec2 startPos = Vec2(cell->getPosX()-m_fRadius*cos(M_PI_4)*9, cell->getPosY()-m_fRadius*cos(M_PI_4)*9);
+            float length = m_fRadius*cos(M_PI_4)*2;
+            for (int i = 0; i<m_TerrainTemplateCellList.size(); i++) {
+                if(m_TerrainTemplateCellList.at(i).asInt() == 1)
+                {
+                    int x = i/9;
+                    int y = i%9;
+                    Rect rect = Rect(startPos.x+x*length,startPos.y+y*length, length,length);
+                    for (int j = 0; j<m_TerrainCellList.size(); j++) {
+                        TerrainCell* cellNew = m_TerrainCellList.at(j);
+                        if(rect.containsPoint(Vec2(cellNew->getPosX(), cellNew->getPosY())))
+                        {
+                            Color3B color = SceneFactory::getInstance()->getSceneColor();
+                            Color4F newCellColor = Color4F(color);
+                            Color4F cellColor = cellNew->getColor();
+                            if(cellColor != newCellColor)
+                            {
+                                if(m_bEnableAddTerrainCell)
+                                    cellNew->setColor(Color4F(color));
+                            }
+                        }
+                    }
+                }
+            }
+            dirty = true;
+        }
+        else
+        {
+            Color3B color = SceneFactory::getInstance()->getSceneColor();
+            Color4F newCellColor = Color4F(color);
+            Color4F cellColor = cell->getColor();
+            if(cellColor != newCellColor)
+            {
+                if(m_bEnableAddTerrainCell)
+                    cell->setColor(Color4F(color));
+            }
+            else
+            {
+                if(!cell->isLevelCell())
+                {
+                    newCellColor = Color4F(Color4B(color.r, color.g, color.b, 100));
+                    cell->setColor(newCellColor);
+                }
+            }
+            dirty = true;
+        }
+        if(dirty)
+            updateTerrain();
     }
-    if(dirty)
-        updateTerrain();
+#endif
     return true;
 }
 void TerrainMgr::onTouchMoved(Touch *touch, Event *unused_event)
 {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
     BaseScene* curScene = SceneFactory::getInstance()->getCurrentScene();
     if(!curScene->IsPaused())
         return;
-    MissionScene* missionScene = static_cast<MissionScene*>(curScene);
+    MissionScene* missionScene = dynamic_cast<MissionScene*>(curScene);
     if(missionScene)
         return;
     bool dirty = false;
+    TerrainCell* cell = nullptr;
     DrawNode* touchNode = static_cast<DrawNode*>(unused_event->getCurrentTarget());
     if(touchNode)
     {
         Vec2 locationInNode = touchNode->convertToNodeSpace(touch->getLocation());
+        Rect contentRect = Rect(-m_fRadius*cos(M_PI_4), -m_fRadius*cos(M_PI_4), m_pScrollView->getContentSize().width, m_pScrollView->getContentSize().height);
+        if(!contentRect.containsPoint(locationInNode))
+            return;
         for (int i = 0; i < m_TerrainCellList.size(); i++)
         {
-            TerrainCell* cell = m_TerrainCellList.at(i);
+            cell = m_TerrainCellList.at(i);
             if(cell && cell->getCellType() == TerrainCell::RECTANGLE)
             {
                 float radius = cell->getRadius();
                 Rect rect = Rect(cell->getPosX()-radius*cos(M_PI_4),cell->getPosY()-radius*cos(M_PI_4),radius*cos(M_PI_4)*2,radius*cos(M_PI_4)*2);
                 if(rect.containsPoint(locationInNode))
-                {
-                    Color3B color = SceneFactory::getInstance()->getSceneColor();
-                    cell->setColor(Color4F(color));
-                    dirty = true;
                     break;
-                }
             }
         }
+        if(m_TerrainTemplateCellList.size()> 0)
+        {
+            Vec2 startPos = Vec2(cell->getPosX()-m_fRadius*cos(M_PI_4)*9, cell->getPosY()-m_fRadius*cos(M_PI_4)*9);
+            float length = m_fRadius*cos(M_PI_4)*2;
+            for (int i = 0; i<m_TerrainTemplateCellList.size(); i++) {
+                if(m_TerrainTemplateCellList.at(i).asInt() == 1)
+                {
+                    int x = i/9;
+                    int y = i%9;
+                    Rect rect = Rect(startPos.x+x*length,startPos.y+y*length, length,length);
+                    for (int j = 0; j<m_TerrainCellList.size(); j++) {
+                        TerrainCell* cellNew = m_TerrainCellList.at(j);
+                        if(rect.containsPoint(Vec2(cellNew->getPosX(), cellNew->getPosY())))
+                        {
+                            Color3B color = SceneFactory::getInstance()->getSceneColor();
+                            Color4F newCellColor = Color4F(color);
+                            Color4F cellColor = cellNew->getColor();
+                            if(cellColor != newCellColor)
+                            {
+                                if(m_bEnableAddTerrainCell)
+                                    cellNew->setColor(Color4F(color));
+                            }
+                        }
+                    }
+                }
+            }
+            dirty = true;
+        }
+        else
+        {
+            Color3B color = SceneFactory::getInstance()->getSceneColor();
+            cell->setColor(Color4F(color));
+            dirty = true;
+        }
+        if(dirty)
+            updateTerrain();
     }
-    if(dirty)
-        updateTerrain();
+#endif
 }
 void TerrainMgr::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
+#if CC_TARGET_PLATFORM != CC_PLATFORM_MAC
+    Vec2 delta = touch->getLocation() - m_lastTouchDownPos;
+    if(abs(delta.x) >10 || abs(delta.y) >10)
+        return;
+    
+    BaseScene* curScene = SceneFactory::getInstance()->getCurrentScene();
+    if(!curScene->IsPaused())
+        return;
+    bool dirty = false;
+    TerrainCell* cell = nullptr;
+    DrawNode* touchNode = static_cast<DrawNode*>(unused_event->getCurrentTarget());
+    if(touchNode)
+    {
+        Vec2 locationInNode = touchNode->convertToNodeSpace(touch->getLocation());
+        Rect contentRect = Rect(-m_fRadius*cos(M_PI_4), -m_fRadius*cos(M_PI_4), m_pScrollView->getContentSize().width, m_pScrollView->getContentSize().height);
+        if(!contentRect.containsPoint(locationInNode))
+            return;
+        for (int i = 0; i < m_TerrainCellList.size(); i++)
+        {
+            cell = m_TerrainCellList.at(i);
+            if(cell && cell->getCellType() == TerrainCell::RECTANGLE)
+            {
+                float radius = cell->getRadius();
+                Rect rect = Rect(cell->getPosX()-radius*cos(M_PI_4),cell->getPosY()-radius*cos(M_PI_4),radius*cos(M_PI_4)*2,radius*cos(M_PI_4)*2);
+                if(rect.containsPoint(locationInNode))
+                    break;
+            }
+        }
+        if(m_TerrainTemplateCellList.size()> 0)
+        {
+            Vec2 startPos = Vec2(cell->getPosX()-m_fRadius*cos(M_PI_4)*9, cell->getPosY()-m_fRadius*cos(M_PI_4)*9);
+            float length = m_fRadius*cos(M_PI_4)*2;
+            for (int i = 0; i<m_TerrainTemplateCellList.size(); i++) {
+                if(m_TerrainTemplateCellList.at(i).asInt() == 1)
+                {
+                    int x = i/9;
+                    int y = i%9;
+                    Rect rect = Rect(startPos.x+x*length,startPos.y+y*length, length,length);
+                    for (int j = 0; j<m_TerrainCellList.size(); j++) {
+                        TerrainCell* cellNew = m_TerrainCellList.at(j);
+                        if(rect.containsPoint(Vec2(cellNew->getPosX(), cellNew->getPosY())))
+                        {
+                            Color3B color = SceneFactory::getInstance()->getSceneColor();
+                            Color4F newCellColor = Color4F(color);
+                            Color4F cellColor = cellNew->getColor();
+                            if(cellColor != newCellColor)
+                            {
+                                if(m_bEnableAddTerrainCell)
+                                    cellNew->setColor(Color4F(color));
+                            }
+                        }
+                    }
+                }
+            }
+            dirty = true;
+        }
+        else
+        {
+            Color3B color = SceneFactory::getInstance()->getSceneColor();
+            Color4F newCellColor = Color4F(color);
+            Color4F cellColor = cell->getColor();
+            if(cellColor != newCellColor)
+            {
+                if(m_bEnableAddTerrainCell)
+                    cell->setColor(Color4F(color));
+            }
+            else
+            {
+                if(!cell->isLevelCell())
+                {
+                    newCellColor = Color4F(Color4B(color.r, color.g, color.b, 100));
+                    cell->setColor(newCellColor);
+                }
+            }
+            dirty = true;
+        }
+        if(dirty)
+            updateTerrain();
+    }
+#endif
 }
 void TerrainMgr::onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
 }
 //加载模版
-void TerrainMgr::loadTemplates()
+void TerrainMgr::loadTemplates(bool simple, bool all)
 {
-    m_dictTemplates = FileUtils::getInstance()->getValueMapFromFile("templates.plist");
+    if(all)
+        m_dictTemplates = FileUtils::getInstance()->getValueMapFromFile("templates.plist");
+    else if(simple)
+        m_dictTemplates = FileUtils::getInstance()->getValueMapFromFile("simpletemplates.plist");
+    else
+        return;
+        
     ValueMap::iterator iter;
     for(iter = m_dictTemplates.begin();iter != m_dictTemplates.end(); iter++)
     {
         m_vecTemplatesName.push_back(iter->first);
     }
 }
-//加载模版
+//获取指定模版名称
 std::string TerrainMgr::getTemplateName(ssize_t index)
 {
     return m_vecTemplatesName[index];
+}
+//加载模版
+void TerrainMgr::loadTemplate(const std::string& templateName)
+{
+    resetTerrain();
+    ValueVector temp = m_dictTemplates[templateName.c_str()].asValueVector();
+    Color4F sceneColor = Color4F(Color4B(SceneFactory::getInstance()->getSceneColor()));
+    for (int k = 0; k < m_TerrainCellList.size(); k++)
+    {
+        TerrainCell* cell = m_TerrainCellList.at(k);
+        int filled = temp[k].asInt();
+        if(cell)
+        {
+            if(filled == 1)
+            {
+                cell->setColor(sceneColor);
+            }
+        }
+    }
+    updateTerrain();
 }
 //保存模版
 void TerrainMgr::saveTemplate(const std::string& name)
@@ -415,6 +607,21 @@ bool TerrainMgr::hasTemplate(const std::string& name)
 {
     return std::find(m_vecTemplatesName.begin(), m_vecTemplatesName.end(), name) != m_vecTemplatesName.end();
 }
+///加载选定的模版
+void TerrainMgr::loadSelectTemplate(ssize_t index)
+{
+    m_TerrainTemplateCellList.clear();
+    if(index != -1)
+    {
+        std::string templateName = getTemplateName(index);
+        m_TerrainTemplateCellList = m_dictTemplates[templateName.c_str()].asValueVector();
+    }
+}
+///绘制模版
+void TerrainMgr::DrawSelectTemplate()
+{
+}
+
 //保存任务场景
 bool TerrainMgr::saveLevel(const std::string& levelFileName, const std::string& levelName, const int goalCellNum, const int goalCellGeneration, const int starterCellNum, const int levelType)
 {
@@ -504,4 +711,15 @@ void TerrainMgr::restoreTerrainCellList()
     }
     updateTerrain();
     m_nGeneration = 0;
+}
+void TerrainMgr::resetScrollView(bool bAnimate)
+{
+    if(m_pScrollView)
+        m_pScrollView->setZoomScale(1.0f, bAnimate);
+}
+void TerrainMgr::scrollViewDidScroll(ScrollView* view)
+{
+}
+void TerrainMgr::scrollViewDidZoom(ScrollView* view)
+{
 }

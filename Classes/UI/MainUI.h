@@ -56,7 +56,7 @@ private:
     ControlPanel*     m_pControlPanel;
     cocos2d::ui::Button*     m_pBackBtn;
     cocos2d::extension::TableView*  m_pTableView;
-    int                             m_nSelectIndex;
+    ssize_t                         m_nSelectIndex;
 };
 
 #endif /* defined(__SuperLife__MainUI__) */

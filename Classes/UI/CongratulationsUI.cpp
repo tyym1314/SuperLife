@@ -12,8 +12,9 @@
 #include "GameConst.h"
 #include "CommonUtility.h"
 #include "EncrytionUtility.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
-
+using namespace CocosDenshion;
 // 构造函数
 CongratulationsUI::CongratulationsUI(BaseScene* owner)
 {
@@ -57,6 +58,7 @@ void CongratulationsUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
         Director::getInstance()->replaceScene(mainScene);
     }

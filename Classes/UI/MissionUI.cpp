@@ -15,7 +15,9 @@
 #include "ControlPanel.h"
 #include "CommonUtility.h"
 #include "EncrytionUtility.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
+using namespace CocosDenshion;
 // 构造函数
 MissionUI::MissionUI(BaseScene* owner)
 :ui::Layout()
@@ -249,6 +251,7 @@ void MissionUI::checkWin()
                         m_pStartBtn->setVisible(false);
                         m_pRetryBtn->setVisible(false);
                         m_pNextLevelBtn->setVisible(true);
+                        SimpleAudioEngine::getInstance()->playEffect("god7.wav");
                     }
                     int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
                     if(m_nCurrentLevel > maxUnlockLevel)
@@ -262,6 +265,7 @@ void MissionUI::checkWin()
                     m_pStartBtn->setVisible(false);
                     m_pRetryBtn->setVisible(true);
                     m_pNextLevelBtn->setVisible(false);
+                    SimpleAudioEngine::getInstance()->playEffect("Beep_Error01.wav");
                 }
 
             }
@@ -275,6 +279,7 @@ void MissionUI::checkWin()
                         m_pStartBtn->setVisible(false);
                         m_pRetryBtn->setVisible(false);
                         m_pNextLevelBtn->setVisible(true);
+                        SimpleAudioEngine::getInstance()->playEffect("god7.wav");
                     }
                     int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
                     if(m_nCurrentLevel > maxUnlockLevel)
@@ -288,6 +293,7 @@ void MissionUI::checkWin()
                     m_pStartBtn->setVisible(false);
                     m_pRetryBtn->setVisible(true);
                     m_pNextLevelBtn->setVisible(false);
+                    SimpleAudioEngine::getInstance()->playEffect("Beep_Error01.wav");
                 }
 
             }
@@ -301,6 +307,7 @@ void MissionUI::checkWin()
                         m_pStartBtn->setVisible(false);
                         m_pRetryBtn->setVisible(false);
                         m_pNextLevelBtn->setVisible(true);
+                        SimpleAudioEngine::getInstance()->playEffect("God7.wav");
                     }
                     int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
                     if(m_nCurrentLevel > maxUnlockLevel)
@@ -314,6 +321,7 @@ void MissionUI::checkWin()
                     m_pStartBtn->setVisible(false);
                     m_pRetryBtn->setVisible(true);
                     m_pNextLevelBtn->setVisible(false);
+                    SimpleAudioEngine::getInstance()->playEffect("Beep_Error01.wav");
                 }
 
             }
@@ -327,6 +335,7 @@ void MissionUI::checkWin()
                         m_pStartBtn->setVisible(false);
                         m_pRetryBtn->setVisible(false);
                         m_pNextLevelBtn->setVisible(true);
+                        SimpleAudioEngine::getInstance()->playEffect("God7.wav");
                     }
                     int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
                     if(m_nCurrentLevel > maxUnlockLevel)
@@ -341,6 +350,7 @@ void MissionUI::checkWin()
                     m_pStartBtn->setVisible(false);
                     m_pRetryBtn->setVisible(true);
                     m_pNextLevelBtn->setVisible(false);
+                    SimpleAudioEngine::getInstance()->playEffect("Beep_Error01.wav");
                     return;
                 }
             }
@@ -356,6 +366,7 @@ void MissionUI::checkWin()
                     m_pStartBtn->setVisible(false);
                     m_pRetryBtn->setVisible(false);
                     m_pNextLevelBtn->setVisible(true);
+                    SimpleAudioEngine::getInstance()->playEffect("god7.wav");
                 }
                 int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
                 if(m_nCurrentLevel > maxUnlockLevel)
@@ -369,6 +380,7 @@ void MissionUI::checkWin()
                 m_pStartBtn->setVisible(false);
                 m_pRetryBtn->setVisible(true);
                 m_pNextLevelBtn->setVisible(false);
+                SimpleAudioEngine::getInstance()->playEffect("Beep_Error01.wav");
             }
         }
     }
@@ -378,6 +390,8 @@ void MissionUI::pressStartBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        TerrainMgr::getInstance()->resetScrollView(true);
         auto scene = static_cast<MissionScene*>(m_pOwnerScene);
         if(scene)
         {
@@ -392,6 +406,7 @@ void MissionUI::pressNextLevelBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         if(m_nCurrentLevel <= MAX_LEVEL)
         {
             BaseScene* missionScene = SceneFactory::getInstance()->createSceneByID(SCENE_MISSION);
@@ -411,6 +426,7 @@ void MissionUI::pressRetryBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* missionScene = SceneFactory::getInstance()->createSceneByID(SCENE_MISSION);
         Director::getInstance()->replaceScene(missionScene);
         TerrainMgr::getInstance()->setEnableAddTerrainCell(true);
@@ -421,6 +437,7 @@ void MissionUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* menuScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
         Director::getInstance()->replaceScene(menuScene);
         TerrainMgr::getInstance()->setEnableAddTerrainCell(true);

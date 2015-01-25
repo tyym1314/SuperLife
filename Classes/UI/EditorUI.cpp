@@ -15,8 +15,10 @@
 #include "CommonUtility.h"
 #include "MathUtility.h"
 #include <regex>
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
 USING_NS_CC_EXT;
+using namespace CocosDenshion;
 // 构造函数
 EditorUI::EditorUI(BaseScene* owner)
 :ui::Layout()
@@ -111,7 +113,7 @@ void EditorUI::loadUI(const std::string& file)
     
     m_pTableView = TableView::create(this, Size(540, 64));
     m_pTableView->setDirection(ScrollView::Direction::HORIZONTAL);
-    m_pTableView->setPosition(Vec2(48,25));
+    m_pTableView->setPosition(Vec2(40,25));
     m_pTableView->setColor(color);
     m_pTableView->setDelegate(this);
     this->addChild(m_pTableView);
@@ -175,6 +177,7 @@ ssize_t EditorUI::numberOfCellsInTableView(TableView *table)
 void EditorUI::tableCellTouched(cocos2d::extension::TableView* table, cocos2d::extension::TableViewCell* cell)
 {
     CCLOG("cell touched at index: %zi", cell->getIdx());
+    SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
     if(cell->getColor() == Color3B::MAGENTA)
     {
         setColor(Color3B::WHITE);
@@ -198,7 +201,13 @@ void EditorUI::pressEditBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
-        std::string strText = m_pEditBox->getText();
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        std::string strText= m_pEditBox->getText();
+        if(m_nSelectIndex != -1)
+        {
+            strText = TerrainMgr::getInstance()->getTemplateName(m_nSelectIndex);
+            m_pEditBox->setText(strText.c_str());
+        }
         if(strText.empty())
         {
             m_pLabelErrorInfo->setString(CommonUtility::getLocalString("ErrorInfo3"));
@@ -209,7 +218,7 @@ void EditorUI::pressEditBtn(Ref* p,TouchEventType eventType)
             m_pLabelErrorInfo->setString(CommonUtility::getLocalString("ErrorInfo4"));
             return;
         }
-        TerrainMgr::getInstance()->resetTerrain();
+        TerrainMgr::getInstance()->loadTemplate(strText);
         m_pLabelErrorInfo->setString("");
     }
 }
@@ -218,6 +227,7 @@ void EditorUI::pressSaveBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         std::string strText = m_pEditBox->getText();
         if(strText.empty())
         {
@@ -251,6 +261,7 @@ void EditorUI::pressResetBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         TerrainMgr::getInstance()->resetTerrain();
         m_pLabelErrorInfo->setString("");
     }
@@ -261,6 +272,7 @@ void EditorUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         SceneFactory::getInstance()->setSceneColor(MathUtility::randomColor());
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
         Director::getInstance()->replaceScene(mainScene);

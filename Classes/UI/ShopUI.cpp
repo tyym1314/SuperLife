@@ -11,8 +11,9 @@
 #include "UIMgr.h"
 #include "GameConst.h"
 #include "CommonUtility.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
-
+using namespace CocosDenshion;
 // 构造函数
 ShopUI::ShopUI(BaseScene* owner)
 {
@@ -49,6 +50,7 @@ void ShopUI::pressRemoveAdsViewBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
     }
 }
 // 点击解锁全部模版按钮
@@ -56,7 +58,7 @@ void ShopUI::pressUnlockAllTemplatesBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
-
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
     }
 }
 // 点击解锁编辑模式按钮
@@ -64,6 +66,7 @@ void ShopUI::pressUnlockEditorModeBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
     }
 }
 // 点击返回按钮
@@ -71,6 +74,7 @@ void ShopUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
         Director::getInstance()->replaceScene(mainScene);
     }

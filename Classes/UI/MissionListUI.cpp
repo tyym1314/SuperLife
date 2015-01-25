@@ -12,8 +12,9 @@
 #include "GameConst.h"
 #include "CommonUtility.h"
 #include "EncrytionUtility.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
-
+using namespace CocosDenshion;
 // 构造函数
 MissionListUI::MissionListUI(BaseScene* owner)
 {
@@ -99,6 +100,7 @@ void MissionListUI::pressLevelSelectBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType != TouchEventType::ENDED)
         return;
+    SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
     ui::Button* btn = static_cast<ui::Button*>(p);
     if(btn)
     {
@@ -113,6 +115,7 @@ void MissionListUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
         Director::getInstance()->replaceScene(mainScene);
     }

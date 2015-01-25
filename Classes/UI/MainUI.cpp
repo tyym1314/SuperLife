@@ -14,8 +14,10 @@
 #include "SpeedSlider.h"
 #include "ControlPanel.h"
 #include "CommonUtility.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
 USING_NS_CC_EXT;
+using namespace CocosDenshion;
 // 构造函数
 MainUI::MainUI(BaseScene* owner)
 :ui::Layout()
@@ -119,7 +121,7 @@ void MainUI::loadUI(const std::string& file)
     
     m_pTableView = TableView::create(this, Size(540, 64));
     m_pTableView->setDirection(ScrollView::Direction::HORIZONTAL);
-    m_pTableView->setPosition(Vec2(48,25));
+    m_pTableView->setPosition(Vec2(40,25));
     m_pTableView->setColor(color);
     m_pTableView->setDelegate(this);
     this->addChild(m_pTableView);
@@ -200,6 +202,7 @@ ssize_t MainUI::numberOfCellsInTableView(TableView *table)
 void MainUI::tableCellTouched(cocos2d::extension::TableView* table, cocos2d::extension::TableViewCell* cell)
 {
     CCLOG("cell touched at index: %zi", cell->getIdx());
+    SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
     if(cell->getColor() == Color3B::WHITE)
     {
         setColor(SceneFactory::getInstance()->getSceneColor());
@@ -216,7 +219,7 @@ void MainUI::tableCellTouched(cocos2d::extension::TableView* table, cocos2d::ext
         cell->setColor(Color3B::WHITE);
         m_nSelectIndex = cell->getIdx();
     }
-
+    TerrainMgr::getInstance()->loadSelectTemplate(m_nSelectIndex);
 }
 
 // 点击开始按钮
@@ -224,6 +227,8 @@ void MainUI::pressStartBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        TerrainMgr::getInstance()->resetScrollView(true);
         auto scene = static_cast<MainScene*>(m_pOwnerScene);
         if(scene)
         {
@@ -244,6 +249,8 @@ void MainUI::pressResetBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        TerrainMgr::getInstance()->resetScrollView(true);
         auto scene = static_cast<MainScene*>(m_pOwnerScene);
         if(scene)
         {
@@ -262,6 +269,8 @@ void MainUI::pressRestoreBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        TerrainMgr::getInstance()->resetScrollView(true);
         auto scene = static_cast<MainScene*>(m_pOwnerScene);
         if(scene)
         {
@@ -274,6 +283,7 @@ void MainUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
         Director::getInstance()->replaceScene(mainScene);
     }

@@ -1,6 +1,8 @@
 #include "AppDelegate.h"
 #include "SceneFactory.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
+using namespace CocosDenshion;
 
 AppDelegate::AppDelegate() {
 
@@ -18,7 +20,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
         glview = GLView::create("My Game");
         director->setOpenGLView(glview);
     }
-    
     director->setProjection(cocos2d::Director::Projection::_2D);
     
     Size screenSize = glview->getFrameSize();
@@ -40,6 +41,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     searchPaths.push_back("fonts");
     searchPaths.push_back("levels");
     searchPaths.push_back("ui");
+    searchPaths.push_back("sound");
     
     FileUtils::getInstance()->setSearchPaths(searchPaths);
     FileUtils::getInstance()->setSearchResolutionsOrder(resDirOrders);
@@ -52,7 +54,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
 #endif
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
-
+    
+    SimpleAudioEngine::getInstance()->preloadBackgroundMusic("bg.mp3");
+    SimpleAudioEngine::getInstance()->playBackgroundMusic("bg.mp3", true);
+    SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.5f);
     // create a scene. it's an autorelease object
     auto scene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
     // run
@@ -66,7 +71,7 @@ void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
 
     // if you use SimpleAudioEngine, it must be pause
-    // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+     SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }
 
 // this function will be called when the app is active again
@@ -74,5 +79,5 @@ void AppDelegate::applicationWillEnterForeground() {
     Director::getInstance()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }

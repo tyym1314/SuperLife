@@ -10,8 +10,9 @@
 #include "SceneFactory.h"
 #include "UIMgr.h"
 #include "CommonUtility.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
-
+using namespace CocosDenshion;
 // 构造函数
 MenuUI::MenuUI(BaseScene* owner)
 {
@@ -113,6 +114,7 @@ void MenuUI::pressMissionModeBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* missionListScene = SceneFactory::getInstance()->createSceneByID(SCENE_MISSION_LIST);
         Director::getInstance()->replaceScene(missionListScene);
     }
@@ -122,6 +124,7 @@ void MenuUI::pressFreeModeBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MAIN);
         Director::getInstance()->replaceScene(mainScene);
     }
@@ -131,6 +134,7 @@ void MenuUI::pressShopBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* shopScene = SceneFactory::getInstance()->createSceneByID(SCENE_SHOP);
         Director::getInstance()->replaceScene(shopScene);
     }
@@ -140,6 +144,7 @@ void MenuUI::pressEditorBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* editorScene = SceneFactory::getInstance()->createSceneByID(SCENE_EDITOR);
         Director::getInstance()->replaceScene(editorScene);
     }
@@ -149,6 +154,7 @@ void MenuUI::pressHelpBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* helpInfoScene = SceneFactory::getInstance()->createSceneByID(SCENE_HELPINFO);
         Director::getInstance()->replaceScene(helpInfoScene);
     }
@@ -158,6 +164,7 @@ void MenuUI::pressEditLevelBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* editLevelScene = SceneFactory::getInstance()->createSceneByID(SCENE_LEVELEDITOR);
         Director::getInstance()->replaceScene(editLevelScene);
     }

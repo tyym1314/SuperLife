@@ -16,8 +16,10 @@
 #include "CommonUtility.h"
 #include "MathUtility.h"
 #include <regex>
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
 USING_NS_CC_EXT;
+using namespace CocosDenshion;
 // 构造函数
 EditLevelUI::EditLevelUI(BaseScene* owner)
 :ui::Layout()
@@ -207,6 +209,7 @@ void EditLevelUI::pressStartBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         auto scene = static_cast<MainScene*>(m_pOwnerScene);
         if(scene)
         {
@@ -227,6 +230,7 @@ void EditLevelUI::pressResetBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         auto scene = static_cast<MainScene*>(m_pOwnerScene);
         if(scene)
         {
@@ -245,6 +249,7 @@ void EditLevelUI::pressRestoreBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         auto scene = static_cast<MainScene*>(m_pOwnerScene);
         if(scene)
         {
@@ -257,6 +262,7 @@ void EditLevelUI::pressSaveBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         std::string strText = m_pFileNameEditBox->getText();
         if(strText.empty())
         {
@@ -349,6 +355,7 @@ void EditLevelUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         SceneFactory::getInstance()->setSceneColor(MathUtility::randomColor());
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
         Director::getInstance()->replaceScene(mainScene);

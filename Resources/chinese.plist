@@ -10,6 +10,8 @@
 	<string>r-plaza_8.ttf</string>
 	<key>CommonFont</key>
 	<string>FZXS12.TTF</string>
+	<key>TransMode</key>
+	<string>变换模式</string>
 	<key>MissionMode</key>
 	<string>任务模式</string>
 	<key>FreeMode</key>

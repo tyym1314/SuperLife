@@ -23,7 +23,7 @@ EditorScene::~EditorScene()
 void EditorScene::onEnter()
 {
     BaseScene::onEnter();
-    TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 9, 9, 40, Vec2(75, 125));
+    TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 9, 9, 40, Vec2(40, 100));
     m_pEditorUI = UIMgr::getInstance()->createUI(EDITOR_UI);
 }
 void EditorScene::onExit()

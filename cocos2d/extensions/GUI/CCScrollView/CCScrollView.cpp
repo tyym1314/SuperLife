@@ -133,8 +133,8 @@ bool ScrollView::initWithViewSize(Size size, Node *container/* = nullptr*/)
         
         this->addChild(_container);
         _minScale = _maxScale = 1.0f;
-
-        
+        _minScale = 1.0f;
+        _maxScale = 10.0f;
         return true;
     }
     return false;

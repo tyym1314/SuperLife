@@ -12,8 +12,9 @@
 #include "SceneFactory.h"
 #include "TerrainMgr.h"
 #include "CommonUtility.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
-
+using namespace CocosDenshion;
 ControlPanel* ControlPanel::create()
 {
     ControlPanel* widget = new ControlPanel();
@@ -146,6 +147,7 @@ void ControlPanel::checkBoxPressed(Ref* p,TouchEventType eventType)
 {
     if (eventType != TouchEventType::ENDED)
         return;
+    SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
     ui::CheckBox* cb = static_cast<ui::CheckBox*>(p);
     if(cb)
     {

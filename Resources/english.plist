@@ -10,6 +10,8 @@
 	<string>r-plaza_8.ttf</string>
 	<key>CommonFont</key>
 	<string>FZXS12.TTF</string>
+	<key>TransMode</key>
+	<string>TRANSFORM MODE</string>
 	<key>MissionMode</key>
 	<string>MISSION MODE</string>
 	<key>FreeMode</key>

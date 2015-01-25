@@ -485,11 +485,21 @@
 		55AA42261A6F9FF600B6D450 /* UMoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55AA41641A6F9FE000B6D450 /* UMoon.png */; };
 		55AA42271A6F9FF600B6D450 /* UTable.png in Resources */ = {isa = PBXBuildFile; fileRef = 55AA41651A6F9FE000B6D450 /* UTable.png */; };
 		55AA42281A6F9FF600B6D450 /* VGL.png in Resources */ = {isa = PBXBuildFile; fileRef = 55AA41661A6F9FE000B6D450 /* VGL.png */; };
+		55AA422B1A6FED9500B6D450 /* simpletemplates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55AA422A1A6FED9500B6D450 /* simpletemplates.plist */; };
+		55AA422E1A6FEDA500B6D450 /* simpletemplates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55AA422A1A6FED9500B6D450 /* simpletemplates.plist */; };
 		55C4ACCD198F5F83001612D6 /* TerrainCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ACC9198F5F83001612D6 /* TerrainCell.cpp */; };
 		55C4ACCE198F5F83001612D6 /* TerrainMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ACCB198F5F83001612D6 /* TerrainMgr.cpp */; };
 		55C4ACDA198F785F001612D6 /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ACD8198F785F001612D6 /* BaseScene.cpp */; };
 		55C4ACDE198FB3A6001612D6 /* SceneFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ACDC198FB3A6001612D6 /* SceneFactory.cpp */; };
 		55C4ACE1198FB52A001612D6 /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55C4ACDF198FB52A001612D6 /* MainScene.cpp */; };
+		55D8026E1A734188008C4FA8 /* btnclick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55D8026C1A734188008C4FA8 /* btnclick.wav */; };
+		55D8026F1A734188008C4FA8 /* god7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55D8026D1A734188008C4FA8 /* god7.wav */; };
+		55D802721A734195008C4FA8 /* btnclick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55D8026C1A734188008C4FA8 /* btnclick.wav */; };
+		55D802731A734195008C4FA8 /* god7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55D8026D1A734188008C4FA8 /* god7.wav */; };
+		55D802751A734F3F008C4FA8 /* Beep_Error01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55D802741A734F3F008C4FA8 /* Beep_Error01.wav */; };
+		55D802761A734F5C008C4FA8 /* Beep_Error01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55D802741A734F3F008C4FA8 /* Beep_Error01.wav */; };
+		55D802781A735D54008C4FA8 /* bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55D802771A735D54008C4FA8 /* bg.mp3 */; };
+		55D802791A735D60008C4FA8 /* bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55D802771A735D54008C4FA8 /* bg.mp3 */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -922,6 +932,7 @@
 		55AA41641A6F9FE000B6D450 /* UMoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UMoon.png; sourceTree = "<group>"; };
 		55AA41651A6F9FE000B6D450 /* UTable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UTable.png; sourceTree = "<group>"; };
 		55AA41661A6F9FE000B6D450 /* VGL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VGL.png; sourceTree = "<group>"; };
+		55AA422A1A6FED9500B6D450 /* simpletemplates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = simpletemplates.plist; sourceTree = "<group>"; };
 		55C4ACC9198F5F83001612D6 /* TerrainCell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TerrainCell.cpp; sourceTree = "<group>"; };
 		55C4ACCA198F5F83001612D6 /* TerrainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainCell.h; sourceTree = "<group>"; };
 		55C4ACCB198F5F83001612D6 /* TerrainMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TerrainMgr.cpp; sourceTree = "<group>"; };
@@ -934,6 +945,10 @@
 		55C4ACDD198FB3A6001612D6 /* SceneFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneFactory.h; sourceTree = "<group>"; };
 		55C4ACDF198FB52A001612D6 /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainScene.cpp; sourceTree = "<group>"; };
 		55C4ACE0198FB52A001612D6 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
+		55D8026C1A734188008C4FA8 /* btnclick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = btnclick.wav; sourceTree = "<group>"; };
+		55D8026D1A734188008C4FA8 /* god7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = god7.wav; sourceTree = "<group>"; };
+		55D802741A734F3F008C4FA8 /* Beep_Error01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep_Error01.wav; sourceTree = "<group>"; };
+		55D802771A735D54008C4FA8 /* bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bg.mp3; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1186,6 +1201,7 @@
 		5578A8221A5EA8F9008D3B54 /* templates */ = {
 			isa = PBXGroup;
 			children = (
+				55AA422A1A6FED9500B6D450 /* simpletemplates.plist */,
 				55AA41061A6F9FE000B6D450 /* 5x5Infinitegrowth.png */,
 				55AA41071A6F9FE000B6D450 /* Acorn.png */,
 				55AA41081A6F9FE000B6D450 /* Anvil.png */,
@@ -1446,9 +1462,21 @@
 			path = ../Classes/GameScenes;
 			sourceTree = "<group>";
 		};
+		55D8026B1A734188008C4FA8 /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				55D802771A735D54008C4FA8 /* bg.mp3 */,
+				55D802741A734F3F008C4FA8 /* Beep_Error01.wav */,
+				55D8026C1A734188008C4FA8 /* btnclick.wav */,
+				55D8026D1A734188008C4FA8 /* god7.wav */,
+			);
+			path = sound;
+			sourceTree = "<group>";
+		};
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				55D8026B1A734188008C4FA8 /* sound */,
 				55A765031A66A7B3002466C1 /* levels */,
 				5578A8221A5EA8F9008D3B54 /* templates */,
 				5578A7F81A5E76ED008D3B54 /* ui */,
@@ -1649,6 +1677,7 @@
 				55274E4D1A6D602000BA737B /* level16.plist in Resources */,
 				557537C91A6E352D00A7C96A /* level32.plist in Resources */,
 				55A764D41A662063002466C1 /* oscillators1.png in Resources */,
+				55D802751A734F3F008C4FA8 /* Beep_Error01.wav in Resources */,
 				557537A91A6E105D00A7C96A /* level24.plist in Resources */,
 				556E8767199BA1FD00781CB0 /* FZXS12.TTF in Resources */,
 				55AA41711A6F9FE000B6D450 /* Byflops.png in Resources */,
@@ -1660,10 +1689,12 @@
 				55AA41671A6F9FE000B6D450 /* 5x5Infinitegrowth.png in Resources */,
 				55A764EF1A6625C7002466C1 /* chaos3.png in Resources */,
 				55A764D81A662063002466C1 /* stilllife2.png in Resources */,
+				55D802781A735D54008C4FA8 /* bg.mp3 in Resources */,
 				5578A8021A5E76ED008D3B54 /* btnLBN.png in Resources */,
 				55AA41A11A6F9FE000B6D450 /* Queenbee.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				55AA418A1A6F9FE000B6D450 /* LDGlider4.png in Resources */,
+				55D8026F1A734188008C4FA8 /* god7.wav in Resources */,
 				55AA41A01A6F9FE000B6D450 /* Quadpole.png in Resources */,
 				55AA40DB1A6F7FBE00B6D450 /* RUBoat.png in Resources */,
 				55AA41C71A6F9FE000B6D450 /* VGL.png in Resources */,
@@ -1719,6 +1750,7 @@
 				55AA41AF1A6F9FE000B6D450 /* RLightweightSpaceship2.png in Resources */,
 				55AA41AE1A6F9FE000B6D450 /* RLightweightSpaceship1.png in Resources */,
 				55AA41AC1A6F9FE000B6D450 /* RDTail.png in Resources */,
+				55AA422B1A6FED9500B6D450 /* simpletemplates.plist in Resources */,
 				55AA41871A6F9FE000B6D450 /* LDGlider1.png in Resources */,
 				55AA417F1A6F9FE000B6D450 /* Fox.png in Resources */,
 				5578A8011A5E76ED008D3B54 /* btnLBD.png in Resources */,
@@ -1745,6 +1777,7 @@
 				55AA40DA1A6F7FBE00B6D450 /* RDLoaf.png in Resources */,
 				5573F4C81A5B7C0F0090C7CB /* chinese.plist in Resources */,
 				55AA41BE1A6F9FE000B6D450 /* Thunderbird.png in Resources */,
+				55D8026E1A734188008C4FA8 /* btnclick.wav in Resources */,
 				55AA416C1A6F9FE000B6D450 /* Bookend.png in Resources */,
 				55274E4F1A6D602000BA737B /* level18.plist in Resources */,
 				5578A8261A5EA8FA008D3B54 /* templates.plist in Resources */,
@@ -1839,6 +1872,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55D802791A735D60008C4FA8 /* bg.mp3 in Resources */,
+				55D802761A734F5C008C4FA8 /* Beep_Error01.wav in Resources */,
+				55D802721A734195008C4FA8 /* btnclick.wav in Resources */,
+				55D802731A734195008C4FA8 /* god7.wav in Resources */,
+				55AA422E1A6FEDA500B6D450 /* simpletemplates.plist in Resources */,
 				55AA41C81A6F9FF600B6D450 /* 5x5Infinitegrowth.png in Resources */,
 				55AA41C91A6F9FF600B6D450 /* Acorn.png in Resources */,
 				55AA41CA1A6F9FF600B6D450 /* Anvil.png in Resources */,

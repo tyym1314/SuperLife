@@ -10,8 +10,9 @@
 #define __CCGF__TerrainMgr__
 
 #include "cocos2d.h"
+#include "cocos-ext.h"
 #include "TerrainCell.h"
-class TerrainMgr : public cocos2d::Ref
+class TerrainMgr : public cocos2d::Ref, public cocos2d::extension::ScrollViewDelegate
 {
     // 构造函数
     TerrainMgr();
@@ -49,15 +50,21 @@ public:
     //获取地形对象位移
     cocos2d::Vec2 getOffset() const { return m_Offset; }
     //加载全部模版
-    void loadTemplates();
-    //加载模版
+    void loadTemplates(bool simple, bool all);
+    //获取指定模版名称
     std::string getTemplateName(ssize_t index);
+    //加载模版
+    void loadTemplate(const std::string& templateName);
     //保存模版
     void saveTemplate(const std::string& name);
     //获取模版数量
     ssize_t getTemplateCount();
     //是否有次模版
     bool hasTemplate(const std::string& name);
+    ///加载选定的模版
+    void loadSelectTemplate(ssize_t index);
+    ///绘制模版
+    void DrawSelectTemplate();
     //保存任务场景
     bool saveLevel(const std::string& levelFileName, const std::string& levelName, const int goalCellNum, const int goalCellGeneration, const int starterCellNum, const int levelType);
     //加载任务场景
@@ -68,6 +75,11 @@ public:
     
     void cacheTerrainCellList();
     void restoreTerrainCellList();
+    
+    void resetScrollView(bool bAnimate);
+    
+    virtual void scrollViewDidScroll(cocos2d::extension::ScrollView* view);
+    virtual void scrollViewDidZoom(cocos2d::extension::ScrollView* view);
 public:
     // 处理输入
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
@@ -77,8 +89,11 @@ public:
 private:
     cocos2d::Vector<TerrainCell*>   m_TerrainCellList;
     cocos2d::Vector<TerrainCell*>   m_TerrainCellCacheList;
+    cocos2d::ValueVector            m_TerrainTemplateCellList;
+    cocos2d::extension::ScrollView* m_pScrollView;
     cocos2d::DrawNode*              m_pDrawNode;
     cocos2d::Vec2                   m_Offset;
+    float                           m_fRadius;
     int                             m_nRows;
     int                             m_nColumns;
     TerrainCell::CELL_TYPE          m_CurrentCellType;
@@ -89,11 +104,11 @@ private:
     float                           m_fCurUpdateDelta;
     
     bool                            m_bEnableAddTerrainCell;
-    
     cocos2d::EventListenerTouchOneByOne* m_pTouchListener;
     std::vector<std::string>        m_vecTemplatesName;
     cocos2d::ValueMap               m_dictTemplates;
     cocos2d::ValueMap               m_dictlevel;
+    cocos2d::Vec2                   m_lastTouchDownPos;
 };
 
 #endif /* defined(__CCGF__TerrainMgr__) */
