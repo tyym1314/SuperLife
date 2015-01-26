@@ -141,6 +141,7 @@ void TerrainMgr::removeTerrain()
     {
         m_TerrainCellList.clear();
         m_TerrainCellCacheList.clear();
+        m_TerrainTemplateCellList.clear();
         m_pDrawNode->clear();
         layer->removeChild(m_pScrollView);
     }

@@ -54,6 +54,7 @@
 		50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF629517ECD46A001EB2F8 /* Icon-100.png */; };
 		50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A017ECD613001EB2F8 /* Icon-29.png */; };
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
+		55139B071A75EFAA000DEDD7 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55139B061A75EFAA000DEDD7 /* libFlurry_6.0.0.a */; };
 		5516060819A733910071A23C /* EncrytionUtility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5516060619A733910071A23C /* EncrytionUtility.cpp */; };
 		55274E471A6D602000BA737B /* level10.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55274E3C1A6D602000BA737B /* level10.plist */; };
 		55274E481A6D602000BA737B /* level11.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55274E3D1A6D602000BA737B /* level11.plist */; };
@@ -93,6 +94,13 @@
 		554AEC1A199CF40D0028E2A7 /* r-plaza_8.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 554AEC19199CF40D0028E2A7 /* r-plaza_8.ttf */; };
 		554AEC1B199CF4170028E2A7 /* r-plaza_8.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 554AEC19199CF40D0028E2A7 /* r-plaza_8.ttf */; };
 		555804C519A4A72500445419 /* MissionListScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5588F0A419A3A1F2004CAAF6 /* MissionListScene.cpp */; };
+		555D8FF61A75306400AB1630 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 555D8FF11A75306400AB1630 /* libGoogleAdMobAds.a */; };
+		555D8FF71A75306400AB1630 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 555D8FF21A75306400AB1630 /* README.txt */; };
+		555D8FF81A75306400AB1630 /* RateThisAppDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 555D8FF41A75306400AB1630 /* RateThisAppDialog.m */; };
+		555D8FFA1A75314D00AB1630 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555D8FF91A75314D00AB1630 /* iAd.framework */; };
+		555D8FFC1A75369D00AB1630 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555D8FFB1A75369D00AB1630 /* SystemConfiguration.framework */; };
+		555D8FFE1A7537FD00AB1630 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555D8FFD1A7537FD00AB1630 /* Security.framework */; };
+		555D90061A753AFE00AB1630 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555D90051A753AFE00AB1630 /* StoreKit.framework */; };
 		556E8754199B957D00781CB0 /* MenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556E8752199B957D00781CB0 /* MenuScene.cpp */; };
 		556E8759199B971000781CB0 /* MenuUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556E8757199B971000781CB0 /* MenuUI.cpp */; };
 		556E875B199B9D4F00781CB0 /* MenuUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556E8757199B971000781CB0 /* MenuUI.cpp */; };
@@ -693,6 +701,7 @@
 		50EF629517ECD46A001EB2F8 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		50EF62A017ECD613001EB2F8 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		50EF62A117ECD613001EB2F8 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
+		55139B061A75EFAA000DEDD7 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.0.0.a; sourceTree = "<group>"; };
 		5516060619A733910071A23C /* EncrytionUtility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EncrytionUtility.cpp; sourceTree = "<group>"; };
 		5516060719A733910071A23C /* EncrytionUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncrytionUtility.h; sourceTree = "<group>"; };
 		55274E3C1A6D602000BA737B /* level10.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level10.plist; sourceTree = "<group>"; };
@@ -714,6 +723,42 @@
 		5534EF921A5CDD1C00F9437D /* EditorUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EditorUI.cpp; sourceTree = "<group>"; };
 		5534EF931A5CDD1C00F9437D /* EditorUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorUI.h; sourceTree = "<group>"; };
 		554AEC19199CF40D0028E2A7 /* r-plaza_8.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "r-plaza_8.ttf"; sourceTree = "<group>"; };
+		555D8FCF1A75306300AB1630 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		555D8FD41A75306300AB1630 /* DFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPBannerView.h; sourceTree = "<group>"; };
+		555D8FD51A75306300AB1630 /* DFPExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPExtras.h; sourceTree = "<group>"; };
+		555D8FD61A75306300AB1630 /* DFPInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPInterstitial.h; sourceTree = "<group>"; };
+		555D8FD71A75306300AB1630 /* DFPSwipeableBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPSwipeableBannerView.h; sourceTree = "<group>"; };
+		555D8FD81A75306300AB1630 /* GADAdSizeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSizeDelegate.h; sourceTree = "<group>"; };
+		555D8FD91A75306300AB1630 /* GADAppEventDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAppEventDelegate.h; sourceTree = "<group>"; };
+		555D8FDA1A75306300AB1630 /* GADSwipeableBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADSwipeableBannerViewDelegate.h; sourceTree = "<group>"; };
+		555D8FDC1A75306300AB1630 /* GADCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventBanner.h; sourceTree = "<group>"; };
+		555D8FDD1A75306300AB1630 /* GADCustomEventBannerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventBannerDelegate.h; sourceTree = "<group>"; };
+		555D8FDE1A75306400AB1630 /* GADCustomEventExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventExtras.h; sourceTree = "<group>"; };
+		555D8FDF1A75306400AB1630 /* GADCustomEventInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventInterstitial.h; sourceTree = "<group>"; };
+		555D8FE01A75306400AB1630 /* GADCustomEventInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventInterstitialDelegate.h; sourceTree = "<group>"; };
+		555D8FE11A75306400AB1630 /* GADCustomEventRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventRequest.h; sourceTree = "<group>"; };
+		555D8FE31A75306400AB1630 /* GADSearchBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADSearchBannerView.h; sourceTree = "<group>"; };
+		555D8FE41A75306400AB1630 /* GADSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADSearchRequest.h; sourceTree = "<group>"; };
+		555D8FE51A75306400AB1630 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
+		555D8FE61A75306400AB1630 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
+		555D8FE71A75306400AB1630 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
+		555D8FE81A75306400AB1630 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
+		555D8FE91A75306400AB1630 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
+		555D8FEA1A75306400AB1630 /* GADInAppPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInAppPurchase.h; sourceTree = "<group>"; };
+		555D8FEB1A75306400AB1630 /* GADInAppPurchaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInAppPurchaseDelegate.h; sourceTree = "<group>"; };
+		555D8FEC1A75306400AB1630 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
+		555D8FED1A75306400AB1630 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
+		555D8FEE1A75306400AB1630 /* GADModules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADModules.h; sourceTree = "<group>"; };
+		555D8FEF1A75306400AB1630 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
+		555D8FF01A75306400AB1630 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		555D8FF11A75306400AB1630 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
+		555D8FF21A75306400AB1630 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		555D8FF31A75306400AB1630 /* RateThisAppDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RateThisAppDialog.h; path = ios/RateThisAppDialog.h; sourceTree = SOURCE_ROOT; };
+		555D8FF41A75306400AB1630 /* RateThisAppDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RateThisAppDialog.m; path = ios/RateThisAppDialog.m; sourceTree = SOURCE_ROOT; };
+		555D8FF91A75314D00AB1630 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/iAd.framework; sourceTree = DEVELOPER_DIR; };
+		555D8FFB1A75369D00AB1630 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		555D8FFD1A7537FD00AB1630 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		555D90051A753AFE00AB1630 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		556E8752199B957D00781CB0 /* MenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuScene.cpp; sourceTree = "<group>"; };
 		556E8753199B957D00781CB0 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		556E8757199B971000781CB0 /* MenuUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuUI.cpp; sourceTree = "<group>"; };
@@ -963,6 +1008,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				555D8FFE1A7537FD00AB1630 /* Security.framework in Frameworks */,
+				55139B071A75EFAA000DEDD7 /* libFlurry_6.0.0.a in Frameworks */,
+				555D8FFC1A75369D00AB1630 /* SystemConfiguration.framework in Frameworks */,
+				555D8FFA1A75314D00AB1630 /* iAd.framework in Frameworks */,
 				1AC6FB2E180E99EB004C840B /* libbox2d iOS.a in Frameworks */,
 				1AC6FB2F180E99EB004C840B /* libchipmunk iOS.a in Frameworks */,
 				1AC6FB30180E99EB004C840B /* libcocos2dx iOS.a in Frameworks */,
@@ -972,8 +1021,10 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				555D8FF61A75306400AB1630 /* libGoogleAdMobAds.a in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
 				BF1712471292920000B8313A /* libz.dylib in Frameworks */,
+				555D90061A753AFE00AB1630 /* StoreKit.framework in Frameworks */,
 				BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */,
 				D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */,
 				D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */,
@@ -1010,6 +1061,10 @@
 		080E96DDFE201D6D7F000001 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				555D8FCE1A75306300AB1630 /* Flurry */,
+				555D8FD11A75306300AB1630 /* GoogleMobileAdsSdkiOS-6.12.2 */,
+				555D8FF31A75306400AB1630 /* RateThisAppDialog.h */,
+				555D8FF41A75306400AB1630 /* RateThisAppDialog.m */,
 				5087E77117EB970100C73F5D /* Icons */,
 				503AE0FA17EB989F00D1A890 /* AppController.h */,
 				503AE0FB17EB989F00D1A890 /* AppController.mm */,
@@ -1080,6 +1135,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				555D90051A753AFE00AB1630 /* StoreKit.framework */,
+				555D8FFD1A7537FD00AB1630 /* Security.framework */,
+				555D8FFB1A75369D00AB1630 /* SystemConfiguration.framework */,
+				555D8FF91A75314D00AB1630 /* iAd.framework */,
 				D6B0611A1803AB670077942B /* CoreMotion.framework */,
 				503AE11A17EB9C5A00D1A890 /* IOKit.framework */,
 				503AE11117EB99EE00D1A890 /* libcurl.dylib */,
@@ -1143,6 +1202,85 @@
 			name = Icons;
 			path = ios;
 			sourceTree = SOURCE_ROOT;
+		};
+		555D8FCE1A75306300AB1630 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				55139B061A75EFAA000DEDD7 /* libFlurry_6.0.0.a */,
+				555D8FCF1A75306300AB1630 /* Flurry.h */,
+			);
+			name = Flurry;
+			path = ios/Flurry;
+			sourceTree = SOURCE_ROOT;
+		};
+		555D8FD11A75306300AB1630 /* GoogleMobileAdsSdkiOS-6.12.2 */ = {
+			isa = PBXGroup;
+			children = (
+				555D8FD21A75306300AB1630 /* Add-ons */,
+				555D8FE51A75306400AB1630 /* GADAdMobExtras.h */,
+				555D8FE61A75306400AB1630 /* GADAdNetworkExtras.h */,
+				555D8FE71A75306400AB1630 /* GADAdSize.h */,
+				555D8FE81A75306400AB1630 /* GADBannerView.h */,
+				555D8FE91A75306400AB1630 /* GADBannerViewDelegate.h */,
+				555D8FEA1A75306400AB1630 /* GADInAppPurchase.h */,
+				555D8FEB1A75306400AB1630 /* GADInAppPurchaseDelegate.h */,
+				555D8FEC1A75306400AB1630 /* GADInterstitial.h */,
+				555D8FED1A75306400AB1630 /* GADInterstitialDelegate.h */,
+				555D8FEE1A75306400AB1630 /* GADModules.h */,
+				555D8FEF1A75306400AB1630 /* GADRequest.h */,
+				555D8FF01A75306400AB1630 /* GADRequestError.h */,
+				555D8FF11A75306400AB1630 /* libGoogleAdMobAds.a */,
+				555D8FF21A75306400AB1630 /* README.txt */,
+			);
+			name = "GoogleMobileAdsSdkiOS-6.12.2";
+			path = "ios/GoogleMobileAdsSdkiOS-6.12.2";
+			sourceTree = SOURCE_ROOT;
+		};
+		555D8FD21A75306300AB1630 /* Add-ons */ = {
+			isa = PBXGroup;
+			children = (
+				555D8FD31A75306300AB1630 /* DoubleClick */,
+				555D8FDB1A75306300AB1630 /* Mediation */,
+				555D8FE21A75306400AB1630 /* Search */,
+			);
+			path = "Add-ons";
+			sourceTree = "<group>";
+		};
+		555D8FD31A75306300AB1630 /* DoubleClick */ = {
+			isa = PBXGroup;
+			children = (
+				555D8FD41A75306300AB1630 /* DFPBannerView.h */,
+				555D8FD51A75306300AB1630 /* DFPExtras.h */,
+				555D8FD61A75306300AB1630 /* DFPInterstitial.h */,
+				555D8FD71A75306300AB1630 /* DFPSwipeableBannerView.h */,
+				555D8FD81A75306300AB1630 /* GADAdSizeDelegate.h */,
+				555D8FD91A75306300AB1630 /* GADAppEventDelegate.h */,
+				555D8FDA1A75306300AB1630 /* GADSwipeableBannerViewDelegate.h */,
+			);
+			path = DoubleClick;
+			sourceTree = "<group>";
+		};
+		555D8FDB1A75306300AB1630 /* Mediation */ = {
+			isa = PBXGroup;
+			children = (
+				555D8FDC1A75306300AB1630 /* GADCustomEventBanner.h */,
+				555D8FDD1A75306300AB1630 /* GADCustomEventBannerDelegate.h */,
+				555D8FDE1A75306400AB1630 /* GADCustomEventExtras.h */,
+				555D8FDF1A75306400AB1630 /* GADCustomEventInterstitial.h */,
+				555D8FE01A75306400AB1630 /* GADCustomEventInterstitialDelegate.h */,
+				555D8FE11A75306400AB1630 /* GADCustomEventRequest.h */,
+			);
+			path = Mediation;
+			sourceTree = "<group>";
+		};
+		555D8FE21A75306400AB1630 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				555D8FE31A75306400AB1630 /* GADSearchBannerView.h */,
+				555D8FE41A75306400AB1630 /* GADSearchRequest.h */,
+			);
+			path = Search;
+			sourceTree = "<group>";
 		};
 		556E875D199B9F1000781CB0 /* fonts */ = {
 			isa = PBXGroup;
@@ -1545,6 +1683,14 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 6NA476HDMX;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					5087E73D17EB910900C73F5D = {
 						DevelopmentTeam = 6NA476HDMX;
@@ -1689,6 +1835,7 @@
 				55AA41671A6F9FE000B6D450 /* 5x5Infinitegrowth.png in Resources */,
 				55A764EF1A6625C7002466C1 /* chaos3.png in Resources */,
 				55A764D81A662063002466C1 /* stilllife2.png in Resources */,
+				555D8FF71A75306400AB1630 /* README.txt in Resources */,
 				55D802781A735D54008C4FA8 /* bg.mp3 in Resources */,
 				5578A8021A5E76ED008D3B54 /* btnLBN.png in Resources */,
 				55AA41A11A6F9FE000B6D450 /* Queenbee.png in Resources */,
@@ -2092,6 +2239,7 @@
 				558CDC9D1A5FB51800E0E6AD /* HelpInfoScene.cpp in Sources */,
 				55A764F71A665FD9002466C1 /* EditLevelScene.cpp in Sources */,
 				556E8759199B971000781CB0 /* MenuUI.cpp in Sources */,
+				555D8FF81A75306400AB1630 /* RateThisAppDialog.m in Sources */,
 				55C4ACCD198F5F83001612D6 /* TerrainCell.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				55A764FC1A665FFC002466C1 /* EditLevelUI.cpp in Sources */,
@@ -2211,7 +2359,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iOS Development: haibo wang (FT8YEJMWBH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -2231,7 +2380,11 @@
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/ios/Flurry",
+					"$(PROJECT_DIR)/ios/GoogleMobileAdsSdkiOS-6.12.2",
+				);
+				PROVISIONING_PROFILE = "54e7853e-a889-4be2-a90c-e2fb7be1f239";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -2242,7 +2395,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iOS Distribution: haibo wang";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2260,7 +2414,11 @@
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/ios/Flurry",
+					"$(PROJECT_DIR)/ios/GoogleMobileAdsSdkiOS-6.12.2",
+				);
+				PROVISIONING_PROFILE = "f82be188-234c-4a0b-a708-0ac9b7a0341b";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
