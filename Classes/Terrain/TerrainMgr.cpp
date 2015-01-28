@@ -67,8 +67,8 @@ void TerrainMgr::addTerrain(TerrainCell::CELL_TYPE cell_type, int rows, int colu
     {
         m_pDrawNode->setPosition(radius*cos(M_PI_4), radius*cos(M_PI_4));
         m_pScrollView->setBounceable(false);
-        m_pScrollView->setViewSize(Size(rows*radius*cos(M_PI_4)*2, columns*radius*cos(M_PI_4)*2));
-        m_pScrollView->setContentSize(Size(rows*radius*cos(M_PI_4)*2, columns*radius*cos(M_PI_4)*2));
+        m_pScrollView->setViewSize(cocos2d::Size(rows*radius*cos(M_PI_4)*2, columns*radius*cos(M_PI_4)*2));
+        m_pScrollView->setContentSize(cocos2d::Size(rows*radius*cos(M_PI_4)*2, columns*radius*cos(M_PI_4)*2));
         m_pScrollView->setPosition(offset);
         resetScrollView(false);
         
@@ -366,7 +366,7 @@ bool TerrainMgr::onTouchBegan(Touch *touch, Event *unused_event)
             }
             else
             {
-                if(!cell->isLevelCell())
+                if(!cell->isLevelCell() && m_bEnableAddTerrainCell)
                 {
                     newCellColor = Color4F(Color4B(color.r, color.g, color.b, 100));
                     cell->setColor(newCellColor);
@@ -464,7 +464,7 @@ void TerrainMgr::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_even
     if(touchNode)
     {
         Vec2 locationInNode = touchNode->convertToNodeSpace(touch->getLocation());
-        Rect contentRect = Rect(-m_fRadius*cos(M_PI_4), -m_fRadius*cos(M_PI_4), m_pScrollView->getContentSize().width, m_pScrollView->getContentSize().height);
+        cocos2d::Rect contentRect = cocos2d::Rect(-m_fRadius*cos(M_PI_4), -m_fRadius*cos(M_PI_4), m_pScrollView->getContentSize().width, m_pScrollView->getContentSize().height);
         if(!contentRect.containsPoint(locationInNode))
             return;
         for (int i = 0; i < m_TerrainCellList.size(); i++)
@@ -473,7 +473,7 @@ void TerrainMgr::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_even
             if(cell && cell->getCellType() == TerrainCell::RECTANGLE)
             {
                 float radius = cell->getRadius();
-                Rect rect = Rect(cell->getPosX()-radius*cos(M_PI_4),cell->getPosY()-radius*cos(M_PI_4),radius*cos(M_PI_4)*2,radius*cos(M_PI_4)*2);
+                cocos2d::Rect rect = cocos2d::Rect(cell->getPosX()-radius*cos(M_PI_4),cell->getPosY()-radius*cos(M_PI_4),radius*cos(M_PI_4)*2,radius*cos(M_PI_4)*2);
                 if(rect.containsPoint(locationInNode))
                     break;
             }
@@ -487,7 +487,7 @@ void TerrainMgr::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_even
                 {
                     int x = i/9;
                     int y = i%9;
-                    Rect rect = Rect(startPos.x+x*length,startPos.y+y*length, length,length);
+                    cocos2d::Rect rect = cocos2d::Rect(startPos.x+x*length,startPos.y+y*length, length,length);
                     for (int j = 0; j<m_TerrainCellList.size(); j++) {
                         TerrainCell* cellNew = m_TerrainCellList.at(j);
                         if(rect.containsPoint(Vec2(cellNew->getPosX(), cellNew->getPosY())))
@@ -518,7 +518,7 @@ void TerrainMgr::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_even
             }
             else
             {
-                if(!cell->isLevelCell())
+                if(!cell->isLevelCell() && m_bEnableAddTerrainCell)
                 {
                     newCellColor = Color4F(Color4B(color.r, color.g, color.b, 100));
                     cell->setColor(newCellColor);

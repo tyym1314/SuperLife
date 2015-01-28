@@ -10,6 +10,7 @@
 #include "TerrainMgr.h"
 #include "UIMgr.h"
 #include "UIConst.h"
+#include "NativeBridge.h"
 USING_NS_CC;
 
 //构造
@@ -33,9 +34,11 @@ void MissionScene::onEnter()
     BaseScene::onEnter();
     TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(40, 95));
     m_pMissionUI = UIMgr::getInstance()->createUI(MISSION_UI);
+    NativeBridge::getInstance()->showAdsView();
 }
 void MissionScene::onExit()
 {
+    NativeBridge::getInstance()->hideAdsView();
     TerrainMgr::getInstance()->removeTerrain();
     BaseScene::onExit();
 }

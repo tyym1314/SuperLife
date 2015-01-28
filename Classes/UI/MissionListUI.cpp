@@ -43,8 +43,8 @@ void MissionListUI::loadUI(const std::string& file)
     int ContainerHeight = (MAX_LEVEL/7)*110;
     m_pScrollView = ui::ScrollView::create();
     m_pScrollView->setDirection(ui::ScrollView::Direction::VERTICAL);
-    m_pScrollView->setContentSize(Size(960,440));
-    m_pScrollView->setInnerContainerSize(Size(960,ContainerHeight));
+    m_pScrollView->setContentSize(cocos2d::Size(960,440));
+    m_pScrollView->setInnerContainerSize(cocos2d::Size(960,ContainerHeight));
     m_pScrollView->setPosition(Vec2(0,100));
     m_pScrollView->setTouchEnabled(true);
     

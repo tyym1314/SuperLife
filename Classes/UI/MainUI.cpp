@@ -119,7 +119,7 @@ void MainUI::loadUI(const std::string& file)
     m_pBackBtn->setColor(color);
     this->addChild(m_pBackBtn);
     
-    m_pTableView = TableView::create(this, Size(540, 64));
+    m_pTableView = TableView::create(this, cocos2d::Size(540, 64));
     m_pTableView->setDirection(ScrollView::Direction::HORIZONTAL);
     m_pTableView->setPosition(Vec2(40,25));
     m_pTableView->setColor(color);
@@ -145,6 +145,7 @@ void MainUI::update(float delta)
     if(lifeNum == 0)
     {
         m_pOwnerScene->setPause(true);
+        TerrainMgr::getInstance()->resetTerrain();
         m_pStartBtn->setTitleText(CommonUtility::getLocalString("Start"));
     }
 }
@@ -167,9 +168,9 @@ void MainUI::setColor(const cocos2d::Color3B& color)
     m_pTableView->reloadData();
 }
 
-Size MainUI::cellSizeForTable(TableView *table)
+cocos2d::Size MainUI::cellSizeForTable(TableView *table)
 {
-    return Size(64, 64);
+    return cocos2d::Size(64, 64);
 }
 TableViewCell* MainUI::tableCellAtIndex(TableView *table, ssize_t idx)
 {

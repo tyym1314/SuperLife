@@ -10,6 +10,7 @@
 #include "TerrainMgr.h"
 #include "UIMgr.h"
 #include "UIConst.h"
+#include "NativeBridge.h"
 USING_NS_CC;
 //构造
 LevelEditorScene::LevelEditorScene()
@@ -25,9 +26,11 @@ void LevelEditorScene::onEnter()
     BaseScene::onEnter();
     TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(40, 100));
     m_pLevelEditorUI = UIMgr::getInstance()->createUI(LEVEL_EDITOR_UI);
+    NativeBridge::getInstance()->showAdsView();
 }
 void LevelEditorScene::onExit()
 {
+    NativeBridge::getInstance()->hideAdsView();
     TerrainMgr::getInstance()->removeTerrain();
     BaseScene::onExit();
 }

@@ -9,6 +9,7 @@
 #include "CongratulationsScene.h"
 #include "UIMgr.h"
 #include "UIConst.h"
+#include "NativeBridge.h"
 USING_NS_CC;
 //构造
 CongratulationsScene::CongratulationsScene()
@@ -23,9 +24,11 @@ void CongratulationsScene::onEnter()
 {
     BaseScene::onEnter();
     m_pCongratulationsUI = UIMgr::getInstance()->createUI(CONGRATULATIONS_UI);
+    NativeBridge::getInstance()->showAdsView();
 }
 void CongratulationsScene::onExit()
 {
+    NativeBridge::getInstance()->hideAdsView();
     BaseScene::onExit();
 }
 // 更新处理

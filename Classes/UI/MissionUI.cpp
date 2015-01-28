@@ -438,7 +438,7 @@ void MissionUI::pressBackBtn(Ref* p,TouchEventType eventType)
     if(eventType == TouchEventType::ENDED)
     {
         SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
-        BaseScene* menuScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+        BaseScene* menuScene = SceneFactory::getInstance()->createSceneByID(SCENE_MISSION_LIST);
         Director::getInstance()->replaceScene(menuScene);
         TerrainMgr::getInstance()->setEnableAddTerrainCell(true);
     }

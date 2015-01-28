@@ -163,5 +163,15 @@ http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<string>恭喜您</string>
 	<key>CongratulationsDetail</key>
 	<string>    您已经通过所有关卡任务，所有模版都已经解锁，我们会在后续版本中更新更多关卡，敬请期待！</string>
+	<key>RateTitle</key>
+	<string>评价超级生命</string>
+	<key>RateMessage</key>
+	<string>谢谢您的支持!</string>
+	<key>RateNow</key>
+	<string>支持一下</string>
+	<key>RateNever</key>
+	<string>残忍拒绝</string>
+	<key>RateLater</key>
+	<string>稍后支持</string>
 </dict>
 </plist>

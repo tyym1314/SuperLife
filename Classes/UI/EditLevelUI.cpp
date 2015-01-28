@@ -55,7 +55,7 @@ void EditLevelUI::loadUI(const std::string& file)
     this->addChild(m_pLabelMode);
     
     Scale9Sprite* scale9 = Scale9Sprite::create("slider_bar_button.png");
-    m_pFileNameEditBox = EditBox::create(Size(200,25), scale9);
+    m_pFileNameEditBox = EditBox::create(cocos2d::Size(200,25), scale9);
     m_pFileNameEditBox->setPosition(Vec2(750,530));
     m_pFileNameEditBox->setPlaceHolder(CommonUtility::getLocalString("FileName").c_str());
     m_pFileNameEditBox->setPlaceholderFontColor(Color3B::RED);
@@ -64,7 +64,7 @@ void EditLevelUI::loadUI(const std::string& file)
     this->addChild(m_pFileNameEditBox);
     
     scale9 = Scale9Sprite::create("slider_bar_button.png");
-    m_pLevelNameEditBox = EditBox::create(Size(200,25), scale9);
+    m_pLevelNameEditBox = EditBox::create(cocos2d::Size(200,25), scale9);
     m_pLevelNameEditBox->setPosition(Vec2(750,490));
     m_pLevelNameEditBox->setPlaceHolder(CommonUtility::getLocalString("LevelName").c_str());
     m_pLevelNameEditBox->setPlaceholderFontColor(Color3B::RED);
@@ -73,7 +73,7 @@ void EditLevelUI::loadUI(const std::string& file)
     this->addChild(m_pLevelNameEditBox);
     
     scale9 = Scale9Sprite::create("slider_bar_button.png");
-    m_pGoalCellNumEditBox = EditBox::create(Size(200,25), scale9);
+    m_pGoalCellNumEditBox = EditBox::create(cocos2d::Size(200,25), scale9);
     m_pGoalCellNumEditBox->setPosition(Vec2(750,450));
     m_pGoalCellNumEditBox->setPlaceHolder(CommonUtility::getLocalString("GoalCellNum").c_str());
     m_pGoalCellNumEditBox->setPlaceholderFontColor(Color3B::RED);
@@ -82,7 +82,7 @@ void EditLevelUI::loadUI(const std::string& file)
     this->addChild(m_pGoalCellNumEditBox);
     
     scale9 = Scale9Sprite::create("slider_bar_button.png");
-    m_pGoalCellGenerationEditBox = EditBox::create(Size(200,25), scale9);
+    m_pGoalCellGenerationEditBox = EditBox::create(cocos2d::Size(200,25), scale9);
     m_pGoalCellGenerationEditBox->setPosition(Vec2(750,410));
     m_pGoalCellGenerationEditBox->setPlaceHolder(CommonUtility::getLocalString("GoalCellGeneration").c_str());
     m_pGoalCellGenerationEditBox->setPlaceholderFontColor(Color3B::RED);
@@ -91,7 +91,7 @@ void EditLevelUI::loadUI(const std::string& file)
     this->addChild(m_pGoalCellGenerationEditBox);
     
     scale9 = Scale9Sprite::create("slider_bar_button.png");
-    m_pStarterCellNumEditBox = EditBox::create(Size(200,25), scale9);
+    m_pStarterCellNumEditBox = EditBox::create(cocos2d::Size(200,25), scale9);
     m_pStarterCellNumEditBox->setPosition(Vec2(750,370));
     m_pStarterCellNumEditBox->setPlaceHolder(CommonUtility::getLocalString("StarterCellNum").c_str());
     m_pStarterCellNumEditBox->setPlaceholderFontColor(Color3B::RED);
@@ -100,7 +100,7 @@ void EditLevelUI::loadUI(const std::string& file)
     this->addChild(m_pStarterCellNumEditBox);
     
     scale9 = Scale9Sprite::create("slider_bar_button.png");
-    m_pLevelTypeEditBox = EditBox::create(Size(200,25), scale9);
+    m_pLevelTypeEditBox = EditBox::create(cocos2d::Size(200,25), scale9);
     m_pLevelTypeEditBox->setPosition(Vec2(750,330));
     m_pLevelTypeEditBox->setPlaceHolder(CommonUtility::getLocalString("LevelType").c_str());
     m_pLevelTypeEditBox->setPlaceholderFontColor(Color3B::RED);
@@ -200,6 +200,7 @@ void EditLevelUI::update(float delta)
     if(lifeNum == 0)
     {
         m_pOwnerScene->setPause(true);
+        TerrainMgr::getInstance()->resetTerrain();
         m_pStartBtn->setTitleText(CommonUtility::getLocalString("Start"));
     }
 }

@@ -28,6 +28,7 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 #import "Flurry.h"
+#include "NativeBridge.h"
 @implementation AppController
 
 #pragma mark -
@@ -60,6 +61,10 @@ static AppDelegate s_sharedApplication;
     _viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
     _viewController.wantsFullScreenLayout = YES;
     _viewController.view = eaglView;
+    
+    ///add ad banner view
+    [_viewController initAdBannerView];
+    NativeBridge::getInstance()->setRootViewController(_viewController);
 
     // Set RootViewController to window
     if ( [[UIDevice currentDevice].systemVersion floatValue] < 6.0)

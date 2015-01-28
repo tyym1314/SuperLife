@@ -10,6 +10,7 @@
 #include "TerrainMgr.h"
 #include "UIMgr.h"
 #include "UIConst.h"
+#include "NativeBridge.h"
 USING_NS_CC;
 //构造
 EditorScene::EditorScene()
@@ -25,9 +26,11 @@ void EditorScene::onEnter()
     BaseScene::onEnter();
     TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 9, 9, 40, Vec2(40, 100));
     m_pEditorUI = UIMgr::getInstance()->createUI(EDITOR_UI);
+    NativeBridge::getInstance()->showAdsView();
 }
 void EditorScene::onExit()
 {
+    NativeBridge::getInstance()->hideAdsView();
     TerrainMgr::getInstance()->removeTerrain();
     BaseScene::onExit();
 }

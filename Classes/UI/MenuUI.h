@@ -12,7 +12,6 @@
 #include "cocos2d.h"
 #include "CocosGUI.h"
 #include "IUIReader.h"
-
 class BaseScene;
 class MenuUI : public cocos2d::ui::Layout, public IUIReader
 {

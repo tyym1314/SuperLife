@@ -508,6 +508,15 @@
 		55D802761A734F5C008C4FA8 /* Beep_Error01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55D802741A734F3F008C4FA8 /* Beep_Error01.wav */; };
 		55D802781A735D54008C4FA8 /* bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55D802771A735D54008C4FA8 /* bg.mp3 */; };
 		55D802791A735D60008C4FA8 /* bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55D802771A735D54008C4FA8 /* bg.mp3 */; };
+		55E758CC1A778AA100FF85DE /* NativeBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 55E758CA1A778AA100FF85DE /* NativeBridge.mm */; };
+		55E758CF1A778CC100FF85DE /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E758CE1A778CC100FF85DE /* AdSupport.framework */; };
+		55E758D31A778D0400FF85DE /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E758D21A778D0400FF85DE /* MediaPlayer.framework */; };
+		55E758D51A778D1200FF85DE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E758D41A778D1200FF85DE /* MessageUI.framework */; };
+		55E758D71A778DDB00FF85DE /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E758D61A778DDB00FF85DE /* EventKit.framework */; };
+		55E758D91A778DE900FF85DE /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E758D81A778DE900FF85DE /* CoreTelephony.framework */; };
+		55E758DB1A778E2100FF85DE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E758DA1A778E2100FF85DE /* CoreGraphics.framework */; };
+		55E758DD1A778E3F00FF85DE /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E758DC1A778E3F00FF85DE /* EventKitUI.framework */; };
+		55E758DF1A778EB700FF85DE /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E758DE1A778EB700FF85DE /* GameController.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -994,6 +1003,17 @@
 		55D8026D1A734188008C4FA8 /* god7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = god7.wav; sourceTree = "<group>"; };
 		55D802741A734F3F008C4FA8 /* Beep_Error01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep_Error01.wav; sourceTree = "<group>"; };
 		55D802771A735D54008C4FA8 /* bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bg.mp3; sourceTree = "<group>"; };
+		55E758CA1A778AA100FF85DE /* NativeBridge.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = NativeBridge.mm; sourceTree = "<group>"; };
+		55E758CB1A778AA100FF85DE /* NativeBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeBridge.h; sourceTree = "<group>"; };
+		55E758CE1A778CC100FF85DE /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
+		55E758D01A778CD500FF85DE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		55E758D21A778D0400FF85DE /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
+		55E758D41A778D1200FF85DE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/MessageUI.framework; sourceTree = DEVELOPER_DIR; };
+		55E758D61A778DDB00FF85DE /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/EventKit.framework; sourceTree = DEVELOPER_DIR; };
+		55E758D81A778DE900FF85DE /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
+		55E758DA1A778E2100FF85DE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		55E758DC1A778E3F00FF85DE /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/EventKitUI.framework; sourceTree = DEVELOPER_DIR; };
+		55E758DE1A778EB700FF85DE /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/GameController.framework; sourceTree = DEVELOPER_DIR; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1008,6 +1028,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E758DF1A778EB700FF85DE /* GameController.framework in Frameworks */,
+				55E758DD1A778E3F00FF85DE /* EventKitUI.framework in Frameworks */,
+				55E758DB1A778E2100FF85DE /* CoreGraphics.framework in Frameworks */,
+				55E758D91A778DE900FF85DE /* CoreTelephony.framework in Frameworks */,
+				55E758D71A778DDB00FF85DE /* EventKit.framework in Frameworks */,
+				55E758D51A778D1200FF85DE /* MessageUI.framework in Frameworks */,
+				55E758D31A778D0400FF85DE /* MediaPlayer.framework in Frameworks */,
+				555D90061A753AFE00AB1630 /* StoreKit.framework in Frameworks */,
+				55E758CF1A778CC100FF85DE /* AdSupport.framework in Frameworks */,
 				555D8FFE1A7537FD00AB1630 /* Security.framework in Frameworks */,
 				55139B071A75EFAA000DEDD7 /* libFlurry_6.0.0.a in Frameworks */,
 				555D8FFC1A75369D00AB1630 /* SystemConfiguration.framework in Frameworks */,
@@ -1024,7 +1053,6 @@
 				555D8FF61A75306400AB1630 /* libGoogleAdMobAds.a in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
 				BF1712471292920000B8313A /* libz.dylib in Frameworks */,
-				555D90061A753AFE00AB1630 /* StoreKit.framework in Frameworks */,
 				BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */,
 				D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */,
 				D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */,
@@ -1135,6 +1163,15 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				55E758DE1A778EB700FF85DE /* GameController.framework */,
+				55E758DC1A778E3F00FF85DE /* EventKitUI.framework */,
+				55E758DA1A778E2100FF85DE /* CoreGraphics.framework */,
+				55E758D81A778DE900FF85DE /* CoreTelephony.framework */,
+				55E758D61A778DDB00FF85DE /* EventKit.framework */,
+				55E758D41A778D1200FF85DE /* MessageUI.framework */,
+				55E758D21A778D0400FF85DE /* MediaPlayer.framework */,
+				55E758D01A778CD500FF85DE /* AudioToolbox.framework */,
+				55E758CE1A778CC100FF85DE /* AdSupport.framework */,
 				555D90051A753AFE00AB1630 /* StoreKit.framework */,
 				555D8FFD1A7537FD00AB1630 /* Security.framework */,
 				555D8FFB1A75369D00AB1630 /* SystemConfiguration.framework */,
@@ -1301,6 +1338,8 @@
 				5516060719A733910071A23C /* EncrytionUtility.h */,
 				5573F4C21A5B7AC50090C7CB /* CommonUtility.cpp */,
 				5573F4C31A5B7AC50090C7CB /* CommonUtility.h */,
+				55E758CA1A778AA100FF85DE /* NativeBridge.mm */,
+				55E758CB1A778AA100FF85DE /* NativeBridge.h */,
 			);
 			name = Utilities;
 			path = ../Classes/Utilities;
@@ -2244,6 +2283,7 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				55A764FC1A665FFC002466C1 /* EditLevelUI.cpp in Sources */,
 				5588F0A619A3A1F2004CAAF6 /* MissionListScene.cpp in Sources */,
+				55E758CC1A778AA100FF85DE /* NativeBridge.mm in Sources */,
 				5534EF941A5CDD1C00F9437D /* EditorUI.cpp in Sources */,
 				557537E21A6E4CC800A7C96A /* CongratulationsScene.cpp in Sources */,
 				556E876E199BB62900781CB0 /* MathUtility.cpp in Sources */,
@@ -2364,6 +2404,7 @@
 				COMPRESS_PNG_FILES = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2384,6 +2425,7 @@
 					"$(PROJECT_DIR)/ios/Flurry",
 					"$(PROJECT_DIR)/ios/GoogleMobileAdsSdkiOS-6.12.2",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "54e7853e-a889-4be2-a90c-e2fb7be1f239";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2399,6 +2441,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2418,6 +2461,7 @@
 					"$(PROJECT_DIR)/ios/Flurry",
 					"$(PROJECT_DIR)/ios/GoogleMobileAdsSdkiOS-6.12.2",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "f82be188-234c-4a0b-a708-0ac9b7a0341b";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

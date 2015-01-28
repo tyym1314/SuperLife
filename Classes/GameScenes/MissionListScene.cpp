@@ -9,6 +9,7 @@
 #include "MissionListScene.h"
 #include "UIMgr.h"
 #include "UIConst.h"
+#include "NativeBridge.h"
 USING_NS_CC;
 
 //构造
@@ -24,9 +25,11 @@ void MissionListScene::onEnter()
 {
     BaseScene::onEnter();
     m_pMissionListUI = UIMgr::getInstance()->createUI(MISSION_LIST_UI);
+    NativeBridge::getInstance()->showAdsView();
 }
 void MissionListScene::onExit()
 {
+    NativeBridge::getInstance()->hideAdsView();
     BaseScene::onExit();
 }
 // 设置场景颜色

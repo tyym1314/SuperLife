@@ -157,5 +157,15 @@ Wiki Site: http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<string>CONGRATULATIONS</string>
 	<key>CongratulationsDetail</key>
 	<string>You have been through all the missions, all patterns have been unlocked, we will update more levels in subsequent versions, To be continued.!</string>
+	<key>RateTitle</key>
+	<string>Rate SuperLife</string>
+	<key>RateMessage</key>
+	<string>thanks for your supports!</string>
+	<key>RateNow</key>
+	<string>Now</string>
+	<key>RateNever</key>
+	<string>Never</string>
+	<key>RateLater</key>
+	<string>Later</string>
 </dict>
 </plist>

@@ -24,11 +24,23 @@
  ****************************************************************************/
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
+#import "GADBannerViewDelegate.h"
+#import "RateThisAppDialog.h"
+@class GADBannerView, GADRequest;
 
-
-@interface RootViewController : UIViewController {
-
+@interface RootViewController : UIViewController<GADBannerViewDelegate, ADBannerViewDelegate>{
+@private
+    ADBannerView  *iAdBannerView;
+    GADBannerView *admobBannerView;
+    int receiveAdmob;
+    bool hasShowAds;
 }
 - (BOOL) prefersStatusBarHidden;
-
+- (void) initAdBannerView;
+- (void) showAdsView;
+- (void) hideAdsView;
+- (void) showRateAppViewCH;
+- (void) showRateAppViewEN;
+- (GADRequest *)createRequest;
 @end

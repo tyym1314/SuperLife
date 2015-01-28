@@ -54,7 +54,7 @@ void EditorUI::loadUI(const std::string& file)
     this->addChild(m_pPanel1);
     
     Scale9Sprite* scale9 = Scale9Sprite::create("slider_bar_button.png");
-    m_pEditBox = EditBox::create(Size(200,48), scale9);
+    m_pEditBox = EditBox::create(cocos2d::Size(200,48), scale9);
     m_pEditBox->setPosition(Vec2(750,480));
     m_pEditBox->setPlaceHolder(CommonUtility::getLocalString("TemplateName").c_str());
     m_pEditBox->setPlaceholderFontColor(Color3B::RED);
@@ -111,7 +111,7 @@ void EditorUI::loadUI(const std::string& file)
     m_pLabelErrorInfo->setColor(color);
     this->addChild(m_pLabelErrorInfo);
     
-    m_pTableView = TableView::create(this, Size(540, 64));
+    m_pTableView = TableView::create(this, cocos2d::Size(540, 64));
     m_pTableView->setDirection(ScrollView::Direction::HORIZONTAL);
     m_pTableView->setPosition(Vec2(40,25));
     m_pTableView->setColor(color);
@@ -142,9 +142,9 @@ void EditorUI::setColor(const cocos2d::Color3B& color)
     m_pTableView->setColor(color);
     m_pTableView->reloadData();
 }
-Size EditorUI::cellSizeForTable(TableView *table)
+cocos2d::Size EditorUI::cellSizeForTable(TableView *table)
 {
-    return Size(64, 64);
+    return cocos2d::Size(64, 64);
 }
 TableViewCell* EditorUI::tableCellAtIndex(TableView *table, ssize_t idx)
 {

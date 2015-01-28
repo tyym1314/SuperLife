@@ -9,6 +9,7 @@
 #include "ShopScene.h"
 #include "UIMgr.h"
 #include "UIConst.h"
+#include "NativeBridge.h"
 USING_NS_CC;
 //构造
 ShopScene::ShopScene()
@@ -23,9 +24,11 @@ void ShopScene::onEnter()
 {
     BaseScene::onEnter();
     m_pShopUI = UIMgr::getInstance()->createUI(SHOP_UI);
+    NativeBridge::getInstance()->showAdsView();
 }
 void ShopScene::onExit()
 {
+    NativeBridge::getInstance()->hideAdsView();
     BaseScene::onExit();
 }
 // 更新处理

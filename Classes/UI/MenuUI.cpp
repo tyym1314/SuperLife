@@ -31,7 +31,7 @@ MenuUI::~MenuUI()
 // 加载文件
 void MenuUI::loadUI(const std::string& file)
 {
-    Size visibleSize = Director::getInstance()->getVisibleSize();
+    cocos2d::Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     Color3B color = SceneFactory::getInstance()->getSceneColor();
     auto labelTitle = Label::createWithTTF(CommonUtility::getLocalString("MainTitle"), CommonUtility::getLocalString("MainFont"), 120);

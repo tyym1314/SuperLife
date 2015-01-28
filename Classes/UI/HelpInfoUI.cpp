@@ -34,7 +34,7 @@ void HelpInfoUI::loadUI(const std::string& file)
 {
     Color3B color = SceneFactory::getInstance()->getSceneColor();
     
-    Size size = Director::getInstance()->getVisibleSize();
+    cocos2d::Size size = Director::getInstance()->getVisibleSize();
     m_pTableView = TableView::create(this, size);
     m_pTableView->setDirection(ScrollView::Direction::HORIZONTAL);
     m_pTableView->setColor(color);
@@ -78,7 +78,7 @@ cocos2d::Size HelpInfoUI::cellSizeForTable(cocos2d::extension::TableView *table)
 cocos2d::extension::TableViewCell* HelpInfoUI::tableCellAtIndex(cocos2d::extension::TableView *table, ssize_t idx)
 {
     CCLOG("%zd",idx);
-    Size size = Director::getInstance()->getVisibleSize();
+    cocos2d::Size size = Director::getInstance()->getVisibleSize();
     Color3B color = SceneFactory::getInstance()->getSceneColor();
     TableViewCell *cell = table->cellAtIndex(idx);
     if (!cell) {
@@ -88,7 +88,7 @@ cocos2d::extension::TableViewCell* HelpInfoUI::tableCellAtIndex(cocos2d::extensi
         switch (idx) {
             case 0:
                 {
-                    Label* desc = Label::createWithTTF(CommonUtility::getLocalString("GameDesc"),CommonUtility::getLocalString("CommonFont"), 25, Size(550, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
+                    Label* desc = Label::createWithTTF(CommonUtility::getLocalString("GameDesc"),CommonUtility::getLocalString("CommonFont"), 25, cocos2d::Size(550, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
                     desc->setPosition(Vec2(size.width*0.62f, size.height*0.5f));
                     cell->addChild(desc);
                     
@@ -99,16 +99,16 @@ cocos2d::extension::TableViewCell* HelpInfoUI::tableCellAtIndex(cocos2d::extensi
                 break;
             case 1:
                 {
-                    Label* gameRule = Label::createWithTTF(CommonUtility::getLocalString("GameRule"),CommonUtility::getLocalString("CommonFont"), 22, Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
+                    Label* gameRule = Label::createWithTTF(CommonUtility::getLocalString("GameRule"),CommonUtility::getLocalString("CommonFont"), 22, cocos2d::Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
                     gameRule->setPosition(Vec2(size.width*0.5f, size.height*0.62f));
                     cell->addChild(gameRule);
                     
-                    Label* detail = Label::createWithTTF(CommonUtility::getLocalString("GameRuleDetail"),CommonUtility::getLocalString("CommonFont"), 22, Size(660, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
+                    Label* detail = Label::createWithTTF(CommonUtility::getLocalString("GameRuleDetail"),CommonUtility::getLocalString("CommonFont"), 22, cocos2d::Size(660, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
                     detail->setPosition(Vec2(size.width*0.6f, size.height*0.435f));
                     
                     cell->addChild(detail);
                     
-                    Label* ruleEnd = Label::createWithTTF(CommonUtility::getLocalString("GameRuleEnd"),CommonUtility::getLocalString("CommonFont"), 22, Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
+                    Label* ruleEnd = Label::createWithTTF(CommonUtility::getLocalString("GameRuleEnd"),CommonUtility::getLocalString("CommonFont"), 22, cocos2d::Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
                     ruleEnd->setPosition(Vec2(size.width*0.5f, size.height*0.15f));
                     cell->addChild(ruleEnd);
                     
@@ -131,15 +131,15 @@ cocos2d::extension::TableViewCell* HelpInfoUI::tableCellAtIndex(cocos2d::extensi
                 break;
             case 2:
                 {
-                    Label* patterns = Label::createWithTTF(CommonUtility::getLocalString("Patterns"),CommonUtility::getLocalString("CommonFont"), 22, Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
+                    Label* patterns = Label::createWithTTF(CommonUtility::getLocalString("Patterns"),CommonUtility::getLocalString("CommonFont"), 22, cocos2d::Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
                     patterns->setPosition(Vec2(size.width*0.5f, size.height*0.6f));
                     cell->addChild(patterns);
                     
-                    Label* stillLifes = Label::createWithTTF(CommonUtility::getLocalString("Stable"),CommonUtility::getLocalString("CommonFont"), 22, Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
+                    Label* stillLifes = Label::createWithTTF(CommonUtility::getLocalString("Stable"),CommonUtility::getLocalString("CommonFont"), 22, cocos2d::Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
                     stillLifes->setPosition(Vec2(size.width*0.5f, size.height*0.52f));
                     cell->addChild(stillLifes);
                     
-                    Label* oscillators = Label::createWithTTF(CommonUtility::getLocalString("Oscillating"),CommonUtility::getLocalString("CommonFont"), 22, Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
+                    Label* oscillators = Label::createWithTTF(CommonUtility::getLocalString("Oscillating"),CommonUtility::getLocalString("CommonFont"), 22, cocos2d::Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
                     oscillators->setPosition(Vec2(size.width*0.5f, size.height*0.21f));
                     cell->addChild(oscillators);
                     
@@ -182,11 +182,11 @@ cocos2d::extension::TableViewCell* HelpInfoUI::tableCellAtIndex(cocos2d::extensi
                 break;
             case 3:
                 {
-                    Label* spaceships = Label::createWithTTF(CommonUtility::getLocalString("Moving"),CommonUtility::getLocalString("CommonFont"), 22, Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
+                    Label* spaceships = Label::createWithTTF(CommonUtility::getLocalString("Moving"),CommonUtility::getLocalString("CommonFont"), 22, cocos2d::Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
                     spaceships->setPosition(Vec2(size.width*0.5f, size.height*0.6f));
                     cell->addChild(spaceships);
                     
-                    Label* chaos = Label::createWithTTF(CommonUtility::getLocalString("Infinite"),CommonUtility::getLocalString("CommonFont"), 22, Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
+                    Label* chaos = Label::createWithTTF(CommonUtility::getLocalString("Infinite"),CommonUtility::getLocalString("CommonFont"), 22, cocos2d::Size(850, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
                     chaos->setPosition(Vec2(size.width*0.5f, size.height*0.25f));
                     cell->addChild(chaos);
                     
@@ -218,7 +218,7 @@ cocos2d::extension::TableViewCell* HelpInfoUI::tableCellAtIndex(cocos2d::extensi
                 break;
             case 4:
                 {
-                    Label* webSites = Label::createWithTTF(CommonUtility::getLocalString("WebSites"),CommonUtility::getLocalString("CommonFont"), 25, Size(660, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
+                    Label* webSites = Label::createWithTTF(CommonUtility::getLocalString("WebSites"),CommonUtility::getLocalString("CommonFont"), 25, cocos2d::Size(660, 300), TextHAlignment::LEFT, TextVAlignment::TOP);
                     webSites->setPosition(Vec2(size.width*0.5f, size.height*0.5f));
                     cell->addChild(webSites);
                 }
@@ -244,7 +244,7 @@ void HelpInfoUI::pressNextBtn(Ref* p,TouchEventType eventType)
     if(eventType == TouchEventType::ENDED)
     {
         SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
-        Size size = Director::getInstance()->getVisibleSize();
+        cocos2d::Size size = Director::getInstance()->getVisibleSize();
         m_pTableView->setContentOffsetInDuration(Vec2(-size.width*m_pCurrentPage,0),0.5f);
         m_pCurrentPage++;
         if(m_pCurrentPage == 2)

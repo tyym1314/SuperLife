@@ -9,6 +9,7 @@
 #include "HelpInfoScene.h"
 #include "UIMgr.h"
 #include "UIConst.h"
+#include "NativeBridge.h"
 USING_NS_CC;
 //构造
 HelpInfoScene::HelpInfoScene()
@@ -23,9 +24,11 @@ void HelpInfoScene::onEnter()
 {
     BaseScene::onEnter();
     m_pHelpInfoUI = UIMgr::getInstance()->createUI(HELPINFO_UI);
+    NativeBridge::getInstance()->showAdsView();
 }
 void HelpInfoScene::onExit()
 {
+    NativeBridge::getInstance()->hideAdsView();
     BaseScene::onExit();
 }
 // 更新处理

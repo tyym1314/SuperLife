@@ -22,8 +22,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
     director->setProjection(cocos2d::Director::Projection::_2D);
     
-    Size screenSize = glview->getFrameSize();
-    Size designSize = Size(960, 640);
+    cocos2d::Size screenSize = glview->getFrameSize();
+    cocos2d::Size designSize = cocos2d::Size(960, 640);
     
     std::vector<std::string> searchPaths;
     std::vector<std::string> resDirOrders;

@@ -26,7 +26,10 @@
 #import "RootViewController.h"
 #import "cocos2d.h"
 #import "CCEAGLView.h"
-
+extern "C"{
+#import "GADBannerView.h"
+}
+#import "GADRequest.h"
 @implementation RootViewController
 
 /*
@@ -110,5 +113,158 @@
     [super dealloc];
 }
 
+- (void)initAdBannerView {
+    hasShowAds = false;
+    receiveAdmob = 0;
+    iAdBannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+    if(iAdBannerView != nil)
+    {
+        // Initialize the banner at the bottom of the screen.
+        CGRect rect = CGRectMake(0, self.view.frame.size.height - iAdBannerView.frame.size.height, iAdBannerView.frame.size.width, iAdBannerView.frame.size.height);
+        [iAdBannerView setFrame:rect];
+        [iAdBannerView setDelegate:self];
+        iAdBannerView.hidden = YES;
+        [self.view addSubview:iAdBannerView];
+    }
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        
+        CGPoint origin = CGPointMake(0,self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeBanner).height);
+        // NOTE:
+        // Add your publisher ID here and fill in the GADAdSize constant for the ad
+        // you would like to request.
+        admobBannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner origin:origin];
+    } else {
+        CGPoint origin = CGPointMake(0,self.view.frame.size.height - CGSizeFromGADAdSize(kGADAdSizeFullBanner).height);
+        // NOTE:
+        // Add your publisher ID here and fill in the GADAdSize constant for the ad
+        // you would like to request.
+        admobBannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeFullBanner origin:origin];
+    }
+    if(admobBannerView != nil)
+    {
+        admobBannerView.adUnitID = @"ca-app-pub-3628527903442392/8408101866";
+        //// Interstitial ca-app-pub-3628527903442392/3838301464
+        //admobBannerView.delegate = self;
+        [admobBannerView setRootViewController:self];
+        admobBannerView.hidden = YES;
+        [self.view addSubview:admobBannerView];
+        
+        //[admobBannerView loadRequest:[self createRequest]];
+    }
+}
+- (void) showAdsView {
+    if(admobBannerView != nil)
+    {
+        admobBannerView.delegate = self;
+        [admobBannerView loadRequest:[self createRequest]];
+    }
+    if(iAdBannerView != nil && iAdBannerView.bannerLoaded == YES)
+    {
+        iAdBannerView.hidden = NO;
+    }
+    hasShowAds = true;
+}
+- (void) hideAdsView {
+    if(admobBannerView != nil)
+    {
+        admobBannerView.delegate = nil;
+        admobBannerView.hidden = YES;
+    }
+    if(iAdBannerView != nil)
+    {
+        iAdBannerView.hidden = YES;
+    }
+}
+- (void) showRateAppViewCH {
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"chinese" ofType:@"plist"];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    NSString* rateTitle = [data objectForKey:@"RateTitle"];
+    NSString* rateMessage = [data objectForKey:@"RateMessage"];
+    NSString* rateNow = [data objectForKey:@"RateNow"];
+    NSString* rateNever = [data objectForKey:@"RateNever"];
+    NSString* rateLater = [data objectForKey:@"RateLater"];
+    [RateThisAppDialog threeButtonLayoutWithTitle:rateTitle
+                                          message:rateMessage
+                                rateNowButtonText:rateNow
+                              rateLaterButtonText:rateLater
+                              rateNeverButtonText:rateNever];
+}
+- (void) showRateAppViewEN {
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"english" ofType:@"plist"];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    NSString* rateTitle = [data objectForKey:@"RateTitle"];
+    NSString* rateMessage = [data objectForKey:@"RateMessage"];
+    NSString* rateNow = [data objectForKey:@"RateNow"];
+    NSString* rateNever = [data objectForKey:@"RateNever"];
+    NSString* rateLater = [data objectForKey:@"RateLater"];
+    [RateThisAppDialog threeButtonLayoutWithTitle:rateTitle
+                                          message:rateMessage
+                                rateNowButtonText:rateNow
+                              rateLaterButtonText:rateLater
+                              rateNeverButtonText:rateNever];
+}
+- (GADRequest *)createRequest {
+    GADRequest *request = [GADRequest request];
+    // Requests test ads on devices you specify. Your test device ID is printed to the console when
+    // an ad request is made.
+    request.testDevices = [NSArray arrayWithObjects:
+                           GAD_SIMULATOR_ID,                               // Simulator
+                           nil];
+    return request;
+}
+
+#pragma mark ADBannerViewDelegate impl
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
+{
+    NSLog(@"bannerViewActionShouldBegin");
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner
+{
+    NSLog(@"bannerViewActionDidFinish");
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    NSLog(@"bannerViewActionDidFinish %d",iAdBannerView.bannerLoaded);
+    if(hasShowAds)
+        iAdBannerView.hidden = NO;
+    
+    if (admobBannerView != nil)
+    {
+        [admobBannerView setDelegate:nil];
+        [admobBannerView removeFromSuperview];
+        admobBannerView = nil;
+    }
+    [iAdBannerView.superview bringSubviewToFront:iAdBannerView];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    NSLog(@"didFailToReceiveAdWithError:%@",error);
+    iAdBannerView.hidden = YES;
+}
+
+#pragma mark GADBannerViewDelegate impl
+
+- (void)adViewDidReceiveAd:(GADBannerView *)adView {
+    NSLog(@"Received ad");
+    admobBannerView.hidden = NO;
+    receiveAdmob++;
+    if (receiveAdmob > 5 && iAdBannerView != nil)
+    {
+        [iAdBannerView setDelegate:nil];
+        [iAdBannerView removeFromSuperview];
+        iAdBannerView = nil;
+    }
+    [admobBannerView.superview bringSubviewToFront:admobBannerView];
+}
+
+- (void)adView:(GADBannerView *)view
+didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"Failed to receive ad with error: %@", [error localizedFailureReason]);
+}
 
 @end

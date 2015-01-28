@@ -80,8 +80,8 @@
             // but this might be better than trying to pedict what they might be thinking. after all this
             // if just a friendly reminder convenience thing, not a bridge that the user must be forced
             // to cross before continuing to use the app.
-            if (result == YES)
-                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"app_rating_disabled"];
+            //if (result == YES)
+            //    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"app_rating_disabled"];
             
             // update the launch tally
             [[NSUserDefaults standardUserDefaults] setInteger:numberOfTimesLaunched forKey:@"number_of_times_launched"];
