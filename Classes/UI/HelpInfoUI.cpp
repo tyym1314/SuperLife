@@ -49,7 +49,7 @@ void HelpInfoUI::loadUI(const std::string& file)
     this->addChild(m_pLabelHelpInfo);
     
     m_pNextBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pNextBtn->setPosition(Vec2(750,80));
+    m_pNextBtn->setPosition(Vec2(770,50));
     m_pNextBtn->addTouchEventListener(CC_CALLBACK_2(HelpInfoUI::pressNextBtn, this));
     m_pNextBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pNextBtn->setTitleColor(color);
@@ -59,7 +59,7 @@ void HelpInfoUI::loadUI(const std::string& file)
     this->addChild(m_pNextBtn);
     
     m_pBackBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pBackBtn->setPosition(Vec2(750,80));
+    m_pBackBtn->setPosition(Vec2(770,50));
     m_pBackBtn->addTouchEventListener(CC_CALLBACK_2(HelpInfoUI::pressBackBtn, this));
     m_pBackBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pBackBtn->setTitleColor(color);

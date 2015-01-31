@@ -23,20 +23,23 @@ public:
     // 加载文件
     void loadUI(const std::string& file);
 protected:
-    // 点击删除广告按钮
-    void pressRemoveAdsViewBtn(Ref* p,TouchEventType eventType);
-    // 点击解锁全部模版按钮
-    void pressUnlockAllTemplatesBtn(Ref* p,TouchEventType eventType);
-    // 点击解锁编辑模式按钮
-    void pressUnlockEditorModeBtn(Ref* p,TouchEventType eventType);
+    // 购买标准版本
+    void pressStandardBtn(Ref* p,TouchEventType eventType);
+    // 购买专业完整版本
+    void pressProfessionalBtn(Ref* p,TouchEventType eventType);
+    // 点恢复购买
+    void pressRestorePurchaseBtn(Ref* p,TouchEventType eventType);
     // 点击返回按钮
     void pressBackBtn(Ref* p,TouchEventType eventType);
 private:
     BaseScene*                              m_pOwnerScene;
     cocos2d::Label*                         m_pLabelShop;
-    cocos2d::ui::Button*                    m_pRemoveAdsViewBtn;
-    cocos2d::ui::Button*                    m_pUnlockAllTemplatesBtn;
-    cocos2d::ui::Button*                    m_pUnlockEditorModeBtn;
+    cocos2d::Label*                         m_pLabelStandard;
+    cocos2d::Label*                         m_pLabelProfessional;
+    cocos2d::Label*                         m_pLabelRestorePurchase;
+    cocos2d::ui::Button*                    m_pStandardBtn;
+    cocos2d::ui::Button*                    m_pProfessionalBtn;
+    cocos2d::ui::Button*                    m_pRestorePurchaseBtn;
     cocos2d::ui::Button*                    m_pBackBtn;
     
 };

@@ -167,5 +167,15 @@ Wiki Site: http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<string>Never</string>
 	<key>RateLater</key>
 	<string>Later</string>
+	<key>Standard</key>
+	<string>Standard version: Remove Ads, unlock standard pattern module and 36 parttens. </string>
+	<key>Professional</key>
+	<string>The full professional version: Remove Ads, unlock all levels, unlock patterns edit module and all 102 parttens.</string>
+	<key>RestoreTips</key>
+	<string>Restore purchase: If you&apos;ve already purchased the above 2 version, you can click the restore purchase button to restore.</string>
+	<key>RestorePurchase</key>
+	<string>RESTORE PURCHASE</string>
+	<key>Purchase</key>
+	<string>PURCHASE</string>
 </dict>
 </plist>

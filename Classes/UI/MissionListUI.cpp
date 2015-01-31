@@ -49,7 +49,7 @@ void MissionListUI::loadUI(const std::string& file)
     m_pScrollView->setTouchEnabled(true);
     
     m_pBackBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pBackBtn->setPosition(Vec2(750,50));
+    m_pBackBtn->setPosition(Vec2(770,50));
     m_pBackBtn->addTouchEventListener(CC_CALLBACK_2(MissionListUI::pressBackBtn, this));
     m_pBackBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pBackBtn->setTitleColor(color);

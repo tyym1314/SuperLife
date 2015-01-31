@@ -508,6 +508,9 @@
 		55D802761A734F5C008C4FA8 /* Beep_Error01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55D802741A734F3F008C4FA8 /* Beep_Error01.wav */; };
 		55D802781A735D54008C4FA8 /* bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55D802771A735D54008C4FA8 /* bg.mp3 */; };
 		55D802791A735D60008C4FA8 /* bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55D802771A735D54008C4FA8 /* bg.mp3 */; };
+		55DD8CA61A7A61AB004DC96B /* PaymentMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 55DD8CA41A7A61AB004DC96B /* PaymentMgr.mm */; };
+		55DD8CA91A7A6EC5004DC96B /* IOSIAP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 55DD8CA81A7A6EC5004DC96B /* IOSIAP.mm */; };
+		55DD8CAC1A7A7A9F004DC96B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DD8CAB1A7A7A9F004DC96B /* Reachability.m */; };
 		55E758CC1A778AA100FF85DE /* NativeBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 55E758CA1A778AA100FF85DE /* NativeBridge.mm */; };
 		55E758CF1A778CC100FF85DE /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E758CE1A778CC100FF85DE /* AdSupport.framework */; };
 		55E758D31A778D0400FF85DE /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E758D21A778D0400FF85DE /* MediaPlayer.framework */; };
@@ -1003,6 +1006,12 @@
 		55D8026D1A734188008C4FA8 /* god7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = god7.wav; sourceTree = "<group>"; };
 		55D802741A734F3F008C4FA8 /* Beep_Error01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep_Error01.wav; sourceTree = "<group>"; };
 		55D802771A735D54008C4FA8 /* bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bg.mp3; sourceTree = "<group>"; };
+		55DD8CA41A7A61AB004DC96B /* PaymentMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PaymentMgr.mm; sourceTree = "<group>"; };
+		55DD8CA51A7A61AB004DC96B /* PaymentMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMgr.h; sourceTree = "<group>"; };
+		55DD8CA71A7A6EC5004DC96B /* IOSIAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSIAP.h; sourceTree = "<group>"; };
+		55DD8CA81A7A6EC5004DC96B /* IOSIAP.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IOSIAP.mm; sourceTree = "<group>"; };
+		55DD8CAA1A7A7A9F004DC96B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		55DD8CAB1A7A7A9F004DC96B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		55E758CA1A778AA100FF85DE /* NativeBridge.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = NativeBridge.mm; sourceTree = "<group>"; };
 		55E758CB1A778AA100FF85DE /* NativeBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeBridge.h; sourceTree = "<group>"; };
 		55E758CE1A778CC100FF85DE /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
@@ -1108,6 +1117,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				55DD8C9B1A7A3E09004DC96B /* Payment */,
 				556E876B199BB5FE00781CB0 /* Utilities */,
 				55A96E581998E7F00007B62D /* UI */,
 				55C4ACD7198F782A001612D6 /* GameScenes */,
@@ -1648,6 +1658,20 @@
 				55D8026D1A734188008C4FA8 /* god7.wav */,
 			);
 			path = sound;
+			sourceTree = "<group>";
+		};
+		55DD8C9B1A7A3E09004DC96B /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				55DD8CAA1A7A7A9F004DC96B /* Reachability.h */,
+				55DD8CAB1A7A7A9F004DC96B /* Reachability.m */,
+				55DD8CA71A7A6EC5004DC96B /* IOSIAP.h */,
+				55DD8CA81A7A6EC5004DC96B /* IOSIAP.mm */,
+				55DD8CA41A7A61AB004DC96B /* PaymentMgr.mm */,
+				55DD8CA51A7A61AB004DC96B /* PaymentMgr.h */,
+			);
+			name = Payment;
+			path = ../Classes/Payment;
 			sourceTree = "<group>";
 		};
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
@@ -2263,6 +2287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55DD8CA91A7A6EC5004DC96B /* IOSIAP.mm in Sources */,
 				5588F09819A32425004CAAF6 /* ColorCheckBox.cpp in Sources */,
 				558CDCA21A5FB65300E0E6AD /* ShopScene.cpp in Sources */,
 				5588F09E19A3939C004CAAF6 /* MissionScene.cpp in Sources */,
@@ -2272,6 +2297,7 @@
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				5588F0A119A395B0004CAAF6 /* MissionUI.cpp in Sources */,
 				5573F4C41A5B7AC50090C7CB /* CommonUtility.cpp in Sources */,
+				55DD8CAC1A7A7A9F004DC96B /* Reachability.m in Sources */,
 				55C4ACE1198FB52A001612D6 /* MainScene.cpp in Sources */,
 				55A2953519A22E8D00B4C540 /* SpeedSlider.cpp in Sources */,
 				55C4ACCE198F5F83001612D6 /* TerrainMgr.cpp in Sources */,
@@ -2293,6 +2319,7 @@
 				55A96E5B1998E7FC0007B62D /* UIMgr.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				5534EF8F1A5CD44D00F9437D /* EditorScene.cpp in Sources */,
+				55DD8CA61A7A61AB004DC96B /* PaymentMgr.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				558CDCA51A5FB7DB00E0E6AD /* HelpInfoUI.cpp in Sources */,
 				55C4ACDA198F785F001612D6 /* BaseScene.cpp in Sources */,

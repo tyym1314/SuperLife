@@ -27,8 +27,10 @@
 #import "cocos2d.h"
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "IOSIAP.h"
 #import "Flurry.h"
 #include "NativeBridge.h"
+#include "PaymentMgr.h"
 @implementation AppController
 
 #pragma mark -
@@ -65,6 +67,11 @@ static AppDelegate s_sharedApplication;
     ///add ad banner view
     [_viewController initAdBannerView];
     NativeBridge::getInstance()->setRootViewController(_viewController);
+    
+    ///init IAP
+    _iap = [[IOSIAP alloc] init];
+    PaymentMgr::getInstance()->setIAP(_iap);
+    [_iap requestProducts:@"org.wanax.superlife.newproduct1,org.wanax.superlife.newproduct2"];
 
     // Set RootViewController to window
     if ( [[UIDevice currentDevice].systemVersion floatValue] < 6.0)
