@@ -101,6 +101,7 @@
 		555D8FFC1A75369D00AB1630 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555D8FFB1A75369D00AB1630 /* SystemConfiguration.framework */; };
 		555D8FFE1A7537FD00AB1630 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555D8FFD1A7537FD00AB1630 /* Security.framework */; };
 		555D90061A753AFE00AB1630 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555D90051A753AFE00AB1630 /* StoreKit.framework */; };
+		555F5B361A7E769E0010D1B0 /* NativeBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 55E758CA1A778AA100FF85DE /* NativeBridge.mm */; };
 		556E8754199B957D00781CB0 /* MenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556E8752199B957D00781CB0 /* MenuScene.cpp */; };
 		556E8759199B971000781CB0 /* MenuUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556E8757199B971000781CB0 /* MenuUI.cpp */; };
 		556E875B199B9D4F00781CB0 /* MenuUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556E8757199B971000781CB0 /* MenuUI.cpp */; };
@@ -2332,6 +2333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				555F5B361A7E769E0010D1B0 /* NativeBridge.mm in Sources */,
 				557537E71A6E518E00A7C96A /* CongratulationsUI.cpp in Sources */,
 				557537E31A6E4E1E00A7C96A /* CongratulationsScene.cpp in Sources */,
 				55A764FD1A66628B002466C1 /* EditLevelUI.cpp in Sources */,
@@ -2427,7 +2429,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iOS Development: haibo wang (FT8YEJMWBH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: haibo wang (FT8YEJMWBH)";
 				COMPRESS_PNG_FILES = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -2453,6 +2455,7 @@
 					"$(PROJECT_DIR)/ios/GoogleMobileAdsSdkiOS-6.12.2",
 				);
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = SuperLife;
 				PROVISIONING_PROFILE = "54e7853e-a889-4be2-a90c-e2fb7be1f239";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2464,8 +2467,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iOS Distribution: haibo wang";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iOS Development: haibo wang (FT8YEJMWBH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: haibo wang (FT8YEJMWBH)";
 				COMPRESS_PNG_FILES = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
@@ -2489,7 +2492,8 @@
 					"$(PROJECT_DIR)/ios/GoogleMobileAdsSdkiOS-6.12.2",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "f82be188-234c-4a0b-a708-0ac9b7a0341b";
+				PRODUCT_NAME = SuperLife;
+				PROVISIONING_PROFILE = "54e7853e-a889-4be2-a90c-e2fb7be1f239";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

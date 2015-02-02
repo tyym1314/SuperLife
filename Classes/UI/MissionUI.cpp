@@ -416,6 +416,7 @@ void MissionUI::pressNextLevelBtn(Ref* p,TouchEventType eventType)
         }
         else
         {
+            EncrytionUtility::setBoolForKey("UnlockSimpleTemplates", true);
             BaseScene* congratulationsScene = SceneFactory::getInstance()->createSceneByID(SCENE_CONGRATULATIONS);
             Director::getInstance()->replaceScene(congratulationsScene);
         }

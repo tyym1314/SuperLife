@@ -7,6 +7,7 @@
 //
 
 #include "NativeBridge.h"
+#include "EncrytionUtility.h"
 USING_NS_CC;
 static NativeBridge *s_NativeBridge = nullptr;
 NativeBridge::NativeBridge()
@@ -32,19 +33,26 @@ void NativeBridge::setRootViewController(RootViewController* viewController)
 #endif
 void NativeBridge::showAdsView()
 {
-    CCLOG("showAdsView");
-    //return;
-    if(mViewController != nil)
-        [mViewController showAdsView];
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    if (!EncrytionUtility::getBoolForKey("RemoveAds",false)) {
+        CCLOG("showAdsView");
+        //return;
+        if(mViewController != nil)
+            [mViewController showAdsView];
+    }
+#endif
 }
 void NativeBridge::hideAdsView()
 {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     CCLOG("hideAdsView");
     if(mViewController != nil)
         [mViewController hideAdsView];
+#endif
 }
 void NativeBridge::showRateAppView()
 {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     CCLOG("showRateAppView");
     if(mViewController != nil)
     {
@@ -59,4 +67,13 @@ void NativeBridge::showRateAppView()
                 break;
         }
     }
+#endif
+}
+void NativeBridge::resetDefaultUserSetting()
+{
+    EncrytionUtility::setBoolForKey("RemoveAds",false);
+    EncrytionUtility::setBoolForKey("UnlockSimpleTemplates", false);
+    EncrytionUtility::setBoolForKey("UnlockAllTemplates", false);
+    EncrytionUtility::setIntegerForKey("MaxUnlockLevel", 1);
+    EncrytionUtility::setBoolForKey("UnlockEditMode", false);
 }

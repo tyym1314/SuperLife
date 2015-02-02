@@ -384,7 +384,7 @@ bool Slider::hitTest(const cocos2d::Vec2 &pt)
 {
     Vec2 nsp = this->_slidBallNormalRenderer->convertToNodeSpace(pt);
     Size ballSize = this->_slidBallNormalRenderer->getContentSize();
-    Rect ballRect = Rect(0,0, ballSize.width, ballSize.height);
+    Rect ballRect = Rect(0,0, ballSize.width*2, ballSize.height*2);
     if (ballRect.containsPoint(nsp)) {
         return true;
     }

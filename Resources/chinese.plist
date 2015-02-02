@@ -162,7 +162,7 @@ http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<key>Congratulations</key>
 	<string>恭喜您</string>
 	<key>CongratulationsDetail</key>
-	<string>    您已经通过所有关卡任务，所有模版都已经解锁，我们会在后续版本中更新更多关卡，敬请期待！</string>
+	<string>    您已经通过所有关卡任务，标准的36个模版都已经解锁，我们会在后续版本中更新更多关卡，敬请期待！</string>
 	<key>RateTitle</key>
 	<string>评价超级生命</string>
 	<key>RateMessage</key>
@@ -177,11 +177,11 @@ http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<string>标准版本: 移除广告，解锁标准模板功能，解锁预制的36种模板。</string>
 	<key>Professional</key>
 	<string>完整专业版本：移除广告，解锁全部关卡，开启模板编辑模式功能，解锁所有预制的102种模板。</string>
-	<key>RestoreTips</key>
-	<string>恢复购买：如果你之前已经购买过上面2个版本，可以点击恢复购买按钮进行恢复。</string>
-	<key>RestorePurchase</key>
-	<string>恢复购买</string>
 	<key>Purchase</key>
 	<string>购买</string>
+	<key>NetworkAvalid</key>
+	<string>网络不可用，请检查网络!</string>
+	<key>IAPAvalid</key>
+	<string>当前IAP不可用，请重试!</string>
 </dict>
 </plist>

@@ -9,6 +9,7 @@
 #import "IOSIAP.h"
 #import "Reachability.h"
 #include "PaymentMgr.h"
+#include "CommonUtility.h"
 
 #define OUTPUT_LOG(...)     if (self.debug) NSLog(__VA_ARGS__);
 
@@ -71,9 +72,9 @@ NSArray * _transactionArray;
     NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
     //监测网络是否可用
     if ([curReach currentReachabilityStatus] == NotReachable) {
-        
+        NSString* networkInfo = [NSString stringWithCString:CommonUtility::getLocalString("NetworkAvalid").c_str() encoding:NSUTF8StringEncoding];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:@"网络不可用"
+                                                        message:networkInfo
                                                        delegate:self
                                               cancelButtonTitle:@"YES"
                                               otherButtonTitles:nil];
@@ -83,8 +84,9 @@ NSArray * _transactionArray;
     //监测 IAP是否可用
     if ([SKPaymentQueue canMakePayments] == NO) {
         
+        NSString* iapInfo = [NSString stringWithCString:CommonUtility::getLocalString("IAPAvalid").c_str() encoding:NSUTF8StringEncoding];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"IAP不可用"
+                                                        message:iapInfo
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -116,11 +118,12 @@ NSArray * _transactionArray;
     
     [IOSIAP onRequestProduct:self withRet:RequestFail withProducts:NULL];
     _productsRequest = nil;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 //SKProductsRequestDelegate needed
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
-    _productArray = response.products;
+    _productArray = [[NSArray alloc] initWithArray:response.products];
     NSArray * skProducts = response.products;
     for (SKProduct * skProduct in skProducts) {
         OUTPUT_LOG(@"Found product: %@ %@ %0.2f",
@@ -129,6 +132,7 @@ NSArray * _transactionArray;
                    skProduct.price.floatValue);
     }
     [IOSIAP onRequestProduct:self withRet:RequestSuccees withProducts:skProducts];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 //SKPaymentTransactionObserver needed

@@ -26,6 +26,7 @@ public:
     void hideAdsView();
     void showRateAppView();
     
+    void resetDefaultUserSetting();
 private:
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     RootViewController* mViewController;

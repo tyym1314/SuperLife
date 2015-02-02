@@ -45,6 +45,10 @@ public:
     
     void onPayResult(PayResultCode ret, const char* msg);
     void onRequestProductsResult(ProductRequest ret, TProductList info);
+    
+    const TProductList& getProductList() const;
+    
+    void setPayResultListener(PayResultListener* listener);
 private:
     static bool     m_bPaying;
     TProductInfo    m_currentInfo;
@@ -52,7 +56,7 @@ private:
     IOSIAP*         m_pIAP;
 #endif
     PayResultListener*  m_pPayResultListener;
-    
+    TProductList        m_ProductList;
 };
 
 

@@ -156,7 +156,7 @@ Wiki Site: http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<key>Congratulations</key>
 	<string>CONGRATULATIONS</string>
 	<key>CongratulationsDetail</key>
-	<string>You have been through all the missions, all patterns have been unlocked, we will update more levels in subsequent versions, To be continued.!</string>
+	<string>You have been through all the missions, standard 36 patterns have been unlocked, we will update more levels in subsequent versions, To be continued.!</string>
 	<key>RateTitle</key>
 	<string>Rate SuperLife</string>
 	<key>RateMessage</key>
@@ -171,11 +171,11 @@ Wiki Site: http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<string>Standard version: Remove Ads, unlock standard pattern module and 36 parttens. </string>
 	<key>Professional</key>
 	<string>The full professional version: Remove Ads, unlock all levels, unlock patterns edit module and all 102 parttens.</string>
-	<key>RestoreTips</key>
-	<string>Restore purchase: If you&apos;ve already purchased the above 2 version, you can click the restore purchase button to restore.</string>
-	<key>RestorePurchase</key>
-	<string>RESTORE PURCHASE</string>
 	<key>Purchase</key>
 	<string>PURCHASE</string>
+	<key>NetworkAvalid</key>
+	<string>The network is not available, please check!</string>
+	<key>IAPAvalid</key>
+	<string>The IAP is not available, please try again!</string>
 </dict>
 </plist>

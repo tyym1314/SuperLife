@@ -11,6 +11,7 @@
 #include "UIMgr.h"
 #include "UIConst.h"
 #include "NativeBridge.h"
+#include "EncrytionUtility.h"
 USING_NS_CC;
 
 //构造
@@ -32,7 +33,10 @@ void MissionScene::setCurrentLevel(int level)
 void MissionScene::onEnter()
 {
     BaseScene::onEnter();
-    TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(40, 95));
+    if (!EncrytionUtility::getBoolForKey("RemoveAds",false))
+        TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(40, 105));
+    else
+        TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(40, 95));
     m_pMissionUI = UIMgr::getInstance()->createUI(MISSION_UI);
     NativeBridge::getInstance()->showAdsView();
 }

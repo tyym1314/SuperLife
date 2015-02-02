@@ -12,6 +12,7 @@
 #include "GameConst.h"
 #include "CommonUtility.h"
 #include "SimpleAudioEngine.h"
+#include "EncrytionUtility.h"
 USING_NS_CC;
 using namespace CocosDenshion;
 // 构造函数
@@ -19,6 +20,10 @@ ShopUI::ShopUI(BaseScene* owner)
 {
     m_pOwnerScene = nullptr;
     m_pLabelShop = nullptr;
+    m_pLabelStandard = nullptr;
+    m_pLabelProfessional = nullptr;
+    m_pStandardBtn = nullptr;
+    m_pProfessionalBtn = nullptr;
     m_pBackBtn = nullptr;
 }
 // 析构函数
@@ -36,7 +41,7 @@ void ShopUI::loadUI(const std::string& file)
     this->addChild(m_pLabelShop);
     
     m_pLabelStandard = Label::createWithTTF(CommonUtility::getLocalString("Standard"), CommonUtility::getLocalString("CommonFont"), 60);
-    m_pLabelStandard->setPosition(Vec2(350,500));
+    m_pLabelStandard->setPosition(Vec2(350,400));
     m_pLabelStandard->setDimensions(600, 140);
     m_pLabelStandard->setColor(color);
     m_pLabelStandard->setScale(0.5f);
@@ -44,22 +49,14 @@ void ShopUI::loadUI(const std::string& file)
     
     
     m_pLabelProfessional = Label::createWithTTF(CommonUtility::getLocalString("Professional"), CommonUtility::getLocalString("CommonFont"), 60);
-    m_pLabelProfessional->setPosition(Vec2(350,350));
+    m_pLabelProfessional->setPosition(Vec2(350,250));
     m_pLabelProfessional->setDimensions(600, 200);
     m_pLabelProfessional->setColor(color);
     m_pLabelProfessional->setScale(0.5f);
     this->addChild(m_pLabelProfessional);
     
-    
-    m_pLabelRestorePurchase = Label::createWithTTF(CommonUtility::getLocalString("RestoreTips"), CommonUtility::getLocalString("CommonFont"), 60);
-    m_pLabelRestorePurchase->setPosition(Vec2(350,200));
-    m_pLabelRestorePurchase->setDimensions(600, 250);
-    m_pLabelRestorePurchase->setColor(color);
-    m_pLabelRestorePurchase->setScale(0.5f);
-    this->addChild(m_pLabelRestorePurchase);
-    
     m_pStandardBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pStandardBtn->setPosition(Vec2(800,500));
+    m_pStandardBtn->setPosition(Vec2(800,400));
     m_pStandardBtn->addTouchEventListener(CC_CALLBACK_2(ShopUI::pressStandardBtn, this));
     m_pStandardBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pStandardBtn->setTitleColor(color);
@@ -69,7 +66,7 @@ void ShopUI::loadUI(const std::string& file)
     this->addChild(m_pStandardBtn);
     
     m_pProfessionalBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pProfessionalBtn->setPosition(Vec2(800,350));
+    m_pProfessionalBtn->setPosition(Vec2(800,250));
     m_pProfessionalBtn->addTouchEventListener(CC_CALLBACK_2(ShopUI::pressProfessionalBtn, this));
     m_pProfessionalBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pProfessionalBtn->setTitleColor(color);
@@ -77,16 +74,6 @@ void ShopUI::loadUI(const std::string& file)
     m_pProfessionalBtn->setTitleText(CommonUtility::getLocalString("Purchase"));
     m_pProfessionalBtn->setColor(color);
     this->addChild(m_pProfessionalBtn);
-    
-    m_pRestorePurchaseBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pRestorePurchaseBtn->setPosition(Vec2(800,200));
-    m_pRestorePurchaseBtn->addTouchEventListener(CC_CALLBACK_2(ShopUI::pressRestorePurchaseBtn, this));
-    m_pRestorePurchaseBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
-    m_pRestorePurchaseBtn->setTitleColor(color);
-    m_pRestorePurchaseBtn->setTitleFontSize(20);
-    m_pRestorePurchaseBtn->setTitleText(CommonUtility::getLocalString("RestorePurchase"));
-    m_pRestorePurchaseBtn->setColor(color);
-    this->addChild(m_pRestorePurchaseBtn);
     
     m_pBackBtn = ui::Button::create("btnLBN.png","btnLBD.png");
     m_pBackBtn->setPosition(Vec2(770,50));
@@ -97,13 +84,19 @@ void ShopUI::loadUI(const std::string& file)
     m_pBackBtn->setTitleText(CommonUtility::getLocalString("Back"));
     m_pBackBtn->setColor(color);
     this->addChild(m_pBackBtn);
+    
+    PaymentMgr::getInstance()->setPayResultListener(this);
 }
 // 购买标准版本
 void ShopUI::pressStandardBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
-        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        if(PaymentMgr::getInstance()->getProductList().size()>0)
+        {
+            SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+            PaymentMgr::getInstance()->payForProduct(PaymentMgr::getInstance()->getProductList()[0]);
+        }
     }
 
 }
@@ -112,17 +105,13 @@ void ShopUI::pressProfessionalBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
     {
-        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        if(PaymentMgr::getInstance()->getProductList().size()>0)
+        {
+            SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+            PaymentMgr::getInstance()->payForProduct(PaymentMgr::getInstance()->getProductList()[1]);
+        }
     }
 
-}
-// 点恢复购买
-void ShopUI::pressRestorePurchaseBtn(Ref* p,TouchEventType eventType)
-{
-    if(eventType == TouchEventType::ENDED)
-    {
-        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
-    }
 }
 // 点击返回按钮
 void ShopUI::pressBackBtn(Ref* p,TouchEventType eventType)
@@ -133,4 +122,33 @@ void ShopUI::pressBackBtn(Ref* p,TouchEventType eventType)
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
         Director::getInstance()->replaceScene(mainScene);
     }
+}
+
+void ShopUI::onPayResult(PayResultCode ret, const char* msg, TProductInfo info)
+{
+    if(ret == kPaySuccess || ret == kPayCancel)
+    {
+        if(info == PaymentMgr::getInstance()->getProductList()[0])
+        {
+            SimpleAudioEngine::getInstance()->playEffect("god7.wav");
+            EncrytionUtility::setBoolForKey("RemoveAds",true);
+            EncrytionUtility::setBoolForKey("UnlockSimpleTemplates", true);
+            BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+            Director::getInstance()->replaceScene(mainScene);
+        }
+        else if(info == PaymentMgr::getInstance()->getProductList()[1])
+        {
+            SimpleAudioEngine::getInstance()->playEffect("god7.wav");
+            EncrytionUtility::setBoolForKey("RemoveAds",true);
+            EncrytionUtility::setBoolForKey("UnlockAllTemplates", true);
+            EncrytionUtility::setIntegerForKey("MaxUnlockLevel", MAX_LEVEL);
+            EncrytionUtility::setBoolForKey("UnlockEditMode", true);
+            BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+            Director::getInstance()->replaceScene(mainScene);
+        }
+        else
+            SimpleAudioEngine::getInstance()->playEffect("Beep_Error01.wav");
+    }
+    else
+        SimpleAudioEngine::getInstance()->playEffect("Beep_Error01.wav");
 }

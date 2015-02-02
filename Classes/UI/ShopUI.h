@@ -12,8 +12,9 @@
 #include "cocos2d.h"
 #include "CocosGUI.h"
 #include "IUIReader.h"
+#include "PaymentMgr.h"
 class BaseScene;
-class ShopUI : public cocos2d::ui::Layout, public IUIReader
+class ShopUI : public cocos2d::ui::Layout, public IUIReader, public PayResultListener
 {
 public:
     // 构造函数
@@ -27,21 +28,18 @@ protected:
     void pressStandardBtn(Ref* p,TouchEventType eventType);
     // 购买专业完整版本
     void pressProfessionalBtn(Ref* p,TouchEventType eventType);
-    // 点恢复购买
-    void pressRestorePurchaseBtn(Ref* p,TouchEventType eventType);
     // 点击返回按钮
     void pressBackBtn(Ref* p,TouchEventType eventType);
+    ///支付回调
+    void onPayResult(PayResultCode ret, const char* msg, TProductInfo info);
 private:
     BaseScene*                              m_pOwnerScene;
     cocos2d::Label*                         m_pLabelShop;
     cocos2d::Label*                         m_pLabelStandard;
     cocos2d::Label*                         m_pLabelProfessional;
-    cocos2d::Label*                         m_pLabelRestorePurchase;
     cocos2d::ui::Button*                    m_pStandardBtn;
     cocos2d::ui::Button*                    m_pProfessionalBtn;
-    cocos2d::ui::Button*                    m_pRestorePurchaseBtn;
     cocos2d::ui::Button*                    m_pBackBtn;
-    
 };
 
 #endif /* defined(__SuperLife__ShopUI__) */

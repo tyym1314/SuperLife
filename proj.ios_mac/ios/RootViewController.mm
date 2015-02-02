@@ -157,6 +157,7 @@ extern "C"{
     if(admobBannerView != nil)
     {
         admobBannerView.delegate = self;
+        admobBannerView.hidden = NO;
         [admobBannerView loadRequest:[self createRequest]];
     }
     if(iAdBannerView != nil && iAdBannerView.bannerLoaded == YES)
@@ -175,6 +176,7 @@ extern "C"{
     {
         iAdBannerView.hidden = YES;
     }
+    hasShowAds = false;
 }
 - (void) showRateAppViewCH {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"chinese" ofType:@"plist"];
@@ -210,6 +212,7 @@ extern "C"{
     // an ad request is made.
     request.testDevices = [NSArray arrayWithObjects:
                            GAD_SIMULATOR_ID,                               // Simulator
+                           @"63c2655bf2b6d8b7776d3e37639a6a0add8ea741",
                            nil];
     return request;
 }
@@ -253,7 +256,7 @@ extern "C"{
     NSLog(@"Received ad");
     admobBannerView.hidden = NO;
     receiveAdmob++;
-    if (receiveAdmob > 5 && iAdBannerView != nil)
+    if (receiveAdmob > 3 && iAdBannerView != nil)
     {
         [iAdBannerView setDelegate:nil];
         [iAdBannerView removeFromSuperview];

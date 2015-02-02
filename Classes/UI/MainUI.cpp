@@ -163,6 +163,7 @@ void MainUI::setColor(const cocos2d::Color3B& color)
     m_pControlPanel->setColor(color);
     m_pBackBtn->setTitleColor(color);
     m_pBackBtn->setColor(color);
+    m_pRestoreBtn->setTitleColor(color);
     m_pRestoreBtn->setColor(color);
     m_pTableView->setColor(color);
     m_pTableView->reloadData();

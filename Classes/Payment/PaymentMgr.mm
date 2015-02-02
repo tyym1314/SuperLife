@@ -55,6 +55,9 @@ void PaymentMgr::payForProduct(TProductInfo info)
     {
         if (m_pIAP != nil) {
             
+            m_bPaying = true;
+            m_currentInfo = info;
+            
             NSMutableDictionary* dict = [NSMutableDictionary dictionary];
             std::map<std::string, std::string>::const_iterator it;
             for (it = info.begin(); it != info.end(); ++it)
@@ -82,4 +85,14 @@ void PaymentMgr::onRequestProductsResult(ProductRequest ret, TProductList info)
 {
     if(m_pPayResultListener != nullptr)
         m_pPayResultListener->onRequestProductsResult(ret, info);
+    if(ret == RequestSuccees)
+        m_ProductList = info;
+}
+const TProductList& PaymentMgr::getProductList() const
+{
+    return m_ProductList;
+}
+void PaymentMgr::setPayResultListener(PayResultListener* listener)
+{
+    m_pPayResultListener = listener;
 }

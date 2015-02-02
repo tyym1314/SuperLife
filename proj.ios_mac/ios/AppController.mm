@@ -31,6 +31,7 @@
 #import "Flurry.h"
 #include "NativeBridge.h"
 #include "PaymentMgr.h"
+#include "EncrytionUtility.h"
 @implementation AppController
 
 #pragma mark -
@@ -64,10 +65,13 @@ static AppDelegate s_sharedApplication;
     _viewController.wantsFullScreenLayout = YES;
     _viewController.view = eaglView;
     
-    ///add ad banner view
-    [_viewController initAdBannerView];
-    NativeBridge::getInstance()->setRootViewController(_viewController);
+    //NativeBridge::getInstance()->resetDefaultUserSetting();
     
+    if (!EncrytionUtility::getBoolForKey("RemoveAds",false)) {
+        ///add ad banner view
+        [_viewController initAdBannerView];
+    }
+    NativeBridge::getInstance()->setRootViewController(_viewController);
     ///init IAP
     _iap = [[IOSIAP alloc] init];
     PaymentMgr::getInstance()->setIAP(_iap);
