@@ -28,6 +28,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     std::vector<std::string> searchPaths;
     std::vector<std::string> resDirOrders;
     
+    searchPaths.push_back(FileUtils::getInstance()->getWritablePath());
+    
     Platform platform = Application::getInstance()->getTargetPlatform();
     if (platform ==  Platform::OS_IPHONE)
     {

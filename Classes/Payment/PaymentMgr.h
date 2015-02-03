@@ -27,7 +27,9 @@ class PayResultListener
 {
 public:
     virtual void onPayResult(PayResultCode ret, const char* msg, TProductInfo info) = 0;
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     virtual void onRequestProductsResult(ProductRequest ret, TProductList info){}
+#endif
 };
 
 class PaymentMgr : public cocos2d::Ref
@@ -44,8 +46,9 @@ public:
     void payForProduct(TProductInfo info);
     
     void onPayResult(PayResultCode ret, const char* msg);
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     void onRequestProductsResult(ProductRequest ret, TProductList info);
-    
+#endif
     const TProductList& getProductList() const;
     
     void setPayResultListener(PayResultListener* listener);

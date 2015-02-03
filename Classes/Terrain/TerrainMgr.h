@@ -57,6 +57,8 @@ public:
     void loadTemplate(const std::string& templateName);
     //保存模版
     void saveTemplate(const std::string& name);
+    //删除模版
+    void removeTemplate(const std::string& name);
     //获取模版数量
     ssize_t getTemplateCount();
     //是否有次模版

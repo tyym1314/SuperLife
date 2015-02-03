@@ -5,7 +5,7 @@
 	<key>GoalCellGeneration</key>
 	<integer>6</integer>
 	<key>GoalCellNum</key>
-	<integer>12</integer>
+	<integer>10</integer>
 	<key>LevelName</key>
 	<string>Verylonghouse</string>
 	<key>LevelType</key>

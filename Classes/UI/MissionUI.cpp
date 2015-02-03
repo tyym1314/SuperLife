@@ -307,7 +307,7 @@ void MissionUI::checkWin()
                         m_pStartBtn->setVisible(false);
                         m_pRetryBtn->setVisible(false);
                         m_pNextLevelBtn->setVisible(true);
-                        SimpleAudioEngine::getInstance()->playEffect("God7.wav");
+                        SimpleAudioEngine::getInstance()->playEffect("god7.wav");
                     }
                     int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
                     if(m_nCurrentLevel > maxUnlockLevel)
@@ -335,7 +335,7 @@ void MissionUI::checkWin()
                         m_pStartBtn->setVisible(false);
                         m_pRetryBtn->setVisible(false);
                         m_pNextLevelBtn->setVisible(true);
-                        SimpleAudioEngine::getInstance()->playEffect("God7.wav");
+                        SimpleAudioEngine::getInstance()->playEffect("god7.wav");
                     }
                     int maxUnlockLevel = EncrytionUtility::getIntegerForKey("MaxUnlockLevel", 1);
                     if(m_nCurrentLevel > maxUnlockLevel)

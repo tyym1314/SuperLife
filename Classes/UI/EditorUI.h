@@ -41,6 +41,8 @@ protected:
     void pressSaveBtn(Ref* p,TouchEventType eventType);
     // 点击重置按钮
     void pressResetBtn(Ref* p,TouchEventType eventType);
+    // 点击删除按钮
+    void pressDeleteBtn(Ref* p,TouchEventType eventType);
     // 点击返回按钮
     void pressBackBtn(Ref* p,TouchEventType eventType);
 private:
@@ -51,6 +53,7 @@ private:
     cocos2d::ui::Button*            m_pEditBtn;
     cocos2d::ui::Button*            m_pSaveBtn;
     cocos2d::ui::Button*            m_pResetBtn;
+    cocos2d::ui::Button*            m_pDeleteBtn;
     cocos2d::ui::Button*            m_pBackBtn;
     cocos2d::extension::TableView*  m_pTableView;
     cocos2d::Label*                 m_pLabelErrorInfo;

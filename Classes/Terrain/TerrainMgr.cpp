@@ -66,6 +66,7 @@ void TerrainMgr::addTerrain(TerrainCell::CELL_TYPE cell_type, int rows, int colu
     if(cell_type == TerrainCell::RECTANGLE)
     {
         m_pDrawNode->setPosition(radius*cos(M_PI_4), radius*cos(M_PI_4));
+        m_pDrawNode->setContentSize(cocos2d::Size(rows*radius*cos(M_PI_4)*2, columns*radius*cos(M_PI_4)*2));
         m_pScrollView->setBounceable(false);
         m_pScrollView->setViewSize(cocos2d::Size(rows*radius*cos(M_PI_4)*2, columns*radius*cos(M_PI_4)*2));
         m_pScrollView->setContentSize(cocos2d::Size(rows*radius*cos(M_PI_4)*2, columns*radius*cos(M_PI_4)*2));
@@ -518,7 +519,7 @@ void TerrainMgr::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_even
             }
             else
             {
-                if(!cell->isLevelCell() && m_bEnableAddTerrainCell)
+                if(!cell->isLevelCell())
                 {
                     newCellColor = Color4F(Color4B(color.r, color.g, color.b, 100));
                     cell->setColor(newCellColor);
@@ -537,13 +538,14 @@ void TerrainMgr::onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *unused_
 //加载模版
 void TerrainMgr::loadTemplates(bool simple, bool all)
 {
+    FileUtils::getInstance()->purgeCachedEntries();
     if(all)
         m_dictTemplates = FileUtils::getInstance()->getValueMapFromFile("templates.plist");
     else if(simple)
         m_dictTemplates = FileUtils::getInstance()->getValueMapFromFile("simpletemplates.plist");
     else
         return;
-        
+    m_vecTemplatesName.clear();
     ValueMap::iterator iter;
     for(iter = m_dictTemplates.begin();iter != m_dictTemplates.end(); iter++)
     {
@@ -595,7 +597,27 @@ void TerrainMgr::saveTemplate(const std::string& name)
     
     if(std::find(m_vecTemplatesName.begin(), m_vecTemplatesName.end(), name) == m_vecTemplatesName.end())
         m_vecTemplatesName.push_back(name);
+#if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
     std::string fullpath = FileUtils::getInstance()->getWritablePath() + "/templates/templates.plist";
+#else
+    std::string fullpath = FileUtils::getInstance()->getWritablePath() + "/templates.plist";
+#endif
+    FileUtils::getInstance()->writeToFile(m_dictTemplates, fullpath);
+}
+//删除模版
+void TerrainMgr::removeTemplate(const std::string& name)
+{
+    m_dictTemplates.erase(name);
+    auto iter = std::find(m_vecTemplatesName.begin(), m_vecTemplatesName.end(), name);
+    if (iter != m_vecTemplatesName.end())
+    {
+        m_vecTemplatesName.erase(iter);
+    }
+#if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+    std::string fullpath = FileUtils::getInstance()->getWritablePath() + "/templates/templates.plist";
+#else
+    std::string fullpath = FileUtils::getInstance()->getWritablePath() + "/templates.plist";
+#endif
     FileUtils::getInstance()->writeToFile(m_dictTemplates, fullpath);
 }
 //获取模版数量

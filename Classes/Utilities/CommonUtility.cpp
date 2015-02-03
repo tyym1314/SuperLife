@@ -90,7 +90,6 @@ void CommonUtility::renderNodeToFile(const std::string& fileName, cocos2d::Node*
     auto renderTexture = RenderTexture::create(size.width, size.height, Texture2D::PixelFormat::RGBA8888);
     
     //清空并开始获取
-    renderNode->setPosition(offset);
     renderTexture->beginWithClear(0.0f, 0.0f, 0.0f, 1.0f);
     //遍历渲染节点对象，填充纹理到RenderTexture中
     renderNode->visit();

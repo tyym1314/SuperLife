@@ -81,6 +81,7 @@ void PaymentMgr::onPayResult(PayResultCode ret, const char* msg)
     m_currentInfo.clear();
     CCLOG("Pay result is : %d(%s)", (int) ret, msg);
 }
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 void PaymentMgr::onRequestProductsResult(ProductRequest ret, TProductList info)
 {
     if(m_pPayResultListener != nullptr)
@@ -88,6 +89,7 @@ void PaymentMgr::onRequestProductsResult(ProductRequest ret, TProductList info)
     if(ret == RequestSuccees)
         m_ProductList = info;
 }
+#endif
 const TProductList& PaymentMgr::getProductList() const
 {
     return m_ProductList;

@@ -39,6 +39,7 @@ private:
     cocos2d::Label*                         m_pLabelProfessional;
     cocos2d::ui::Button*                    m_pStandardBtn;
     cocos2d::ui::Button*                    m_pProfessionalBtn;
+    cocos2d::Label*                         m_pLabelShopTips;
     cocos2d::ui::Button*                    m_pBackBtn;
 };
 

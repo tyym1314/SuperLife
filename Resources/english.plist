@@ -44,6 +44,8 @@
 	<string>EDIT</string>
 	<key>Save</key>
 	<string>SAVE</string>
+	<key>Delete</key>
+	<string>DELETE</string>
 	<key>SelectMission</key>
 	<string>SELECT MISSION</string>
 	<key>Slow</key>
@@ -90,6 +92,8 @@
 	<string>Saved failed!</string>
 	<key>EditOK</key>
 	<string>You can edit now!</string>
+	<key>DeleteOK</key>
+	<string>Deleted successfully!</string>
 	<key>NextPage</key>
 	<string>NEXT</string>
 	<key>GameDesc</key>
@@ -171,6 +175,8 @@ Wiki Site: http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<string>Standard version: Remove Ads, unlock standard pattern module and 36 parttens. </string>
 	<key>Professional</key>
 	<string>The full professional version: Remove Ads, unlock all levels, unlock patterns edit module and all 102 parttens.</string>
+	<key>ShopTips</key>
+	<string>TIPS: If you already purchased the game version above, click the purchase button again to restore transaction, not be charged!</string>
 	<key>Purchase</key>
 	<string>PURCHASE</string>
 	<key>NetworkAvalid</key>

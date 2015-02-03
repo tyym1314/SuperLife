@@ -13,6 +13,7 @@
 #include "CommonUtility.h"
 #include "EncrytionUtility.h"
 #include "SimpleAudioEngine.h"
+#include "TerrainMgr.h"
 USING_NS_CC;
 using namespace CocosDenshion;
 // 构造函数
@@ -61,5 +62,6 @@ void CongratulationsUI::pressBackBtn(Ref* p,TouchEventType eventType)
         SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
         Director::getInstance()->replaceScene(mainScene);
+        TerrainMgr::getInstance()->setEnableAddTerrainCell(true);
     }
 }

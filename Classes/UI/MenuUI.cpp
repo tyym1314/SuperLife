@@ -117,6 +117,17 @@ void MenuUI::loadUI(const std::string& file)
         this->addChild(m_pFreeModeBtn);
         
 #if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+        
+        m_pEditorBtn = ui::Button::create("btnLBN.png", "btnLBD.png");
+        m_pEditorBtn->setPosition(Vec2(origin.x + visibleSize.width/2,180));
+        m_pEditorBtn->addTouchEventListener(CC_CALLBACK_2(MenuUI::pressEditorBtn, this));
+        m_pEditorBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
+        m_pEditorBtn->setTitleColor(color);
+        m_pEditorBtn->setTitleFontSize(24);
+        m_pEditorBtn->setTitleText(CommonUtility::getLocalString("EditorMode"));
+        m_pEditorBtn->setColor(color);
+        this->addChild(m_pEditorBtn);
+        
         m_pEditLevelBtn = ui::Button::create("btnLBN.png", "btnLBD.png");
         m_pEditLevelBtn->setPosition(Vec2(origin.x + visibleSize.width/1.3f,180));
         m_pEditLevelBtn->addTouchEventListener(CC_CALLBACK_2(MenuUI::pressEditLevelBtn, this));

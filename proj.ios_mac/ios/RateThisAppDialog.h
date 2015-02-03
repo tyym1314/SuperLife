@@ -16,7 +16,7 @@
 
 // this is how many times your app can launch before showing this dialog
 // ie. setting this to 2 will cause the dialog to appear on the second time the app is launched
-#define PROMPT_AFTER_X_LAUNCHES 20
+#define PROMPT_AFTER_X_LAUNCHES 30
 
 @interface RateThisAppDialog : NSObject {
     

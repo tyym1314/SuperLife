@@ -44,6 +44,8 @@
 	<string>编辑</string>
 	<key>Save</key>
 	<string>保存</string>
+	<key>Delete</key>
+	<string>删除</string>
 	<key>SelectMission</key>
 	<string>选择任务</string>
 	<key>Slow</key>
@@ -90,6 +92,8 @@
 	<string>保存失败!</string>
 	<key>EditOK</key>
 	<string>可以编辑!</string>
+	<key>DeleteOK</key>
+	<string>删除成功</string>
 	<key>NextPage</key>
 	<string>下一页</string>
 	<key>GameDesc</key>
@@ -177,6 +181,8 @@ http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<string>标准版本: 移除广告，解锁标准模板功能，解锁预制的36种模板。</string>
 	<key>Professional</key>
 	<string>完整专业版本：移除广告，解锁全部关卡，开启模板编辑模式功能，解锁所有预制的102种模板。</string>
+	<key>ShopTips</key>
+	<string>如果你已经购买过以上的游戏版本，再点击购买按钮来恢复交易，不会扣款!</string>
 	<key>Purchase</key>
 	<string>购买</string>
 	<key>NetworkAvalid</key>
