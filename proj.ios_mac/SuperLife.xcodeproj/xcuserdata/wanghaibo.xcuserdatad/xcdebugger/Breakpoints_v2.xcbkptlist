@@ -586,11 +586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/UI/EditorUI.cpp"
-            timestampString = "444636300.46872"
+            timestampString = "444669281.155604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "EditorUI::tableCellAtIndex(TableView *table, ssize_t idx)"
             landmarkType = "5">
          </BreakpointContent>
@@ -602,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/UI/EditorUI.cpp"
-            timestampString = "444636300.46872"
+            timestampString = "444669281.155604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "EditorUI::setColor(const cocos2d::Color3B&amp; color)"
             landmarkType = "5">
          </BreakpointContent>
@@ -664,11 +664,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/UI/EditorUI.cpp"
-            timestampString = "444637773.323751"
+            timestampString = "444669281.155604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "EditorUI::pressSaveBtn(Ref* p,TouchEventType eventType)"
             landmarkType = "5">
          </BreakpointContent>
@@ -696,11 +696,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/UI/EditorUI.cpp"
-            timestampString = "444636300.46872"
+            timestampString = "444669281.155604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "EditorUI::tableCellAtIndex(TableView *table, ssize_t idx)"
             landmarkType = "5">
          </BreakpointContent>
@@ -712,11 +712,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/UI/EditorUI.cpp"
-            timestampString = "444636300.46872"
+            timestampString = "444669281.155604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "EditorUI::numberOfCellsInTableView(TableView *table)"
             landmarkType = "5">
          </BreakpointContent>
@@ -728,11 +728,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/UI/EditorUI.cpp"
-            timestampString = "444637773.323751"
+            timestampString = "444669281.155604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "EditorUI::pressSaveBtn(Ref* p,TouchEventType eventType)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1844,11 +1844,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/UI/EditorUI.cpp"
-            timestampString = "444636300.46872"
+            timestampString = "444669281.155604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "EditorUI::tableCellTouched(cocos2d::extension::TableView* table, cocos2d::extension::TableViewCell* cell)"
             landmarkType = "5">
          </BreakpointContent>
@@ -3106,13 +3106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/UI/ShopUI.cpp"
-            timestampString = "444623907.582543"
+            timestampString = "444671574.871336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "ShopUI::pressStandardBtn(Ref* p,TouchEventType eventType)"
-            landmarkType = "5">
+            startingLineNumber = "110"
+            endingLineNumber = "110">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3122,12 +3120,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/UI/ShopUI.cpp"
-            timestampString = "444623907.582543"
+            timestampString = "444671574.871336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "ShopUI::pressStandardBtn(Ref* p,TouchEventType eventType)"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "ShopUI::loadUI(const std::string&amp; file)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3394,11 +3392,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/UI/ShopUI.cpp"
-            timestampString = "444623957.110323"
+            timestampString = "444671574.871336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "ShopUI::pressProfessionalBtn(Ref* p,TouchEventType eventType)"
             landmarkType = "5">
          </BreakpointContent>
@@ -3442,11 +3440,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/UI/MenuUI.cpp"
-            timestampString = "444630606.044552"
+            timestampString = "444670126.153955"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "MenuUI::loadUI(const std::string&amp; file)"
             landmarkType = "5">
          </BreakpointContent>
@@ -3634,11 +3632,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/UI/EditorUI.cpp"
-            timestampString = "444637773.323751"
+            timestampString = "444669281.155604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
             landmarkName = "EditorUI::pressSaveBtn(Ref* p,TouchEventType eventType)"
             landmarkType = "5">
          </BreakpointContent>
@@ -3650,11 +3648,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/UI/EditorUI.cpp"
-            timestampString = "444636300.46872"
+            timestampString = "444669281.155604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "EditorUI::tableCellAtIndex(TableView *table, ssize_t idx)"
             landmarkType = "5">
          </BreakpointContent>
@@ -3694,7 +3692,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Terrain/TerrainMgr.cpp"
@@ -3720,6 +3718,102 @@
             startingLineNumber = "522"
             endingLineNumber = "522"
             landmarkName = "TerrainMgr::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/UI/EditLevelUI.cpp"
+            timestampString = "444669143.820137"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "360"
+            endingLineNumber = "360"
+            landmarkName = "EditLevelUI::pressBackBtn(Ref* p,TouchEventType eventType)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/UI/ShopUI.cpp"
+            timestampString = "444671574.871336"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "ShopUI::onPayResult(PayResultCode ret, const char* msg, TProductInfo info)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/UI/ShopUI.cpp"
+            timestampString = "444671574.871336"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "ShopUI::onPayResult(PayResultCode ret, const char* msg, TProductInfo info)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/UI/MenuUI.cpp"
+            timestampString = "444670180.96798"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "MenuUI::loadUI(const std::string&amp; file)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/UI/ShopUI.cpp"
+            timestampString = "444672593.92364"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "ShopUI::onRequestProductsResult(ProductRequest ret, TProductList info)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/UI/ShopUI.cpp"
+            timestampString = "444672593.92364"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "ShopUI::onRequestProductsResult(ProductRequest ret, TProductList info)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

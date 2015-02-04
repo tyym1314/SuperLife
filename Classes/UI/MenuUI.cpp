@@ -43,7 +43,6 @@ void MenuUI::loadUI(const std::string& file)
     
     bool unlockEditMode = EncrytionUtility::getBoolForKey("UnlockEditMode", false);
     if (unlockEditMode) {
-        
         m_pMissionModeBtn = ui::Button::create("btnLBN.png", "btnLBD.png");
         m_pMissionModeBtn->setPosition(Vec2(origin.x + visibleSize.width/3,340));
         m_pMissionModeBtn->addTouchEventListener(CC_CALLBACK_2(MenuUI::pressMissionModeBtn, this));

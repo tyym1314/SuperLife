@@ -76,8 +76,19 @@ void ShopUI::loadUI(const std::string& file)
     m_pProfessionalBtn->setColor(color);
     this->addChild(m_pProfessionalBtn);
     
-    m_pLabelShopTips = Label::createWithTTF(CommonUtility::getLocalString("ShopTips"), CommonUtility::getLocalString("CommonFont"), 60);
-    m_pLabelShopTips->setPosition(Vec2(450,150));
+    if(PaymentMgr::getInstance()->getProductList().size()>0)
+    {
+        m_pLabelShopTips = Label::createWithTTF(CommonUtility::getLocalString("ShopTips"), CommonUtility::getLocalString("CommonFont"), 60);
+        m_pStandardBtn->setEnabled(true);
+        m_pProfessionalBtn->setEnabled(true);
+    }
+    else
+    {
+        m_pLabelShopTips = Label::createWithTTF(CommonUtility::getLocalString("ShopNotOK"), CommonUtility::getLocalString("CommonFont"), 60);
+        m_pStandardBtn->setEnabled(false);
+        m_pProfessionalBtn->setEnabled(false);
+    }
+    m_pLabelShopTips->setPosition(Vec2(470,150));
     m_pLabelShopTips->setDimensions(850, 200);
     m_pLabelShopTips->setColor(color);
     m_pLabelShopTips->setScale(0.5f);
@@ -168,3 +179,20 @@ void ShopUI::onPayResult(PayResultCode ret, const char* msg, TProductInfo info)
         SimpleAudioEngine::getInstance()->playEffect("Beep_Error01.wav");
 #endif
 }
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+void ShopUI::onRequestProductsResult(ProductRequest ret, TProductList info)
+{
+    if(ret == RequestSuccees && info.size()>0)
+    {
+        m_pLabelShopTips->setString(CommonUtility::getLocalString("ShopTips"));
+        m_pStandardBtn->setEnabled(true);
+        m_pProfessionalBtn->setEnabled(true);
+    }
+    else
+    {
+        m_pLabelShopTips->setString(CommonUtility::getLocalString("ShopNotOK"));
+        m_pStandardBtn->setEnabled(false);
+        m_pProfessionalBtn->setEnabled(false);
+    }
+}
+#endif

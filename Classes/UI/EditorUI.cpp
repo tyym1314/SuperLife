@@ -27,7 +27,6 @@ EditorUI::EditorUI(BaseScene* owner)
     m_pLabelMode    = nullptr;
     m_pPanel1       = nullptr;
     m_pEditBox      = nullptr;
-    m_pEditBtn      = nullptr;
     m_pSaveBtn      = nullptr;
     m_pResetBtn     = nullptr;
     m_pDeleteBtn    = nullptr;
@@ -63,19 +62,8 @@ void EditorUI::loadUI(const std::string& file)
     m_pEditBox->setColor(color);
     this->addChild(m_pEditBox);
     
-    m_pEditBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pEditBtn->setPosition(Vec2(680,350));
-    m_pEditBtn->addTouchEventListener(CC_CALLBACK_2(EditorUI::pressEditBtn, this));
-    m_pEditBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
-    m_pEditBtn->setTitleColor(color);
-    m_pEditBtn->setTitleFontSize(24);
-    m_pEditBtn->setTitleText(CommonUtility::getLocalString("Edit"));
-    m_pEditBtn->setColor(color);
-    m_pEditBtn->setScale(0.6f);
-    this->addChild(m_pEditBtn);
-    
     m_pSaveBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pSaveBtn->setPosition(Vec2(820,350));
+    m_pSaveBtn->setPosition(Vec2(750,400));
     m_pSaveBtn->addTouchEventListener(CC_CALLBACK_2(EditorUI::pressSaveBtn, this));
     m_pSaveBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pSaveBtn->setTitleColor(color);
@@ -86,7 +74,7 @@ void EditorUI::loadUI(const std::string& file)
     this->addChild(m_pSaveBtn);
     
     m_pResetBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pResetBtn->setPosition(Vec2(680,300));
+    m_pResetBtn->setPosition(Vec2(750,350));
     m_pResetBtn->addTouchEventListener(CC_CALLBACK_2(EditorUI::pressResetBtn, this));
     m_pResetBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pResetBtn->setTitleColor(color);
@@ -97,7 +85,7 @@ void EditorUI::loadUI(const std::string& file)
     this->addChild(m_pResetBtn);
     
     m_pDeleteBtn = ui::Button::create("btnLBN.png","btnLBD.png");
-    m_pDeleteBtn->setPosition(Vec2(820,300));
+    m_pDeleteBtn->setPosition(Vec2(750,300));
     m_pDeleteBtn->addTouchEventListener(CC_CALLBACK_2(EditorUI::pressDeleteBtn, this));
     m_pDeleteBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
     m_pDeleteBtn->setTitleColor(color);
@@ -143,12 +131,12 @@ void EditorUI::setColor(const cocos2d::Color3B& color)
     m_pLabelMode->setColor(color);
     m_pPanel1->setColor(color);
     m_pEditBox->setColor(color);
-    m_pEditBtn->setTitleColor(color);
-    m_pEditBtn->setColor(color);
     m_pSaveBtn->setTitleColor(color);
     m_pSaveBtn->setColor(color);
     m_pResetBtn->setTitleColor(color);
     m_pResetBtn->setColor(color);
+    m_pDeleteBtn->setTitleColor(color);
+    m_pDeleteBtn->setColor(color);
     m_pBackBtn->setTitleColor(color);
     m_pBackBtn->setColor(color);
     m_pTableView->setColor(color);
@@ -210,37 +198,15 @@ void EditorUI::tableCellTouched(cocos2d::extension::TableView* table, cocos2d::e
     {
         std::string strText = TerrainMgr::getInstance()->getTemplateName(m_nSelectIndex);
         m_pEditBox->setText(strText.c_str());
+        TerrainMgr::getInstance()->loadTemplate(strText);
     }
     else
-        m_pEditBox->setText("");
-}
-
-// 点击编辑按钮
-void EditorUI::pressEditBtn(Ref* p,TouchEventType eventType)
-{
-    if(eventType == TouchEventType::ENDED)
     {
-        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
-        std::string strText= m_pEditBox->getText();
-        if(m_nSelectIndex != -1)
-        {
-            strText = TerrainMgr::getInstance()->getTemplateName(m_nSelectIndex);
-            m_pEditBox->setText(strText.c_str());
-        }
-        if(strText.empty())
-        {
-            m_pLabelErrorInfo->setString(CommonUtility::getLocalString("ErrorInfo3"));
-            return;
-        }
-        if(!TerrainMgr::getInstance()->hasTemplate(strText))
-        {
-            m_pLabelErrorInfo->setString(CommonUtility::getLocalString("ErrorInfo4"));
-            return;
-        }
-        TerrainMgr::getInstance()->loadTemplate(strText);
-        m_pLabelErrorInfo->setString(CommonUtility::getLocalString("EditOK"));
+        TerrainMgr::getInstance()->resetTerrain();
+        m_pEditBox->setText("");
     }
 }
+
 // 点击保存按钮
 void EditorUI::pressSaveBtn(Ref* p,TouchEventType eventType)
 {
@@ -295,12 +261,7 @@ void EditorUI::pressDeleteBtn(Ref* p,TouchEventType eventType)
     if(eventType == TouchEventType::ENDED)
     {
         SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
-        std::string strText= m_pEditBox->getText();
-        if(m_nSelectIndex != -1)
-        {
-            strText = TerrainMgr::getInstance()->getTemplateName(m_nSelectIndex);
-            m_pEditBox->setText(strText.c_str());
-        }
+        std::string strText = m_pEditBox->getText();
         if(strText.empty())
         {
             m_pLabelErrorInfo->setString(CommonUtility::getLocalString("ErrorInfo3"));
@@ -311,10 +272,16 @@ void EditorUI::pressDeleteBtn(Ref* p,TouchEventType eventType)
             m_pLabelErrorInfo->setString(CommonUtility::getLocalString("ErrorInfo4"));
             return;
         }
-        TerrainMgr::getInstance()->removeTemplate(strText);
-        m_pTableView->reloadData();
-        m_pLabelErrorInfo->setString(CommonUtility::getLocalString("DeleteOK"));
-
+        if(m_nSelectIndex != -1)
+        {
+            strText = TerrainMgr::getInstance()->getTemplateName(m_nSelectIndex);
+            TerrainMgr::getInstance()->removeTemplate(strText);
+            m_pTableView->reloadData();
+            m_pLabelErrorInfo->setString(CommonUtility::getLocalString("DeleteOK"));
+            TerrainMgr::getInstance()->resetTerrain();
+            m_pEditBox->setText("");
+            m_nSelectIndex = -1;
+        }
     }
 }
 // 点击返回按钮
@@ -323,7 +290,7 @@ void EditorUI::pressBackBtn(Ref* p,TouchEventType eventType)
     if(eventType == TouchEventType::ENDED)
     {
         SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
-
+        SceneFactory::getInstance()->setSceneColor(MathUtility::randomColor());
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
         Director::getInstance()->replaceScene(mainScene);
     }

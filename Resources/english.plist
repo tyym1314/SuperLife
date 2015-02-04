@@ -40,8 +40,6 @@
 	<string>FAILED, RETRY</string>
 	<key>Back</key>
 	<string>BACK</string>
-	<key>Edit</key>
-	<string>EDIT</string>
 	<key>Save</key>
 	<string>SAVE</string>
 	<key>Delete</key>
@@ -59,7 +57,7 @@
 	<key>ErrorInfo2</key>
 	<string>The template name consists only of digital and English letters!</string>
 	<key>ErrorInfo3</key>
-	<string>Please select a template to edit!</string>
+	<string>Please select a template to delete!</string>
 	<key>ErrorInfo4</key>
 	<string>There is no template here by that name, please select again!</string>
 	<key>ErrorInfo5</key>
@@ -90,8 +88,6 @@
 	<string>Saved successfully!</string>
 	<key>SaveFailed</key>
 	<string>Saved failed!</string>
-	<key>EditOK</key>
-	<string>You can edit now!</string>
 	<key>DeleteOK</key>
 	<string>Deleted successfully!</string>
 	<key>NextPage</key>
@@ -177,6 +173,8 @@ Wiki Site: http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<string>The full professional version: Remove Ads, unlock all levels, unlock patterns edit module and all 102 parttens.</string>
 	<key>ShopTips</key>
 	<string>TIPS: If you already purchased the game version above, click the purchase button again to restore transaction, not be charged!</string>
+	<key>ShopNotOK</key>
+	<string>The store is not available, please check your network connection!</string>
 	<key>Purchase</key>
 	<string>PURCHASE</string>
 	<key>NetworkAvalid</key>

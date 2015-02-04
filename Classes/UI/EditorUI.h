@@ -35,8 +35,6 @@ public:
     
     void tableCellTouched(cocos2d::extension::TableView* table, cocos2d::extension::TableViewCell* cell);
 protected:
-    // 点击编辑按钮
-    void pressEditBtn(Ref* p,TouchEventType eventType);
     // 点击保存按钮
     void pressSaveBtn(Ref* p,TouchEventType eventType);
     // 点击重置按钮
@@ -50,7 +48,6 @@ private:
     cocos2d::Label*                 m_pLabelMode;
     cocos2d::Sprite*                m_pPanel1;
     cocos2d::extension::EditBox*    m_pEditBox;
-    cocos2d::ui::Button*            m_pEditBtn;
     cocos2d::ui::Button*            m_pSaveBtn;
     cocos2d::ui::Button*            m_pResetBtn;
     cocos2d::ui::Button*            m_pDeleteBtn;

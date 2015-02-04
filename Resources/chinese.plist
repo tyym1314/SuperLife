@@ -40,8 +40,6 @@
 	<string>任务失败,请重试</string>
 	<key>Back</key>
 	<string>返回</string>
-	<key>Edit</key>
-	<string>编辑</string>
 	<key>Save</key>
 	<string>保存</string>
 	<key>Delete</key>
@@ -59,7 +57,7 @@
 	<key>ErrorInfo2</key>
 	<string>模版名称只能由数字和英文字母组成!</string>
 	<key>ErrorInfo3</key>
-	<string>请先选择一个模版再编辑!</string>
+	<string>请先选择一个模版再删除!</string>
 	<key>ErrorInfo4</key>
 	<string>没有此名称的模版,请再选择！</string>
 	<key>ErrorInfo5</key>
@@ -90,8 +88,6 @@
 	<string>保存成功!</string>
 	<key>SaveFailed</key>
 	<string>保存失败!</string>
-	<key>EditOK</key>
-	<string>可以编辑!</string>
 	<key>DeleteOK</key>
 	<string>删除成功</string>
 	<key>NextPage</key>
@@ -182,7 +178,9 @@ http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<key>Professional</key>
 	<string>完整专业版本：移除广告，解锁全部关卡，开启模板编辑模式功能，解锁所有预制的102种模板。</string>
 	<key>ShopTips</key>
-	<string>如果你已经购买过以上的游戏版本，再点击购买按钮来恢复交易，不会扣款!</string>
+	<string>提示：如果你已经购买过以上的游戏版本，再点击购买按钮来恢复交易，不会扣款!</string>
+	<key>ShopNotOK</key>
+	<string>当前商店不可用，请检查网络是否正常!</string>
 	<key>Purchase</key>
 	<string>购买</string>
 	<key>NetworkAvalid</key>

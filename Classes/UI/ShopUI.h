@@ -32,6 +32,9 @@ protected:
     void pressBackBtn(Ref* p,TouchEventType eventType);
     ///支付回调
     void onPayResult(PayResultCode ret, const char* msg, TProductInfo info);
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    void onRequestProductsResult(ProductRequest ret, TProductList info);
+#endif
 private:
     BaseScene*                              m_pOwnerScene;
     cocos2d::Label*                         m_pLabelShop;
