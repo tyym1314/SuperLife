@@ -69,7 +69,7 @@
             // if this user default has not been set then it will be zero
             NSInteger numberOfTimesLaunched = [[NSUserDefaults standardUserDefaults] integerForKey:@"number_of_times_launched"] + 1;
             
-            NSLog(@"RateThisAppDialog :: number of times launched = %d / %d", numberOfTimesLaunched, PROMPT_AFTER_X_LAUNCHES);
+            NSLog(@"RateThisAppDialog :: number of times launched = %ld / %d", (long)numberOfTimesLaunched, PROMPT_AFTER_X_LAUNCHES);
             
             BOOL result = numberOfTimesLaunched >= PROMPT_AFTER_X_LAUNCHES;
             
@@ -98,7 +98,7 @@
 
 - (void)alertView:(UIAlertView*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"RateThisAppDialog :: clicked button index %d", buttonIndex);
+    NSLog(@"RateThisAppDialog :: clicked button index %ld", (long)buttonIndex);
     
     if (buttonIndex == 0)
     {

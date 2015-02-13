@@ -22,52 +22,7 @@ bool _isAddObserver = false;
 SKProductsRequest * _productsRequest;
 //productTransation
 NSArray * _transactionArray;
-
-- (void) payForProduct: (NSMutableDictionary*) cpInfo{
-    NSString * pid = [cpInfo objectForKey:@"productId"];
-    SKProduct *skProduct = [self getProductById:pid];
-    if(skProduct){
-        SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:skProduct];
-        [[SKPaymentQueue defaultQueue] addPayment:payment];
-        OUTPUT_LOG(@"add PaymentQueue");
-    }
-}
-- (void) setDebugMode: (BOOL) _debug{
-    self.debug = _debug;
-}
-
-+ (void) onPayResult:(id) obj withRet:(IAPResult) ret withMsg:(NSString*) msg
-{
-    const char* chMsg = [msg UTF8String];
-    PayResultCode cRet = (PayResultCode) ret;
-    PaymentMgr::getInstance()->onPayResult(cRet, chMsg);
-}
-+(void) onRequestProduct:(id)obj withRet:(ProductRequest) ret withProducts:(NSArray *)products{
-    
-    TProductList pdlist;
-    if (products) {
-        for(SKProduct *product in products){
-            TProductInfo info;
-            info.insert(std::make_pair("productId", std::string([product.productIdentifier UTF8String])));
-            info.insert(std::make_pair("productName", std::string([product.localizedTitle UTF8String])));
-            info.insert(std::make_pair("productPrice", std::string([[product.price stringValue] UTF8String])));
-            info.insert(std::make_pair("productDesc", std::string([product.localizedDescription UTF8String])));
-            pdlist.push_back(info);
-        }
-    }
-    PaymentMgr::getInstance()->onRequestProductsResult(ret,pdlist);
-}
-
-/*------------------------IAP functions-------------------------------*/
--(void)setServerMode{
-    _isServerMode = true;
-}
--(void)requestProducts:(NSString*) paramMap{
-    if(!_isAddObserver){
-        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-        _isAddObserver = true;
-    }
-    
++ (BOOL) checkIAP {
     Reachability* curReach = [Reachability reachabilityForInternetConnection];
     NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
     //监测网络是否可用
@@ -79,11 +34,10 @@ NSArray * _transactionArray;
                                               cancelButtonTitle:@"YES"
                                               otherButtonTitles:nil];
         [alert show];
-        return;
+        return NO;
     }
     //监测 IAP是否可用
     if ([SKPaymentQueue canMakePayments] == NO) {
-        
         NSString* iapInfo = [NSString stringWithCString:CommonUtility::getLocalString("IAPAvalid").c_str() encoding:NSUTF8StringEncoding];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                         message:iapInfo
@@ -91,17 +45,79 @@ NSArray * _transactionArray;
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-        return;
+        return NO;
     }
-    //显示网络连接状态
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    return YES;
+}
+- (void) payForProduct: (NSMutableDictionary*) cpInfo{
+    if([IOSIAP checkIAP])
+    {
+        //显示网络连接状态
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    NSArray *producIdArray = [paramMap componentsSeparatedByString:@","];
-    _productIdentifiers = [[NSSet alloc] initWithArray:producIdArray];
-    OUTPUT_LOG(@"param is %@",_productIdentifiers);
-    _productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:_productIdentifiers];
-    _productsRequest.delegate = self;
-    [_productsRequest start];
+        NSString * pid = [cpInfo objectForKey:@"productId"];
+        SKProduct *skProduct = [self getProductById:pid];
+        if(skProduct){
+            SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:skProduct];
+            [[SKPaymentQueue defaultQueue] addPayment:payment];
+            OUTPUT_LOG(@"add PaymentQueue");
+        }
+    }
+}
+
+- (void)restorePurchase {
+    if([IOSIAP checkIAP]){
+        //显示网络连接状态
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+    }
+}
+
+- (void) setDebugMode: (BOOL) _debug{
+    self.debug = _debug;
+}
+
++ (void) onPayResult:(id) obj withRet:(IAPResult) ret withMsg:(NSString*) msg
+{
+    const char* chMsg = [msg UTF8String];
+    PayResultCode cRet = (PayResultCode) ret;
+    PaymentMgr::getInstance()->onPayResult(cRet, chMsg);
+}
++ (void) onRequestProductResult:(id)obj withRet:(ProductsRequestResult) ret withProducts:(NSArray *)products withMsg:(NSString*) msg{
+    const char* chMsg = [msg UTF8String];
+    TProductList pdlist;
+    if (products) {
+        for(SKProduct *product in products){
+            TProductInfo info;
+            info.insert(std::make_pair("productId", std::string([product.productIdentifier UTF8String])));
+            info.insert(std::make_pair("productName", std::string([product.localizedTitle UTF8String])));
+            info.insert(std::make_pair("productPrice", std::string([[product.price stringValue] UTF8String])));
+            info.insert(std::make_pair("productDesc", std::string([product.localizedDescription UTF8String])));
+            pdlist.push_back(info);
+        }
+    }
+    PaymentMgr::getInstance()->onRequestProductsResult(ret,pdlist,chMsg);
+}
+/*------------------------IAP functions-------------------------------*/
+-(void)setServerMode{
+    _isServerMode = true;
+}
+-(void)requestProducts:(NSString*) paramMap{
+    if(!_isAddObserver){
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+        _isAddObserver = true;
+    }
+    if([IOSIAP checkIAP]) {
+        //显示网络连接状态
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+        NSArray *producIdArray = [paramMap componentsSeparatedByString:@","];
+        _productIdentifiers = [[NSSet alloc] initWithArray:producIdArray];
+        OUTPUT_LOG(@"param is %@",_productIdentifiers);
+        _productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:_productIdentifiers];
+        _productsRequest.delegate = self;
+        [_productsRequest start];
+    }
 }
 
 -(SKProduct *)getProductById:(NSString *)productid{
@@ -115,14 +131,14 @@ NSArray * _transactionArray;
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
     OUTPUT_LOG(@"Failed to load list of products.");
-    
-    [IOSIAP onRequestProduct:self withRet:RequestFail withProducts:NULL];
-    _productsRequest = nil;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [IOSIAP onRequestProductResult:self withRet:RequestFail withProducts:NULL withMsg:[error description]];
+    _productsRequest = nil;
 }
 
 //SKProductsRequestDelegate needed
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     _productArray = [[NSArray alloc] initWithArray:response.products];
     NSArray * skProducts = response.products;
     for (SKProduct * skProduct in skProducts) {
@@ -131,12 +147,12 @@ NSArray * _transactionArray;
                    skProduct.localizedTitle,
                    skProduct.price.floatValue);
     }
-    [IOSIAP onRequestProduct:self withRet:RequestSuccees withProducts:skProducts];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [IOSIAP onRequestProductResult:self withRet:RequestSuccees withProducts:skProducts withMsg:@""];
 }
 
 //SKPaymentTransactionObserver needed
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     _transactionArray = transactions;
     for (SKPaymentTransaction * transaction in transactions) {
         switch (transaction.transactionState)
@@ -154,8 +170,30 @@ NSArray * _transactionArray;
         }
     };
 }
-
+//SKPaymentTransactionObserver option
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error{
+    OUTPUT_LOG(@"Failed to restore products.");
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:[error description]
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+//SKPaymentTransactionObserver option
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    NSString* iapInfo = [NSString stringWithCString:CommonUtility::getLocalString("RestorePurchaseOK").c_str() encoding:NSUTF8StringEncoding];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:iapInfo
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
 - (void)completeTransaction:(SKPaymentTransaction *)transaction {
+    OUTPUT_LOG(@"completeTransaction...");
     NSString *receipt = nil;
     if(_isServerMode){
         if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
@@ -183,7 +221,7 @@ NSArray * _transactionArray;
 - (void)restoreTransaction:(SKPaymentTransaction *)transaction {
     OUTPUT_LOG(@"restoreTransaction...");
     [self finishTransaction:transaction.payment.productIdentifier];
-    [IOSIAP onPayResult:self withRet:PaymentTransactionStateRestored withMsg:@""];
+    [IOSIAP onPayResult:self withRet:PaymentTransactionStateRestored withMsg:transaction.payment.productIdentifier];
 }
 
 - (void)failedTransaction:(SKPaymentTransaction *)transaction {
@@ -196,10 +234,6 @@ NSArray * _transactionArray;
     
     [self finishTransaction:transaction.payment.productIdentifier];
     [IOSIAP onPayResult:self withRet:PaymentTransactionStateFailed withMsg:@""];
-}
-
-- (void)restoreCompletedTransactions {
-    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
 -(void) finishTransaction:(NSString *)productId{

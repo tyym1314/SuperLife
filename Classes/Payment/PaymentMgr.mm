@@ -70,6 +70,13 @@ void PaymentMgr::payForProduct(TProductInfo info)
         }
     }
 }
+void PaymentMgr::restorePurchase()
+{
+    if(m_pIAP != nil)
+    {
+        [m_pIAP restorePurchase];
+    }
+}
 void PaymentMgr::onPayResult(PayResultCode ret, const char* msg)
 {
     m_bPaying = false;
@@ -82,12 +89,15 @@ void PaymentMgr::onPayResult(PayResultCode ret, const char* msg)
     CCLOG("Pay result is : %d(%s)", (int) ret, msg);
 }
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-void PaymentMgr::onRequestProductsResult(ProductRequest ret, TProductList info)
+void PaymentMgr::onRequestProductsResult(ProductsRequestResult ret, TProductList info, const char* msg)
 {
     if(m_pPayResultListener != nullptr)
         m_pPayResultListener->onRequestProductsResult(ret, info);
+    else
+        CCLOG("Pay result listener is null!");
     if(ret == RequestSuccees)
         m_ProductList = info;
+    CCLOG("request products result is : %d(%s)", (int) ret, msg);
 }
 #endif
 const TProductList& PaymentMgr::getProductList() const

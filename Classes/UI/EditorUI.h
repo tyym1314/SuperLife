@@ -54,7 +54,7 @@ private:
     cocos2d::ui::Button*            m_pBackBtn;
     cocos2d::extension::TableView*  m_pTableView;
     cocos2d::Label*                 m_pLabelErrorInfo;
-    int                             m_nSelectIndex;
+    size_t                          m_nSelectIndex;
 };
 
 #endif /* defined(__SuperLife__EditorUI__) */

@@ -24,6 +24,7 @@ ShopUI::ShopUI(BaseScene* owner)
     m_pLabelProfessional = nullptr;
     m_pStandardBtn = nullptr;
     m_pProfessionalBtn = nullptr;
+    m_pRestoreBtn = nullptr;
     m_pLabelShopTips = nullptr;
     m_pBackBtn = nullptr;
 }
@@ -76,6 +77,17 @@ void ShopUI::loadUI(const std::string& file)
     m_pProfessionalBtn->setColor(color);
     this->addChild(m_pProfessionalBtn);
     
+    
+    m_pRestoreBtn = ui::Button::create("btnLBN.png","btnLBD.png");
+    m_pRestoreBtn->setPosition(Vec2(800,150));
+    m_pRestoreBtn->addTouchEventListener(CC_CALLBACK_2(ShopUI::pressRestorelBtn, this));
+    m_pRestoreBtn->setTitleFontName(CommonUtility::getLocalString("CommonFont"));
+    m_pRestoreBtn->setTitleColor(color);
+    m_pRestoreBtn->setTitleFontSize(20);
+    m_pRestoreBtn->setTitleText(CommonUtility::getLocalString("RestorePurchase"));
+    m_pRestoreBtn->setColor(color);
+    this->addChild(m_pRestoreBtn);
+    
     if(PaymentMgr::getInstance()->getProductList().size()>0)
     {
         m_pLabelShopTips = Label::createWithTTF(CommonUtility::getLocalString("ShopTips"), CommonUtility::getLocalString("CommonFont"), 60);
@@ -88,8 +100,8 @@ void ShopUI::loadUI(const std::string& file)
         m_pStandardBtn->setEnabled(false);
         m_pProfessionalBtn->setEnabled(false);
     }
-    m_pLabelShopTips->setPosition(Vec2(470,150));
-    m_pLabelShopTips->setDimensions(850, 200);
+    m_pLabelShopTips->setPosition(Vec2(350,150));
+    m_pLabelShopTips->setDimensions(600, 200);
     m_pLabelShopTips->setColor(color);
     m_pLabelShopTips->setScale(0.5f);
     this->addChild(m_pLabelShopTips);
@@ -138,6 +150,20 @@ void ShopUI::pressProfessionalBtn(Ref* p,TouchEventType eventType)
     }
 
 }
+// 恢复购买
+void ShopUI::pressRestorelBtn(Ref* p,TouchEventType eventType)
+{
+    if(eventType == TouchEventType::ENDED)
+    {
+#if CC_TARGET_PLATFORM != CC_PLATFORM_MAC
+        if(PaymentMgr::getInstance()->getProductList().size()>0)
+        {
+            SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+            PaymentMgr::getInstance()->restorePurchase();
+        }
+#endif
+    }
+}
 // 点击返回按钮
 void ShopUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
@@ -152,7 +178,7 @@ void ShopUI::pressBackBtn(Ref* p,TouchEventType eventType)
 void ShopUI::onPayResult(PayResultCode ret, const char* msg, TProductInfo info)
 {
 #if CC_TARGET_PLATFORM != CC_PLATFORM_MAC
-    if(ret == kPaySuccess || ret == kPayCancel)
+    if(ret == kPaySuccess)
     {
         if(info == PaymentMgr::getInstance()->getProductList()[0])
         {
@@ -175,12 +201,36 @@ void ShopUI::onPayResult(PayResultCode ret, const char* msg, TProductInfo info)
         else
             SimpleAudioEngine::getInstance()->playEffect("Beep_Error01.wav");
     }
+    else if(ret == kPayCancel)
+    {
+        std::string productId = msg;
+        if(productId == "org.wanax.superlife.newproduct1")
+        {
+            SimpleAudioEngine::getInstance()->playEffect("god7.wav");
+            EncrytionUtility::setBoolForKey("RemoveAds",true);
+            EncrytionUtility::setBoolForKey("UnlockSimpleTemplates", true);
+            BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+            Director::getInstance()->replaceScene(mainScene);
+        }
+        else if(productId == "org.wanax.superlife.newproduct2")
+        {
+            SimpleAudioEngine::getInstance()->playEffect("god7.wav");
+            EncrytionUtility::setBoolForKey("RemoveAds",true);
+            EncrytionUtility::setBoolForKey("UnlockAllTemplates", true);
+            EncrytionUtility::setIntegerForKey("MaxUnlockLevel", MAX_LEVEL);
+            EncrytionUtility::setBoolForKey("UnlockEditMode", true);
+            BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+            Director::getInstance()->replaceScene(mainScene);
+        }
+        else
+            SimpleAudioEngine::getInstance()->playEffect("Beep_Error01.wav");
+    }
     else
         SimpleAudioEngine::getInstance()->playEffect("Beep_Error01.wav");
 #endif
 }
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-void ShopUI::onRequestProductsResult(ProductRequest ret, TProductList info)
+void ShopUI::onRequestProductsResult(ProductsRequestResult ret, TProductList info)
 {
     if(ret == RequestSuccees && info.size()>0)
     {

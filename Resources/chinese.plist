@@ -178,11 +178,15 @@ http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<key>Professional</key>
 	<string>完整专业版本：移除广告，解锁全部关卡，开启模板编辑模式功能，解锁所有预制的102种模板。</string>
 	<key>ShopTips</key>
-	<string>提示：如果你已经购买过以上的游戏版本，再点击购买按钮来恢复交易，不会扣款!</string>
+	<string>提示：如果你已经购买过以上的游戏版本，点击恢复购买按钮来恢复交易，不会扣款!</string>
 	<key>ShopNotOK</key>
 	<string>当前商店不可用，请检查网络是否正常!</string>
 	<key>Purchase</key>
 	<string>购买</string>
+	<key>RestorePurchase</key>
+	<string>恢复购买</string>
+	<key>RestorePurchaseOK</key>
+	<string>恢复购买成功!</string>
 	<key>NetworkAvalid</key>
 	<string>网络不可用，请检查网络!</string>
 	<key>IAPAvalid</key>

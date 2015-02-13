@@ -172,11 +172,15 @@ Wiki Site: http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
 	<key>Professional</key>
 	<string>The full professional version: Remove Ads, unlock all levels, unlock patterns edit module and all 102 parttens.</string>
 	<key>ShopTips</key>
-	<string>TIPS: If you already purchased the game version above, click the purchase button again to restore transaction, not be charged!</string>
+	<string>TIPS: If you already purchased the game version above, click the restore button to restore transaction, not be charged!</string>
 	<key>ShopNotOK</key>
 	<string>The store is not available, please check your network connection!</string>
 	<key>Purchase</key>
 	<string>PURCHASE</string>
+	<key>RestorePurchase</key>
+	<string>RESTORE</string>
+	<key>RestorePurchaseOK</key>
+	<string>Restore purchase success!</string>
 	<key>NetworkAvalid</key>
 	<string>The network is not available, please check!</string>
 	<key>IAPAvalid</key>

@@ -28,12 +28,14 @@ protected:
     void pressStandardBtn(Ref* p,TouchEventType eventType);
     // 购买专业完整版本
     void pressProfessionalBtn(Ref* p,TouchEventType eventType);
+    // 恢复购买
+    void pressRestorelBtn(Ref* p,TouchEventType eventType);
     // 点击返回按钮
     void pressBackBtn(Ref* p,TouchEventType eventType);
     ///支付回调
     void onPayResult(PayResultCode ret, const char* msg, TProductInfo info);
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    void onRequestProductsResult(ProductRequest ret, TProductList info);
+    void onRequestProductsResult(ProductsRequestResult ret, TProductList info);
 #endif
 private:
     BaseScene*                              m_pOwnerScene;
@@ -42,6 +44,7 @@ private:
     cocos2d::Label*                         m_pLabelProfessional;
     cocos2d::ui::Button*                    m_pStandardBtn;
     cocos2d::ui::Button*                    m_pProfessionalBtn;
+    cocos2d::ui::Button*                    m_pRestoreBtn;
     cocos2d::Label*                         m_pLabelShopTips;
     cocos2d::ui::Button*                    m_pBackBtn;
 };

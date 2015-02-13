@@ -19,18 +19,22 @@ typedef enum {
     RequestSuccees=0,
     RequestFail,
     RequestTimeout,
-} ProductRequest;
-
+} ProductsRequestResult;
+typedef enum {
+    RestoreSuccees=0,
+    RestoreFail,
+    RestoreTimeout,
+} PurchaseRestoreResult;
 @interface IOSIAP : NSObject<SKProductsRequestDelegate,SKPaymentTransactionObserver>
-
++ (BOOL) checkIAP;
 - (void) payForProduct: (NSMutableDictionary*) profuctInfo;
 - (void) setDebugMode: (BOOL) debug;
+- (void) restorePurchase;
 
 @property BOOL debug;
 
 + (void) onPayResult:(id) obj withRet:(IAPResult) ret withMsg:(NSString*) msg;
-+ (void) onRequestProduct:(id)ojb withRet:(ProductRequest) ret withProducts:(NSArray *)products;
-
++ (void) onRequestProductResult:(id)ojb withRet:(ProductsRequestResult) ret withProducts:(NSArray *)products withMsg:(NSString*) msg;
 /* ---------iap functions-------*/
 - (void) requestProducts:(NSString*) paralist;
 - (void) setServerMode;
@@ -42,5 +46,12 @@ typedef enum {
 
 //SKPaymentTransactionObserver needed
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions;
+
+//SKPaymentTransactionObserver option
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error;
+
+//SKPaymentTransactionObserver option
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue;
+
 @property (nonatomic,assign) BOOL _isServerMode;
 @end

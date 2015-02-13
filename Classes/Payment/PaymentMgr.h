@@ -28,7 +28,7 @@ class PayResultListener
 public:
     virtual void onPayResult(PayResultCode ret, const char* msg, TProductInfo info) = 0;
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    virtual void onRequestProductsResult(ProductRequest ret, TProductList info){}
+    virtual void onRequestProductsResult(ProductsRequestResult ret, TProductList info){}
 #endif
 };
 
@@ -44,10 +44,11 @@ public:
     void setIAP(IOSIAP* iap);
 #endif
     void payForProduct(TProductInfo info);
+    void restorePurchase();
     
     void onPayResult(PayResultCode ret, const char* msg);
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    void onRequestProductsResult(ProductRequest ret, TProductList info);
+    void onRequestProductsResult(ProductsRequestResult ret, TProductList info, const char* msg);
 #endif
     const TProductList& getProductList() const;
     
