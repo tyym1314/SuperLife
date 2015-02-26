@@ -32,6 +32,10 @@ MenuUI::~MenuUI()
 // 加载文件
 void MenuUI::loadUI(const std::string& file)
 {
+    auto keyboardListener=EventListenerKeyboard::create();
+    keyboardListener->onKeyReleased=CC_CALLBACK_2(MenuUI::onKeyReleased,this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener,this);
+    
     cocos2d::Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     Color3B color = SceneFactory::getInstance()->getSceneColor();
@@ -224,4 +228,9 @@ void MenuUI::pressEditLevelBtn(Ref* p,TouchEventType eventType)
         BaseScene* editLevelScene = SceneFactory::getInstance()->createSceneByID(SCENE_LEVELEDITOR);
         Director::getInstance()->replaceScene(editLevelScene);
     }
+}
+void MenuUI::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *unused_event)
+{
+    if(keyCode == EventKeyboard::KeyCode::KEY_ESCAPE)
+        Director::getInstance()->end();
 }

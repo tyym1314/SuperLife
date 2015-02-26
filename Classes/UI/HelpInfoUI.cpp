@@ -32,6 +32,10 @@ HelpInfoUI::~HelpInfoUI()
 // 加载文件
 void HelpInfoUI::loadUI(const std::string& file)
 {
+    auto keyboardListener=EventListenerKeyboard::create();
+    keyboardListener->onKeyReleased=CC_CALLBACK_2(HelpInfoUI::onKeyReleased,this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener,this);
+    
     Color3B color = SceneFactory::getInstance()->getSceneColor();
     
     cocos2d::Size size = Director::getInstance()->getVisibleSize();
@@ -66,7 +70,8 @@ void HelpInfoUI::loadUI(const std::string& file)
     m_pBackBtn->setTitleFontSize(24);
     m_pBackBtn->setTitleText(CommonUtility::getLocalString("Back"));
     m_pBackBtn->setColor(color);
-    m_pBackBtn->setVisible(false);
+    m_pBackBtn->setScale(0);
+    //m_pBackBtn->setVisible(false);
     this->addChild(m_pBackBtn);
     
     m_pTableView->reloadData();
@@ -258,8 +263,10 @@ void HelpInfoUI::pressNextBtn(Ref* p,TouchEventType eventType)
         else if(m_pCurrentPage == 5)
         {
             m_pLabelHelpInfo->setString(CommonUtility::getLocalString("References"));
-            m_pNextBtn->setVisible(false);
-            m_pBackBtn->setVisible(true);
+            //m_pNextBtn->setVisible(false);
+            //m_pBackBtn->setVisible(true);
+            m_pNextBtn->setScale(0);
+            m_pBackBtn->setScale(1);
             m_pCurrentPage = 1;
         }
     }
@@ -268,6 +275,15 @@ void HelpInfoUI::pressNextBtn(Ref* p,TouchEventType eventType)
 void HelpInfoUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
+    {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+        Director::getInstance()->replaceScene(mainScene);
+    }
+}
+void HelpInfoUI::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *unused_event)
+{
+    if(keyCode == EventKeyboard::KeyCode::KEY_ESCAPE)
     {
         SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);

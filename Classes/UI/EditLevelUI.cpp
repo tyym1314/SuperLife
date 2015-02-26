@@ -47,6 +47,10 @@ EditLevelUI::~EditLevelUI()
 // 加载文件
 void EditLevelUI::loadUI(const std::string& file)
 {
+    auto keyboardListener=EventListenerKeyboard::create();
+    keyboardListener->onKeyReleased=CC_CALLBACK_2(EditLevelUI::onKeyReleased,this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener,this);
+    
     Color3B color = SceneFactory::getInstance()->getSceneColor();
     m_pLabelMode = Label::createWithTTF(CommonUtility::getLocalString("EditLevelMode"), CommonUtility::getLocalString("MainFont"), 120);
     m_pLabelMode->setPosition(Vec2(770,590));
@@ -355,6 +359,17 @@ void EditLevelUI::pressSaveBtn(Ref* p,TouchEventType eventType)
 void EditLevelUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
+    {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        SceneFactory::getInstance()->setSceneColor(MathUtility::randomColor());
+        BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+        Director::getInstance()->replaceScene(mainScene);
+    }
+}
+
+void EditLevelUI::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *unused_event)
+{
+    if(keyCode == EventKeyboard::KeyCode::KEY_ESCAPE)
     {
         SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         SceneFactory::getInstance()->setSceneColor(MathUtility::randomColor());

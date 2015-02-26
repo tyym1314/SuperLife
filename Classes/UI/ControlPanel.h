@@ -10,7 +10,7 @@
 #define __SuperLife__ControlPanel__
 
 #include "cocos2d.h"
-#include "CocosGUI.h"
+#include "ui/CocosGUI.h"
 #include "IUIReader.h"
 class ControlPanel : public cocos2d::ui::Widget, public IUIReader
 {

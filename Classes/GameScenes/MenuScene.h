@@ -10,7 +10,7 @@
 #define __SuperLife__MenuScene__
 
 #include "BaseScene.h"
-#include "CocosGUI.h"
+#include "ui/CocosGUI.h"
 class MenuScene : public BaseScene
 {
 public:

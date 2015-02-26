@@ -198,6 +198,7 @@
 		5578A8101A5E772C008D3B54 /* slider_bar_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5578A8001A5E76ED008D3B54 /* slider_bar_button.png */; };
 		5578A8261A5EA8FA008D3B54 /* templates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5578A8241A5EA8FA008D3B54 /* templates.plist */; };
 		5578A8281A5EB390008D3B54 /* templates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5578A8241A5EA8FA008D3B54 /* templates.plist */; };
+		5588782E1A9F1C4B0042021D /* PaymentMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 55DD8CA41A7A61AB004DC96B /* PaymentMgr.mm */; };
 		5588F09819A32425004CAAF6 /* ColorCheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5588F09619A32425004CAAF6 /* ColorCheckBox.cpp */; };
 		5588F09B19A32581004CAAF6 /* ColorCheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5588F09619A32425004CAAF6 /* ColorCheckBox.cpp */; };
 		5588F09E19A3939C004CAAF6 /* MissionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5588F09C19A3939C004CAAF6 /* MissionScene.cpp */; };
@@ -2333,6 +2334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5588782E1A9F1C4B0042021D /* PaymentMgr.mm in Sources */,
 				555F5B361A7E769E0010D1B0 /* NativeBridge.mm in Sources */,
 				557537E71A6E518E00A7C96A /* CongratulationsUI.cpp in Sources */,
 				557537E31A6E4E1E00A7C96A /* CongratulationsScene.cpp in Sources */,

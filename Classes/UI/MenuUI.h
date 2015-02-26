@@ -10,7 +10,7 @@
 #define __SuperLife__MenuUI__
 
 #include "cocos2d.h"
-#include "CocosGUI.h"
+#include "ui/CocosGUI.h"
 #include "IUIReader.h"
 class BaseScene;
 class MenuUI : public cocos2d::ui::Layout, public IUIReader
@@ -35,6 +35,8 @@ private:
     void pressHelpBtn(Ref* p,TouchEventType eventType);
     // 点击编辑任务按钮
     void pressEditLevelBtn(Ref* p,TouchEventType eventType);
+    
+    void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *unused_event);
 private:
     BaseScene*               m_pOwnerScene;
     cocos2d::ui::Button*     m_pFreeModeBtn;

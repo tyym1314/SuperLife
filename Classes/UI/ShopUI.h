@@ -10,7 +10,7 @@
 #define __SuperLife__ShopUI__
 
 #include "cocos2d.h"
-#include "CocosGUI.h"
+#include "ui/CocosGUI.h"
 #include "IUIReader.h"
 #include "PaymentMgr.h"
 class BaseScene;
@@ -32,6 +32,9 @@ protected:
     void pressRestorelBtn(Ref* p,TouchEventType eventType);
     // 点击返回按钮
     void pressBackBtn(Ref* p,TouchEventType eventType);
+    
+    void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *unused_event);
+    
     ///支付回调
     void onPayResult(PayResultCode ret, const char* msg, TProductInfo info);
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS

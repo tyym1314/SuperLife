@@ -10,7 +10,7 @@
 #define __SuperLife__UIMgr__
 
 #include "cocos2d.h"
-#include "CocosGUI.h"
+#include "ui/CocosGUI.h"
 class UIMgr : public cocos2d::Ref
 {
     // 构造函数

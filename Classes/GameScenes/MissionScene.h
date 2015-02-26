@@ -10,7 +10,7 @@
 #define __SuperLife__MissionScene__
 
 #include "BaseScene.h"
-#include "CocosGUI.h"
+#include "ui/CocosGUI.h"
 class MissionScene : public BaseScene
 {
 public:

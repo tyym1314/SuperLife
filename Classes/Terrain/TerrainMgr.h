@@ -10,7 +10,7 @@
 #define __CCGF__TerrainMgr__
 
 #include "cocos2d.h"
-#include "cocos-ext.h"
+#include "extensions/cocos-ext.h"
 #include "TerrainCell.h"
 class TerrainMgr : public cocos2d::Ref, public cocos2d::extension::ScrollViewDelegate
 {

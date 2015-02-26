@@ -42,6 +42,10 @@ MainUI::~MainUI()
 // 加载文件
 void MainUI::loadUI(const std::string& file)
 {
+    auto keyboardListener=EventListenerKeyboard::create();
+    keyboardListener->onKeyReleased=CC_CALLBACK_2(MainUI::onKeyReleased,this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener,this);
+    
     Color3B color = SceneFactory::getInstance()->getSceneColor();
     m_pLabelMode = Label::createWithTTF(CommonUtility::getLocalString("FreeMode"), CommonUtility::getLocalString("MainFont"), 120);
     m_pLabelMode->setPosition(Vec2(770,590));
@@ -284,6 +288,15 @@ void MainUI::pressRestoreBtn(Ref* p,TouchEventType eventType)
 void MainUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
+    {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+        Director::getInstance()->replaceScene(mainScene);
+    }
+}
+void MainUI::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *unused_event)
+{
+    if(keyCode == EventKeyboard::KeyCode::KEY_ESCAPE)
     {
         SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);

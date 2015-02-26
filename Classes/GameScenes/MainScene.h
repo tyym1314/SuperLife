@@ -10,7 +10,7 @@
 #define __SuperLife__MainScene__
 
 #include "BaseScene.h"
-#include "CocosGUI.h"
+#include "ui/CocosGUI.h"
 class MainScene : public BaseScene
 {
 public:

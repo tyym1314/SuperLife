@@ -41,6 +41,10 @@ EditorUI::~EditorUI()
 // 加载文件
 void EditorUI::loadUI(const std::string& file)
 {
+    auto keyboardListener=EventListenerKeyboard::create();
+    keyboardListener->onKeyReleased=CC_CALLBACK_2(EditorUI::onKeyReleased,this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener,this);
+    
     Color3B color = SceneFactory::getInstance()->getSceneColor();
     m_pLabelMode = Label::createWithTTF(CommonUtility::getLocalString("EditorMode"), CommonUtility::getLocalString("MainFont"), 120);
     m_pLabelMode->setPosition(Vec2(750,590));
@@ -288,6 +292,16 @@ void EditorUI::pressDeleteBtn(Ref* p,TouchEventType eventType)
 void EditorUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
+    {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        SceneFactory::getInstance()->setSceneColor(MathUtility::randomColor());
+        BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+        Director::getInstance()->replaceScene(mainScene);
+    }
+}
+void EditorUI::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *unused_event)
+{
+    if(keyCode == EventKeyboard::KeyCode::KEY_ESCAPE)
     {
         SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         SceneFactory::getInstance()->setSceneColor(MathUtility::randomColor());

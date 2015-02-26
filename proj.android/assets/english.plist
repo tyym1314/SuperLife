@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MainTitle</key>
+	<string>SUPER LIFE</string>
+	<key>MainFont</key>
+	<string>LLPIXEL.TTF</string>
+	<key>SecondFont</key>
+	<string>r-plaza_8.ttf</string>
+	<key>CommonFont</key>
+	<string>FZXS12.TTF</string>
+	<key>TransMode</key>
+	<string>TRANSFORM MODE</string>
+	<key>MissionMode</key>
+	<string>MISSION MODE</string>
+	<key>FreeMode</key>
+	<string>FREE MODE</string>
+	<key>Shop</key>
+	<string>SHOP</string>
+	<key>EditorMode</key>
+	<string>EDITOR MODE</string>
+	<key>EditLevelMode</key>
+	<string>EDIT LEVEL</string>
+	<key>HelpInfo</key>
+	<string>HELP INFO</string>
+	<key>LifeNum</key>
+	<string>Life Count: %d</string>
+	<key>GenerationNum</key>
+	<string>Generation: %d</string>
+	<key>Start</key>
+	<string>START</string>
+	<key>Pause</key>
+	<string>PAUSE</string>
+	<key>Reset</key>
+	<string>RESET</string>
+	<key>Restore</key>
+	<string>RESTORE</string>
+	<key>Retry</key>
+	<string>FAILED, RETRY</string>
+	<key>Back</key>
+	<string>BACK</string>
+	<key>Save</key>
+	<string>SAVE</string>
+	<key>Delete</key>
+	<string>DELETE</string>
+	<key>SelectMission</key>
+	<string>SELECT MISSION</string>
+	<key>Slow</key>
+	<string>SLOW</string>
+	<key>Fast</key>
+	<string>FAST</string>
+	<key>TemplateName</key>
+	<string>INPUT NAME</string>
+	<key>ErrorInfo</key>
+	<string>Template name can not be empty!</string>
+	<key>ErrorInfo2</key>
+	<string>The template name consists only of digital and English letters!</string>
+	<key>ErrorInfo3</key>
+	<string>Please select a template to delete!</string>
+	<key>ErrorInfo4</key>
+	<string>There is no template here by that name, please select again!</string>
+	<key>ErrorInfo5</key>
+	<string>The level file name can not be empty!</string>
+	<key>ErrorInfo6</key>
+	<string>The level file name consists only of digital and English letters!</string>
+	<key>ErrorInfo7</key>
+	<string>The level name can not be empty!</string>
+	<key>ErrorInfo8</key>
+	<string>The level name consists only of digital and English letters!</string>
+	<key>ErrorInfo9</key>
+	<string>The life number of goal can not be empty!</string>
+	<key>ErrorInfo10</key>
+	<string>The life generation of goal can not be empty!</string>
+	<key>ErrorInfo11</key>
+	<string>The life number of goal can only be a natural number！</string>
+	<key>ErrorInfo12</key>
+	<string>The life generation of goal can only be a natural number！</string>
+	<key>ErrorInfo13</key>
+	<string>The life number of starter can not be empty!</string>
+	<key>ErrorInfo14</key>
+	<string>The life number of starter can only be a natural number！</string>
+	<key>ErrorInfo15</key>
+	<string>The mission type can not be empty!</string>
+	<key>ErrorInfo16</key>
+	<string>The mission type can only be a natural number！</string>
+	<key>SaveOK</key>
+	<string>Saved successfully!</string>
+	<key>SaveFailed</key>
+	<string>Saved failed!</string>
+	<key>DeleteOK</key>
+	<string>Deleted successfully!</string>
+	<key>NextPage</key>
+	<string>NEXT</string>
+	<key>GameDesc</key>
+	<string>The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970. The &quot;game&quot; is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves or, for advanced players, by creating patterns with particular properties.</string>
+	<key>GameRule</key>
+	<string>The universe of the Game of Life is an infinite two-dimensional orthogonal grid of square cells, each of which is in one of two possible states, alive or dead. Every cell interacts with its eight neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur:</string>
+	<key>GameRuleDetail</key>
+	<string>1. Any live cell with fewer than two live neighbours dies, as if caused by under-population.
+2. Any live cell with two or three live neighbours lives on to the next generation.
+3. Any live cell with more than three live neighbours dies, as if by overcrowding.
+4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</string>
+	<key>GameRuleEnd</key>
+	<string>The initial pattern constitutes the seed of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed—births and deaths occur simultaneously, and the discrete moment at which this happens is sometimes called a tick (in other words, each generation is a pure function of the preceding one). The rules continue to be applied repeatedly to create further generations.</string>
+	<key>GameOrigins</key>
+	<string>ORIGINS</string>
+	<key>GameRules</key>
+	<string>RULES</string>
+	<key>ExampleOfPatterns</key>
+	<string>EXAMPLE OF PATTERNS</string>
+	<key>Patterns</key>
+	<string>The patterns of game life can be divided into four categories: Stable, Oscillating, Moving, Infinite.</string>
+	<key>Stable</key>
+	<string>Examples of Stable classes are shown below:</string>
+	<key>Oscillating</key>
+	<string>Examples of Oscillating classes are shown below:</string>
+	<key>Moving</key>
+	<string>Examples of Moving classes are shown below:</string>
+	<key>Infinite</key>
+	<string>Examples of Infinite classes are shown below:</string>
+	<key>References</key>
+	<string>REFERENCES</string>
+	<key>WebSites</key>
+	<string>Conway Life: http://www.conwaylife.com/
+
+Game of Life News: http://pentadecathlon.com/lifeNews/index.php
+
+Wiki Site: http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
+	<key>FileName</key>
+	<string>INPUT FILENAME</string>
+	<key>LevelName</key>
+	<string>INPUT LEVELNAME</string>
+	<key>GoalCellNum</key>
+	<string>INPUT GOAL CELL NUM</string>
+	<key>GoalCellGeneration</key>
+	<string>INPUT GOAL GENERATION</string>
+	<key>StarterCellNum</key>
+	<string>INPUT STARTER CELL NUM</string>
+	<key>LevelType</key>
+	<string>INPUT MISSION TYPE</string>
+	<key>Mission</key>
+	<string>MISSION%d : %s</string>
+	<key>MissionGoal0</key>
+	<string>GOAL : Must be equal to %d lifes after %d generation.</string>
+	<key>MissionGoal1</key>
+	<string>GOAL : Have at least %d lifes after %d generation.</string>
+	<key>MissionGoal2</key>
+	<string>GOAL : Have at most %d lifes after %d generation.</string>
+	<key>MissionGoal3</key>
+	<string>GOAL : There must be no lifes after %d generation.</string>
+	<key>MissionStarterCellNum</key>
+	<string>STARTER LIFES LEFT : %d</string>
+	<key>NextMission</key>
+	<string>NEXT MISSION</string>
+	<key>Congratulations</key>
+	<string>CONGRATULATIONS</string>
+	<key>CongratulationsDetail</key>
+	<string>You have been through all the missions, standard 36 patterns have been unlocked, we will update more levels in subsequent versions, To be continued.!</string>
+	<key>RateTitle</key>
+	<string>Rate SuperLife</string>
+	<key>RateMessage</key>
+	<string>thanks for your supports!</string>
+	<key>RateNow</key>
+	<string>Now</string>
+	<key>RateNever</key>
+	<string>Never</string>
+	<key>RateLater</key>
+	<string>Later</string>
+	<key>Standard</key>
+	<string>Standard version: Remove Ads, unlock standard pattern module and 36 parttens. </string>
+	<key>Professional</key>
+	<string>The full professional version: Remove Ads, unlock all levels, unlock patterns edit module and all 102 parttens.</string>
+	<key>ShopTips</key>
+	<string>TIPS: If you already purchased the game version above, click the restore button to restore transaction, not be charged!</string>
+	<key>ShopNotOK</key>
+	<string>The store is not available, please check your network connection!</string>
+	<key>Purchase</key>
+	<string>PURCHASE</string>
+	<key>RestorePurchase</key>
+	<string>RESTORE</string>
+	<key>RestorePurchaseOK</key>
+	<string>Restore purchase success!</string>
+	<key>NetworkAvalid</key>
+	<string>The network is not available, please check!</string>
+	<key>IAPAvalid</key>
+	<string>The IAP is not available, please try again!</string>
+</dict>
+</plist>

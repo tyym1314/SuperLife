@@ -10,8 +10,8 @@
 #define __SuperLife__EditorUI__
 
 #include "cocos2d.h"
-#include "CocosGUI.h"
-#include "cocos-ext.h"
+#include "ui/CocosGUI.h"
+#include "extensions/cocos-ext.h"
 #include "IUIReader.h"
 class BaseScene;
 class EditorUI : public cocos2d::ui::Layout, public IUIReader, public cocos2d::extension::TableViewDataSource, public cocos2d::extension::TableViewDelegate
@@ -43,6 +43,8 @@ protected:
     void pressDeleteBtn(Ref* p,TouchEventType eventType);
     // 点击返回按钮
     void pressBackBtn(Ref* p,TouchEventType eventType);
+    
+    void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *unused_event);
 private:
     BaseScene*                      m_pOwnerScene;
     cocos2d::Label*                 m_pLabelMode;

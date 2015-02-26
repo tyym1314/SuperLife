@@ -10,7 +10,7 @@
 #define __SuperLife__CongratulationsScene__
 
 #include "BaseScene.h"
-#include "CocosGUI.h"
+#include "ui/CocosGUI.h"
 class CongratulationsScene : public BaseScene
 {
 public:

@@ -10,8 +10,8 @@
 #define __SuperLife__MainUI__
 
 #include "cocos2d.h"
-#include "CocosGUI.h"
-#include "cocos-ext.h"
+#include "ui/CocosGUI.h"
+#include "extensions/cocos-ext.h"
 #include "IUIReader.h"
 class BaseScene;
 class ControlPanel;
@@ -35,6 +35,8 @@ public:
     ssize_t numberOfCellsInTableView(cocos2d::extension::TableView *table);
     
     void tableCellTouched(cocos2d::extension::TableView* table, cocos2d::extension::TableViewCell* cell);
+    
+    void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *unused_event);
 private:
     // 点击开始按钮
     void pressStartBtn(Ref* p,TouchEventType eventType);

@@ -35,6 +35,10 @@ ShopUI::~ShopUI()
 // 加载文件
 void ShopUI::loadUI(const std::string& file)
 {
+    auto keyboardListener=EventListenerKeyboard::create();
+    keyboardListener->onKeyReleased=CC_CALLBACK_2(ShopUI::onKeyReleased,this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener,this);
+    
     Color3B color = SceneFactory::getInstance()->getSceneColor();
     m_pLabelShop = Label::createWithTTF(CommonUtility::getLocalString("Shop"), CommonUtility::getLocalString("MainFont"), 120);
     m_pLabelShop->setPosition(Vec2(480,590));
@@ -246,3 +250,12 @@ void ShopUI::onRequestProductsResult(ProductsRequestResult ret, TProductList inf
     }
 }
 #endif
+void ShopUI::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *unused_event)
+{
+    if(keyCode == EventKeyboard::KeyCode::KEY_ESCAPE)
+    {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+        Director::getInstance()->replaceScene(mainScene);
+    }
+}

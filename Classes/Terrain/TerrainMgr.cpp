@@ -453,7 +453,7 @@ void TerrainMgr::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_even
 {
 #if CC_TARGET_PLATFORM != CC_PLATFORM_MAC
     Vec2 delta = touch->getLocation() - m_lastTouchDownPos;
-    if(abs(delta.x) >10 || abs(delta.y) >10)
+    if(std::abs(delta.x) >10 || std::abs(delta.y) >10)
         return;
     
     BaseScene* curScene = SceneFactory::getInstance()->getCurrentScene();

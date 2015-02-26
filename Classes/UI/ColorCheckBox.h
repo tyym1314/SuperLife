@@ -9,7 +9,8 @@
 #ifndef __SuperLife__ColorCheckBox__
 #define __SuperLife__ColorCheckBox__
 
-#include "UICheckBox.h"
+#include "cocos2d.h"
+#include "ui/CocosGUI.h"
 class ColorCheckBox : public cocos2d::ui::CheckBox
 {
 public:

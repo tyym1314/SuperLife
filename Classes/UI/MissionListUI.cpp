@@ -30,6 +30,10 @@ MissionListUI::~MissionListUI()
 // 加载文件
 void MissionListUI::loadUI(const std::string& file)
 {
+    auto keyboardListener=EventListenerKeyboard::create();
+    keyboardListener->onKeyReleased=CC_CALLBACK_2(MissionListUI::onKeyReleased,this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener,this);
+    
 #if COCOS2D_DEBUG
     EncrytionUtility::setIntegerForKey("MaxUnlockLevel", MAX_LEVEL);
 #endif
@@ -46,6 +50,7 @@ void MissionListUI::loadUI(const std::string& file)
     m_pScrollView->setContentSize(cocos2d::Size(960,440));
     m_pScrollView->setInnerContainerSize(cocos2d::Size(960,ContainerHeight));
     m_pScrollView->setPosition(Vec2(0,100));
+    m_pScrollView->setClippingType(Layout::ClippingType::SCISSOR);
     m_pScrollView->setTouchEnabled(true);
     
     m_pBackBtn = ui::Button::create("btnLBN.png","btnLBD.png");
@@ -114,6 +119,15 @@ void MissionListUI::pressLevelSelectBtn(Ref* p,TouchEventType eventType)
 void MissionListUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
+    {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+        Director::getInstance()->replaceScene(mainScene);
+    }
+}
+void MissionListUI::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *unused_event)
+{
+    if(keyCode == EventKeyboard::KeyCode::KEY_ESCAPE)
     {
         SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);

@@ -10,7 +10,7 @@
 #define __SuperLife__EditLevelScene__
 
 #include "BaseScene.h"
-#include "CocosGUI.h"
+#include "ui/CocosGUI.h"
 class LevelEditorScene : public BaseScene
 {
 public:

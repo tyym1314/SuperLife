@@ -7,7 +7,6 @@
 //
 
 #include "SpeedSlider.h"
-#include "CCSprite.h"
 USING_NS_CC;
 SpeedSlider* SpeedSlider::create()
 {

@@ -10,7 +10,7 @@
 #define __SuperLife__HelpInfoScene__
 
 #include "BaseScene.h"
-#include "CocosGUI.h"
+#include "ui/CocosGUI.h"
 class HelpInfoScene : public BaseScene
 {
 public:

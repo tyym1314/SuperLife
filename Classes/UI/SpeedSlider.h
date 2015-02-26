@@ -9,7 +9,8 @@
 #ifndef __SuperLife__SpeedSlider__
 #define __SuperLife__SpeedSlider__
 
-#include "UISlider.h"
+#include "cocos2d.h"
+#include "ui/CocosGUI.h"
 class SpeedSlider : public cocos2d::ui::Slider
 {
 public:

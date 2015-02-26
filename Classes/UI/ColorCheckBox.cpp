@@ -7,7 +7,6 @@
 //
 
 #include "ColorCheckBox.h"
-#include "CCSprite.h"
 USING_NS_CC;
 ColorCheckBox* ColorCheckBox::create()
 {

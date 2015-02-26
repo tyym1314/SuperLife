@@ -10,7 +10,7 @@
 #define __SuperLife__MissionListUI__
 
 #include "cocos2d.h"
-#include "CocosGUI.h"
+#include "ui/CocosGUI.h"
 #include "IUIReader.h"
 class BaseScene;
 class ControlPanel;
@@ -28,6 +28,8 @@ protected:
     void pressLevelSelectBtn(Ref* p,TouchEventType eventType);
     // 点击返回按钮
     void pressBackBtn(Ref* p,TouchEventType eventType);
+    
+    void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *unused_event);
 private:
     BaseScene*                              m_pOwnerScene;
     cocos2d::Label*                         m_pLabelLevelSelect;

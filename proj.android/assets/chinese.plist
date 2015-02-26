@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MainTitle</key>
+	<string>超级生命</string>
+	<key>MainFont</key>
+	<string>FZXS12.TTF</string>
+	<key>SecondFont</key>
+	<string>r-plaza_8.ttf</string>
+	<key>CommonFont</key>
+	<string>FZXS12.TTF</string>
+	<key>TransMode</key>
+	<string>变换模式</string>
+	<key>MissionMode</key>
+	<string>任务模式</string>
+	<key>FreeMode</key>
+	<string>自由模式</string>
+	<key>Shop</key>
+	<string>商店</string>
+	<key>EditorMode</key>
+	<string>编辑模式</string>
+	<key>EditLevelMode</key>
+	<string>编辑任务</string>
+	<key>HelpInfo</key>
+	<string>说明与帮助</string>
+	<key>LifeNum</key>
+	<string>生命个数: %d</string>
+	<key>GenerationNum</key>
+	<string>生命代数: %d</string>
+	<key>Start</key>
+	<string>开始</string>
+	<key>Pause</key>
+	<string>暂停</string>
+	<key>Reset</key>
+	<string>重置</string>
+	<key>Restore</key>
+	<string>恢复</string>
+	<key>Retry</key>
+	<string>任务失败,请重试</string>
+	<key>Back</key>
+	<string>返回</string>
+	<key>Save</key>
+	<string>保存</string>
+	<key>Delete</key>
+	<string>删除</string>
+	<key>SelectMission</key>
+	<string>选择任务</string>
+	<key>Slow</key>
+	<string>慢</string>
+	<key>Fast</key>
+	<string>快</string>
+	<key>TemplateName</key>
+	<string>输入模版名字</string>
+	<key>ErrorInfo</key>
+	<string>模版名称不能为空!</string>
+	<key>ErrorInfo2</key>
+	<string>模版名称只能由数字和英文字母组成!</string>
+	<key>ErrorInfo3</key>
+	<string>请先选择一个模版再删除!</string>
+	<key>ErrorInfo4</key>
+	<string>没有此名称的模版,请再选择！</string>
+	<key>ErrorInfo5</key>
+	<string>关卡文件名称不能为空!</string>
+	<key>ErrorInfo6</key>
+	<string>关卡文件名称只能由数字和英文字母组成!</string>
+	<key>ErrorInfo7</key>
+	<string>关卡名称不能为空！</string>
+	<key>ErrorInfo8</key>
+	<string>关卡名称只能由数字和英文字母组成!</string>
+	<key>ErrorInfo9</key>
+	<string>目标生命个数不能为空！</string>
+	<key>ErrorInfo10</key>
+	<string>目标生命代数不能为空！</string>
+	<key>ErrorInfo11</key>
+	<string>目标生命个数只能为自然数！</string>
+	<key>ErrorInfo12</key>
+	<string>目标生命代数只能为自然数！</string>
+	<key>ErrorInfo13</key>
+	<string>起始生命个数不能为空！</string>
+	<key>ErrorInfo14</key>
+	<string>起始生命个数只能为自然数！</string>
+	<key>ErrorInfo15</key>
+	<string>任务类型不能为空！</string>
+	<key>ErrorInfo16</key>
+	<string>任务类型只能为自然数！</string>
+	<key>SaveOK</key>
+	<string>保存成功!</string>
+	<key>SaveFailed</key>
+	<string>保存失败!</string>
+	<key>DeleteOK</key>
+	<string>删除成功</string>
+	<key>NextPage</key>
+	<string>下一页</string>
+	<key>GameDesc</key>
+	<string>    生命游戏，又称康威生命棋，是英国数学家约翰·何顿·康威（John Horton Conway）在1970年发明的细胞自动机。这是一个零玩家游戏。它包括一个二维矩形世界，这个世界中的每个方格居住着一个活着的或死了的细胞。一个细胞在下一个时刻生死取决于相邻八个方格中活着的或死了的细胞的数量。如果相邻方格活着的细胞数量过多，这个细胞会因为资源匮乏而在下一个时刻死去；相反，如果周围活细胞过少，这个细胞会因太孤单而死去。实际中，玩家可以设定周围活细胞的数目怎样时才适宜该细胞的生存。</string>
+	<key>GameRule</key>
+	<string>
+
+生命游戏中，对于任意细胞，规则如下：
+    每个细胞有两种状态-存活或死亡，每个细胞与以自身为中心的周围八格细胞产生互动。（如图，深色为存活，浅色为死亡） </string>
+	<key>GameRuleDetail</key>
+	<string>1.当前细胞为存活状态时，当周围低于2个（不包含2个）存活细胞时， 该细胞变成死亡状态。（模拟生命数量稀少）
+2.当前细胞为存活状态时，当周围有2个或3个存活细胞时， 该细胞保持原样。
+3.当前细胞为存活状态时，当周围有3个以上的存活细胞时，该细胞变成死亡状态。（模拟生命数量过多）
+4.当前细胞为死亡状态时，当周围有3个存活细胞时，该细胞变成存活状态。 （模拟繁殖）</string>
+	<key>GameRuleEnd</key>
+	<string>    可以把最初的细胞结构定义为种子，当所有在种子中的细胞同时被以上规则处理后, 可以得到第一代细胞图。按规则继续处理当前的细胞图，可以得到下一代的细胞图，周而复始。</string>
+	<key>GameOrigins</key>
+	<string>游戏起源</string>
+	<key>GameRules</key>
+	<string>游戏规则</string>
+	<key>ExampleOfPatterns</key>
+	<string>示例模版</string>
+	<key>Patterns</key>
+	<string>    生命游戏的模版大致分为四大类：静态模版［静物］，重复模版［振荡器］，移动模版［宇宙飞船］，混沌模版。</string>
+	<key>Stable</key>
+	<string>    静态模版例子如下：</string>
+	<key>Oscillating</key>
+	<string>    重复模版例子如下：</string>
+	<key>Moving</key>
+	<string>    移动模版例子如下：</string>
+	<key>Infinite</key>
+	<string>    混沌模版例子如下：</string>
+	<key>References</key>
+	<string>相关参考</string>
+	<key>WebSites</key>
+	<string>康威生命：
+http://www.conwaylife.com/
+
+生命游戏新闻：
+http://pentadecathlon.com/lifeNews/index.php
+
+维基网站：
+http://en.wikipedia.org/wiki/Conway_Game_of_Life</string>
+	<key>FileName</key>
+	<string>输入关卡文件名称</string>
+	<key>LevelName</key>
+	<string>输入关卡名称</string>
+	<key>GoalCellNum</key>
+	<string>输入完成目标时生命个数</string>
+	<key>GoalCellGeneration</key>
+	<string>输入完成目标时生命代数</string>
+	<key>StarterCellNum</key>
+	<string>输入起始生命个数</string>
+	<key>LevelType</key>
+	<string>输入关卡类型</string>
+	<key>Mission</key>
+	<string>任务%d : %s </string>
+	<key>MissionGoal0</key>
+	<string>任务目标 : 生命繁衍%d代后等于%d个生命。</string>
+	<key>MissionGoal1</key>
+	<string>任务目标 : 生命繁衍%d代后至少有%d个生命。</string>
+	<key>MissionGoal2</key>
+	<string>任务目标 : 生命繁衍%d代后至多有%d个生命。</string>
+	<key>MissionGoal3</key>
+	<string>任务目标 : 生命繁衍%d代后没有生命体。</string>
+	<key>MissionStarterCellNum</key>
+	<string>初始可用生命剩余个数 : %d</string>
+	<key>NextMission</key>
+	<string>下个任务</string>
+	<key>Congratulations</key>
+	<string>恭喜您</string>
+	<key>CongratulationsDetail</key>
+	<string>    您已经通过所有关卡任务，标准的36个模版都已经解锁，我们会在后续版本中更新更多关卡，敬请期待！</string>
+	<key>RateTitle</key>
+	<string>评价超级生命</string>
+	<key>RateMessage</key>
+	<string>谢谢您的支持!</string>
+	<key>RateNow</key>
+	<string>支持一下</string>
+	<key>RateNever</key>
+	<string>残忍拒绝</string>
+	<key>RateLater</key>
+	<string>稍后支持</string>
+	<key>Standard</key>
+	<string>标准版本: 移除广告，解锁标准模板功能，解锁预制的36种模板。</string>
+	<key>Professional</key>
+	<string>完整专业版本：移除广告，解锁全部关卡，开启模板编辑模式功能，解锁所有预制的102种模板。</string>
+	<key>ShopTips</key>
+	<string>提示：如果你已经购买过以上的游戏版本，点击恢复购买按钮来恢复交易，不会扣款!</string>
+	<key>ShopNotOK</key>
+	<string>当前商店不可用，请检查网络是否正常!</string>
+	<key>Purchase</key>
+	<string>购买</string>
+	<key>RestorePurchase</key>
+	<string>恢复购买</string>
+	<key>RestorePurchaseOK</key>
+	<string>恢复购买成功!</string>
+	<key>NetworkAvalid</key>
+	<string>网络不可用，请检查网络!</string>
+	<key>IAPAvalid</key>
+	<string>当前IAP不可用，请重试!</string>
+</dict>
+</plist>

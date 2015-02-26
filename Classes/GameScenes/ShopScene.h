@@ -10,7 +10,7 @@
 #define __SuperLife__ShopScene__
 
 #include "BaseScene.h"
-#include "CocosGUI.h"
+#include "ui/CocosGUI.h"
 class ShopScene : public BaseScene
 {
 public:

@@ -53,6 +53,7 @@ void PaymentMgr::payForProduct(TProductInfo info)
     }
     else
     {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
         if (m_pIAP != nil) {
             
             m_bPaying = true;
@@ -68,14 +69,17 @@ void PaymentMgr::payForProduct(TProductInfo info)
             }
             [m_pIAP payForProduct:dict];
         }
+#endif
     }
 }
 void PaymentMgr::restorePurchase()
 {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     if(m_pIAP != nil)
     {
         [m_pIAP restorePurchase];
     }
+#endif
 }
 void PaymentMgr::onPayResult(PayResultCode ret, const char* msg)
 {

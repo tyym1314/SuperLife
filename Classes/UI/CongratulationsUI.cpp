@@ -30,6 +30,10 @@ CongratulationsUI::~CongratulationsUI()
 // 加载文件
 void CongratulationsUI::loadUI(const std::string& file)
 {
+    auto keyboardListener=EventListenerKeyboard::create();
+    keyboardListener->onKeyReleased=CC_CALLBACK_2(CongratulationsUI::onKeyReleased,this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener,this);
+    
     Color3B color = SceneFactory::getInstance()->getSceneColor();
     m_pLabelCongratulations = Label::createWithTTF(CommonUtility::getLocalString("Congratulations"), CommonUtility::getLocalString("MainFont"), 120);
     m_pLabelCongratulations->setPosition(Vec2(480,500));
@@ -58,6 +62,16 @@ void CongratulationsUI::loadUI(const std::string& file)
 void CongratulationsUI::pressBackBtn(Ref* p,TouchEventType eventType)
 {
     if(eventType == TouchEventType::ENDED)
+    {
+        SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
+        BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
+        Director::getInstance()->replaceScene(mainScene);
+        TerrainMgr::getInstance()->setEnableAddTerrainCell(true);
+    }
+}
+void CongratulationsUI::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *unused_event)
+{
+    if(keyCode == EventKeyboard::KeyCode::KEY_ESCAPE)
     {
         SimpleAudioEngine::getInstance()->playEffect("btnclick.wav");
         BaseScene* mainScene = SceneFactory::getInstance()->createSceneByID(SCENE_MENU);
