@@ -25,7 +25,7 @@ void MenuScene::onEnter()
     BaseScene::onEnter();
     m_pMenuUI = UIMgr::getInstance()->createUI(MENU_UI);
     NativeBridge::getInstance()->showRateAppView();
-    NativeBridge::getInstance()->hideAdsView();
+    NativeBridge::getInstance()->showAdsView();
 }
 void MenuScene::onExit()
 {

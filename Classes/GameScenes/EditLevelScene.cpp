@@ -26,7 +26,7 @@ void LevelEditorScene::onEnter()
     BaseScene::onEnter();
     TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(40, 100));
     m_pLevelEditorUI = UIMgr::getInstance()->createUI(LEVEL_EDITOR_UI);
-    NativeBridge::getInstance()->showAdsView();
+    NativeBridge::getInstance()->hideAdsView();
 }
 void LevelEditorScene::onExit()
 {

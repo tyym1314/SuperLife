@@ -56,6 +56,7 @@
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
 		55139B071A75EFAA000DEDD7 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55139B061A75EFAA000DEDD7 /* libFlurry_6.0.0.a */; };
 		5516060819A733910071A23C /* EncrytionUtility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5516060619A733910071A23C /* EncrytionUtility.cpp */; };
+		551802771AA1BE64000D11F4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551802761AA1BE64000D11F4 /* StoreKit.framework */; };
 		55274E471A6D602000BA737B /* level10.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55274E3C1A6D602000BA737B /* level10.plist */; };
 		55274E481A6D602000BA737B /* level11.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55274E3D1A6D602000BA737B /* level11.plist */; };
 		55274E491A6D602000BA737B /* level12.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55274E3E1A6D602000BA737B /* level12.plist */; };
@@ -100,7 +101,6 @@
 		555D8FFA1A75314D00AB1630 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555D8FF91A75314D00AB1630 /* iAd.framework */; };
 		555D8FFC1A75369D00AB1630 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555D8FFB1A75369D00AB1630 /* SystemConfiguration.framework */; };
 		555D8FFE1A7537FD00AB1630 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555D8FFD1A7537FD00AB1630 /* Security.framework */; };
-		555D90061A753AFE00AB1630 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555D90051A753AFE00AB1630 /* StoreKit.framework */; };
 		555F5B361A7E769E0010D1B0 /* NativeBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 55E758CA1A778AA100FF85DE /* NativeBridge.mm */; };
 		556E8754199B957D00781CB0 /* MenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556E8752199B957D00781CB0 /* MenuScene.cpp */; };
 		556E8759199B971000781CB0 /* MenuUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 556E8757199B971000781CB0 /* MenuUI.cpp */; };
@@ -718,6 +718,7 @@
 		55139B061A75EFAA000DEDD7 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.0.0.a; sourceTree = "<group>"; };
 		5516060619A733910071A23C /* EncrytionUtility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EncrytionUtility.cpp; sourceTree = "<group>"; };
 		5516060719A733910071A23C /* EncrytionUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncrytionUtility.h; sourceTree = "<group>"; };
+		551802761AA1BE64000D11F4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		55274E3C1A6D602000BA737B /* level10.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level10.plist; sourceTree = "<group>"; };
 		55274E3D1A6D602000BA737B /* level11.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level11.plist; sourceTree = "<group>"; };
 		55274E3E1A6D602000BA737B /* level12.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level12.plist; sourceTree = "<group>"; };
@@ -772,7 +773,6 @@
 		555D8FF91A75314D00AB1630 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/iAd.framework; sourceTree = DEVELOPER_DIR; };
 		555D8FFB1A75369D00AB1630 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		555D8FFD1A7537FD00AB1630 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		555D90051A753AFE00AB1630 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		556E8752199B957D00781CB0 /* MenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuScene.cpp; sourceTree = "<group>"; };
 		556E8753199B957D00781CB0 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		556E8757199B971000781CB0 /* MenuUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuUI.cpp; sourceTree = "<group>"; };
@@ -1046,7 +1046,6 @@
 				55E758D71A778DDB00FF85DE /* EventKit.framework in Frameworks */,
 				55E758D51A778D1200FF85DE /* MessageUI.framework in Frameworks */,
 				55E758D31A778D0400FF85DE /* MediaPlayer.framework in Frameworks */,
-				555D90061A753AFE00AB1630 /* StoreKit.framework in Frameworks */,
 				55E758CF1A778CC100FF85DE /* AdSupport.framework in Frameworks */,
 				555D8FFE1A7537FD00AB1630 /* Security.framework in Frameworks */,
 				55139B071A75EFAA000DEDD7 /* libFlurry_6.0.0.a in Frameworks */,
@@ -1054,6 +1053,7 @@
 				555D8FFA1A75314D00AB1630 /* iAd.framework in Frameworks */,
 				1AC6FB2E180E99EB004C840B /* libbox2d iOS.a in Frameworks */,
 				1AC6FB2F180E99EB004C840B /* libchipmunk iOS.a in Frameworks */,
+				551802771AA1BE64000D11F4 /* StoreKit.framework in Frameworks */,
 				1AC6FB30180E99EB004C840B /* libcocos2dx iOS.a in Frameworks */,
 				1AC6FB31180E99EB004C840B /* libcocos2dx-extensions iOS.a in Frameworks */,
 				1AC6FB32180E99EB004C840B /* libCocosDenshion iOS.a in Frameworks */,
@@ -1175,6 +1175,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				551802761AA1BE64000D11F4 /* StoreKit.framework */,
 				55E758DE1A778EB700FF85DE /* GameController.framework */,
 				55E758DC1A778E3F00FF85DE /* EventKitUI.framework */,
 				55E758DA1A778E2100FF85DE /* CoreGraphics.framework */,
@@ -1184,7 +1185,6 @@
 				55E758D21A778D0400FF85DE /* MediaPlayer.framework */,
 				55E758D01A778CD500FF85DE /* AudioToolbox.framework */,
 				55E758CE1A778CC100FF85DE /* AdSupport.framework */,
-				555D90051A753AFE00AB1630 /* StoreKit.framework */,
 				555D8FFD1A7537FD00AB1630 /* Security.framework */,
 				555D8FFB1A75369D00AB1630 /* SystemConfiguration.framework */,
 				555D8FF91A75314D00AB1630 /* iAd.framework */,

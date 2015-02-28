@@ -1533,7 +1533,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "433"
             endingLineNumber = "433"
-            landmarkName = "MissionUI::pressRetryBtn(Ref* p,TouchEventType eventType)"
+            landmarkName = "MissionUI::pressStartBtn(Ref* p,TouchEventType eventType)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3286,22 +3286,6 @@
             startingLineNumber = "28"
             endingLineNumber = "28"
             landmarkName = "MenuScene::onEnter()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/UI/MenuUI.cpp"
-            timestampString = "446635129.710297"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "MenuUI::loadUI(const std::string&amp; file)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

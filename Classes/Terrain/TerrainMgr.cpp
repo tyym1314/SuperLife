@@ -55,8 +55,8 @@ TerrainMgr::~TerrainMgr()
 // 添加地面
 void TerrainMgr::addTerrain(TerrainCell::CELL_TYPE cell_type, int rows, int columns, float radius, const cocos2d::Vec2& offset)
 {
-    bool simpleTemplates = EncrytionUtility::getBoolForKey("UnlockSimpleTemplates", false);
-    bool allTemplates = EncrytionUtility::getBoolForKey("UnlockAllTemplates", false);
+    bool simpleTemplates = true;//EncrytionUtility::getBoolForKey("UnlockSimpleTemplates", false);
+    bool allTemplates = true;//EncrytionUtility::getBoolForKey("UnlockAllTemplates", false);
     loadTemplates(simpleTemplates, allTemplates);
     m_Offset = offset;
     m_fRadius = radius;

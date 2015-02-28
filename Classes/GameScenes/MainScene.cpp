@@ -25,12 +25,12 @@ MainScene::~MainScene()
 void MainScene::onEnter()
 {
     BaseScene::onEnter();
-    if (!EncrytionUtility::getBoolForKey("RemoveAds",false))
-        TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(40, 105));
-    else
-        TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(40, 95));
+    //if (!EncrytionUtility::getBoolForKey("RemoveAds",false))
+    TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(40, 105));
+    //else
+    //    TerrainMgr::getInstance()->addTerrain(TerrainCell::RECTANGLE, 60, 60, 6, Vec2(40, 95));
     m_pMainUI = UIMgr::getInstance()->createUI(MAIN_UI);
-    NativeBridge::getInstance()->showAdsView();
+    NativeBridge::getInstance()->hideAdsView();
 }
 void MainScene::onExit()
 {
