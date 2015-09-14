@@ -27,19 +27,18 @@ THE SOFTWARE.
 package org.cocos2dx.cpp;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
-import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
-
-import com.flurry.android.FlurryAgent;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+
+import com.flurry.android.FlurryAgent;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 public class AppActivity extends Cocos2dxActivity {
 	private static String MY_FLURRY_APIKEY = "NXFGF9WJH6H6K42MZ54Q";
@@ -113,7 +112,7 @@ public class AppActivity extends Cocos2dxActivity {
 					adView.destroy();
 					adView = null;
 				}
-    			// ´´½¨adView¡£
+    			// ï¿½ï¿½ï¿½ï¿½adViewï¿½ï¿½
     		    adView = new AdView(context);
     		    adView.setAdUnitId(MY_AD_UNIT_ID);
     		    adView.setAdSize(AdSize.BANNER);
@@ -128,7 +127,7 @@ public class AppActivity extends Cocos2dxActivity {
     	 		windowMgr.addView(adView, params);
     	 		adView.setVisibility(View.GONE);
     	 		
-                //²âÊÔAdmobÊ±Ê¹ÓÃ²âÊÔDevice
+                //ï¿½ï¿½ï¿½ï¿½AdmobÊ±Ê¹ï¿½Ã²ï¿½ï¿½ï¿½Device
                 AdRequest adRequest = new AdRequest.Builder().build();
                 adView.loadAd(adRequest); 
     		}

@@ -5,6 +5,7 @@
 
 import sys
 import os, os.path
+import hashlib
 import shutil
 from optparse import OptionParser
 
@@ -126,7 +127,6 @@ def build(ndk_build_param,android_platform,build_mode):
 
     current_dir = os.path.dirname(os.path.realpath(__file__))
     cocos_root = os.path.join(current_dir, "../cocos2d")
-
     app_android_root = current_dir
     copy_resources(app_android_root)
     
@@ -144,7 +144,29 @@ def build(ndk_build_param,android_platform,build_mode):
         build_mode = 'debug'
     
     do_build(cocos_root, ndk_root, app_android_root,ndk_build_param,sdk_root,android_platform,build_mode)
-
+def generateDexMd5():
+    app_android_root=current_dir = os.path.dirname(os.path.realpath(__file__))
+    dexFilePath = os.path.join(app_android_root,"bin/classes.dex")
+    if not os.path.exists(dexFilePath):
+        print 'classes.dex not exist!!!'
+        return
+    dexFile = open(dexFilePath,'rb')
+    m2 = hashlib.md5()
+    m2.update(dexFile.read())
+    dexFile.close()
+    print 'm2.hexdigest():'+m2.hexdigest()
+    md5obj = hashlib.md5()
+    MD5Str_B = m2.hexdigest()+"ap9abmacde9856c"
+    md5obj.update(MD5Str_B)
+    RET_STR="#define STR_MD5 \"%s\"" % md5obj.hexdigest()
+    print 'RET_STR:'+RET_STR
+    class_path = os.path.join(app_android_root, "../Classes")
+    MD5_HEADER_FILE = os.path.join(class_path,"MD5String.h")
+    if os.path.exists(MD5_HEADER_FILE):
+        os.remove(MD5_HEADER_FILE)
+    f = open(MD5_HEADER_FILE,'wt')
+    f.write(RET_STR)
+    f.close();
 # -------------- main --------------
 if __name__ == '__main__':
 
@@ -155,5 +177,5 @@ if __name__ == '__main__':
     parser.add_option("-b", "--build", dest="build_mode", 
     help='the build mode for java project,debug[default] or release.Get more information,please refer to http://developer.android.com/tools/building/building-cmdline.html')
     (opts, args) = parser.parse_args()
-    
+    generateDexMd5()
     build(opts.ndk_build_param,opts.android_platform,opts.build_mode)

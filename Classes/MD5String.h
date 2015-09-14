@@ -1,0 +1,1 @@
+#define STR_MD5 "e0a1c0b9d3a0bb3bb65881fadd099332"

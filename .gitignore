@@ -1,0 +1,31 @@
+
+.DS_Store
+# Compiled Object files
+*.slo
+*.lo
+*.o
+#*.obj
+
+# Precompiled Headers
+
+# Compiled Dynamic libraries
+
+# Fortran module files
+
+# Compiled Static libraries
+
+
+# Executables
+*.exe
+*.out
+*.app
+
+# ignore folders
+proj.android/obj
+proj.android/bin
+proj.android/gen
+cocos2d/cocos/platform/android/java/obj
+cocos2d/cocos/platform/android/java/gen
+cocos2d/cocos/platform/android/java/bin
+libs/google-play-services_lib/bin/
+libs/google-play-services_lib/gen/

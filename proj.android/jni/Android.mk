@@ -12,28 +12,24 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 
 LOCAL_DEFAULT_CPP_EXTENSION := cpp
 
-SOURCE_FILES := hellocpp/main.cpp \
-                   ../../Classes/*.cpp \
-                   ../../Classes/Const/*.cpp \
-                   ../../Classes/Data/*.cpp \
-                   ../../Classes/GameLayers/*.cpp \
-                   ../../Classes/GameScenes/*.cpp \
-                   ../../Classes/Payment/*.cpp \
-                   ../../Classes/Terrain/*.cpp \
-                   ../../Classes/UI/*.cpp \
-                   ../../Classes/Utilities/*.cpp
+# 遍历目录及子目录的函数
+define walk
+  $(wildcard $(1)) $(foreach e, $(wildcard $(1)/*), $(call walk, $(e)))
+endef
 
-LOCAL_SRC_FILES := 	$(foreach F, $(SOURCE_FILES), $(addprefix $(dir $(F)),$(notdir $(wildcard $(LOCAL_PATH)/$(F)))))
+# 遍历Classes目录
+ALLFILES = $(call walk, $(LOCAL_PATH)/../../Classes)
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
-					$(LOCAL_PATH)/../../Classes/Const \
-					$(LOCAL_PATH)/../../Classes/Data \
-					$(LOCAL_PATH)/../../Classes/GameLayers \
-					$(LOCAL_PATH)/../../Classes/GameScenes \
-					$(LOCAL_PATH)/../../Classes/Payment \
-					$(LOCAL_PATH)/../../Classes/Terrain \
-					$(LOCAL_PATH)/../../Classes/UI \
-					$(LOCAL_PATH)/../../Classes/Utilities		
+FILE_LIST := hellocpp/main.cpp
+# 从所有文件中提取出所有.cpp文件
+FILE_LIST += $(filter %.cpp, $(ALLFILES))
+
+FILE_INCLUDES := $(shell find $(LOCAL_PATH)/../../Classes -type d)
+
+LOCAL_SRC_FILES := $(FILE_LIST:$(LOCAL_PATH)/%=%)
+
+#LOCAL_LDLIBS := -landroid -llog
+LOCAL_C_INCLUDES := $(FILE_INCLUDES)		
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static

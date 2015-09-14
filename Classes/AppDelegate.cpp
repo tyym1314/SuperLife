@@ -3,7 +3,9 @@
 #include "SimpleAudioEngine.h"
 USING_NS_CC;
 using namespace CocosDenshion;
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#include "checkMD5.h"
+#endif
 AppDelegate::AppDelegate() {
 
 }
@@ -13,6 +15,17 @@ AppDelegate::~AppDelegate()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
+
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    if (!getBooleanForKey())
+    {
+        char* p = NULL;
+        strcpy(p, "get some data");
+        return false;
+    }
+#endif
+
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
